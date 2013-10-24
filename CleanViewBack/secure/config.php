@@ -1,13 +1,13 @@
 <?php
 #####################################################################
-# 									D O C U M E N T _ S U M M A R Y									#
+#		D O C U M E N T _ S U M M A R Y	#
 #####################################################################
-# The config will contain a number of constants to be used by the		#
-# rest of the software. 																						#
+# The config will contain a number of constants to be used by the	#
+# rest of the software. 											#
 #####################################################################
 
 #####################################################################
-# 						D A T A B A S E  _ S E T T I N G S		  							#
+# 		D A T A B A S E  _ S E T T I N G S		  					#
 #####################################################################
 define('DB_NAME','uwb_devdogs');
 define('DB_HOST','localhost');
