@@ -7,7 +7,7 @@
     <body>
 		<?php
 		// put your code here
-		echo "hello universe!";
+		echo "What should we do with the index page? Provide documentation for the API? Nothing?";
 		?>
     </body>
 </html>
