@@ -19,7 +19,7 @@
 # If no type is given, method assumes you want to show all types of #
 # events. 															#
 #####################################################################
-
+//
 // do useful crap here. 
 // get output
 // convert output to JSON
