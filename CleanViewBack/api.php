@@ -11,12 +11,15 @@
 	require_once('secure/init_variables.php');						#
 #####################################################################
 	switch(htmlspecialchars($_POST['action'])){
-		case 'getEvents':
+		case 'get_events':
 			include_once('secure/get_events.php');break;
-		case 'isUsernameTaken':
-			//include_once('secure/getEvents.php');break;
+		case 'add_user':
+		case 'add_school':
+		case 'add_course':
+		case 'add_event':
+		case 'add_subscription':	//(subscriptiont to a course number.)
 		default:
-			echo ('acceptable values for action are : getEvents');
+			echo ('acceptable values for action are : get_events');
 			break;
 	}
 ?>
