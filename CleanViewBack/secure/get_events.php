@@ -9,7 +9,7 @@
 # _________________________________________________________________ #
 # end = (Unix Time) End of when to pull events from.				#
 # _________________________________________________________________ #
-# user_id  = student number                             				#
+# user_id  = student number                             	        #
 # _________________________________________________________________ #
 # courses = comma separated list of course numbers to grab data for #
 # if no value is given, method will assume you want to show all of  #

@@ -7,8 +7,8 @@
 # the database connection.											#
 #####################################################################
 // authenticate if possible
-$dbConn = mysqli_connect(SQL_DB_HOST,SQL_DB_USER,SQL_DB_PASS,SQL_DB_NAME,SQL_DB_PORT) or die('could not connect to database');
-$user_id = 0;//something. We still need to figure out how we will have our user authenticate themselves in the database.
+$dbConn = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME,DB_PORT) or die('could not connect to database');
+$user_id = -1;//something. We still need to figure out how we will have our user authenticate themselves in the database.
 
 
 

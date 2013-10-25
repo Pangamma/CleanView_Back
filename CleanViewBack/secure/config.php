@@ -1,22 +1,13 @@
 <?php
 #####################################################################
-#		D O C U M E N T _ S U M M A R Y	#
+# 	       D O C U M E N T _ S U M M A R Y							#
 #####################################################################
-# The config will contain a number of constants to be used by the	#
-# rest of the software. 											#
+// init_variables.php will be used for initilizing commonly used     
+// variables such as username or api keys. It might also initialize  
+// the database connection.											
 #####################################################################
+// authenticate if possible
+$dbConn = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME,DB_PORT) or die('could not connect to database');
+$user_id = -1;//something. We still need to figure out how we will have our user authenticate themselves in the database.
 
-#####################################################################
-# 		D A T A B A S E  _ S E T T I N G S		  					#
-#####################################################################
-define('SQL_DB_NAME','uwb_devdogs');
-define('SQL_DB_HOST','localhost');
-define('SQL_DB_USER','uwb');
-define('SQL_DB_PASS','Seattle2013');
-define('SQL_DB_PORT',3306);
-/* Example Use : 
-If I want to retrieve a constant 'DB_NAME', I can use any of the following methods to echo it into output.
-1) echo constant('DB_NAME');
-2) echo ${DB_NAME};
-3) echo DB_NAME; */
 ?>
