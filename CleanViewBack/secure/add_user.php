@@ -3,7 +3,7 @@
 // Turn off all error reporting
 error_reporting ( 0 );
 
-require 'secure/config.php';
+require 'config.php';
 
 // Create connection
 $connection = mysqli_connect ( DB_HOST, DB_USER, DB_PASS, DB_NAME );
