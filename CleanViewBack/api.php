@@ -14,8 +14,10 @@
 		case 'get_events':
 			include_once('secure/get_events.php');break;
 		case 'add_user':
+			include_once('secure/add_user.php');break;
 		case 'add_school':
 		case 'add_course':
+			include_once('secure/add_course.php');break;
 		case 'add_event':
 		case 'add_subscription':	//(subscriptiont to a course number.)
 		default:
