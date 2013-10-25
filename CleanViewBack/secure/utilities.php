@@ -24,5 +24,7 @@ function mysqliToJson($results){
 	}
 	return json_encode($output);
 }
-
+function calcTimeInSeconds($year,$month,$day,$hour = 0,$minute = 0){
+//get time in seconds
+}
 ?>

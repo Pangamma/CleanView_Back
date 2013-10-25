@@ -16,7 +16,6 @@ $time = 0;//what time format should we use?
 $posterid = mysqli_real_escape_string($user_id);//we defined this in the init_variables.php file. Kind of. 
 $courseid = isset($_POST['courseid']) ? mysqli_real_escape_string($_POST['courseid']) : 'no title';
 
-
 $query = "INSERT INTO `events` (`title`, `description`, `type_id`, `time`, `poster_id`, `course_id`, `deleted`)"
 		."VALUES ('".$title."', '".$descrip."', ".$typeid.", ".$time.",".$posterid.",". $courseid .", b'0')";
 $result = mysqli_query($dbConn, $query) or die(mysqli_error($dbConn));
