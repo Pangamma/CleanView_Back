@@ -19,7 +19,23 @@
 # If no type is given, method assumes you want to show all types of #
 # events. 															#
 #####################################################################
-#
+$dataStr = 
+	'{
+		"action":"get_events",
+		"user": "pangamma",
+		"apikey": "213kaasdalsdkn",
+		"params": {
+			"start": 0,
+			"end": '.time().',
+			"courses": {
+				1,2,54,2
+			},
+			"eventtypes":{
+				1,3,6,3
+			}
+		}
+	}';
+$data = json_decode($dataStr);
 $start = $_POST['start'];
 $end = $_POST['end'];
 $user_id = $_POST['user_id'];
