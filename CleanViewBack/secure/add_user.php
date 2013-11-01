@@ -1,12 +1,12 @@
 <?php
-
-// Turn off all error reporting
-error_reporting ( 0 );
-
-require 'config.php';
-
-// Create connection
-$connection = mysqli_connect ( DB_HOST, DB_USER, DB_PASS, DB_NAME );
+//
+//// Turn off all error reporting
+//error_reporting ( 0 );
+//
+//require 'config.php';
+//
+//// Create connection
+//$connection = mysqli_connect ( DB_HOST, DB_USER, DB_PASS, DB_NAME );
 
 $response = array ();
 
