@@ -43,7 +43,7 @@ class Api{
 		$query = "SELECT * FROM ".Api::$tbl_Events." WHERE `event_id`='".  mysqli_real_escape_string($this->dbConn,$eventId)."'";
 		//failure is the fault of the developer. kill the entire program if a query fails.
 		$mysqli_result = mysqli_query($this->dbConn, $query) or die(mysqli_error($this->dbConn));
-		$row = mysqli_fetch_row($mysqli_result) or die(mysqli_error($this->dbConn));
+		$row = mysqli_fetch_array($mysqli_result) or die(mysqli_error($this->dbConn));
 		if (isset($row)){ 
 			// $courseId = -1, $typeId = -1,$dateTime = null,$title = 'event', $description = 'desc'){
 			$event = new Event($row['course_id'], $row['type_id'], $row['time'], $row['title'], $row['description']);
