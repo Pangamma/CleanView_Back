@@ -93,7 +93,7 @@ class Api{
 		
 		$query = "SELECT * FROM " . Api::$tbl_Users . " WHERE `user_id`=" . mysqli_real_escape_string ( $this->dbConn, $userId );
 		$mysqli_result = mysqli_query ( $this->dbConn, $query ) or die ( mysqli_error ( $this->dbConn ) );
-		$row = mysqli_fetch_row ( $mysqli_arr ) or die ( mysqli_error ( $this->dbConn ) );
+		$row = mysqli_fetch_row ( $mysqli_result ) or die ( mysqli_error ( $this->dbConn ) );
 		if (! isset ( $row )) {
 			return null;
 		} else {
