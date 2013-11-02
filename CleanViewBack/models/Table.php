@@ -41,6 +41,8 @@
 				try{
 					$statment = $this->db->prepare($query);
 					$statment->execute($params);
+
+					//TODO: create result object that does not expose PDO
 					return $statment;
 				} catch (PDOException $ex) {
 					echo 'Query failed: ' . $ex->getMessage();

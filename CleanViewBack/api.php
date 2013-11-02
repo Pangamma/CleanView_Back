@@ -8,24 +8,30 @@
 #####################################################################
 #	I N C L U D E _ R E S O U R C E S								#
 	// require_once('../config.php');           						#
-	require_once('./secure/init_variables.php');						#
-	require_once('./event.php');										#
-	require_once('./models/table.php');
+	require_once('secure/init_variables.php');						#
+	require_once('event.php');										#
+	require_once('school.php');										#
+	require_once('user.php');										#
+	require_once('course.php');										#
+	require_once('./models/Table.php');					#
 #####################################################################
 //<editor-fold defaultstate="collapsed" desc="Api">
 class Api{
 	private static $tbl_Courses = 'courses';
 	private static $tbl_Enrollments = 'enrollments';
   private static $tbl_Events = 'events';
+  private static $tbl_Schools = 'schools';
+  private static $tbl_Users = 'users';
+    
 	
   public static $error_prefix = 'Error : ';
 	private $dbConn;
 	//--------------------------------------------------------------------------
 	//constructor that makes the database connection using variables from config.
 	function __construct(){
-		//this should prorably be done with composition
-		$this->dbConn = new Table($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
+		$this->dbConn = mysqli_connect(DB_HOST, DB_USER,DB_PASS,DB_NAME, DB_PORT);
 	}
+
 	//<editor-fold defaultstate="collapsed" desc="Event Handling">
 	/**
 	 * @param int $courseid is the id of the 
@@ -47,7 +53,7 @@ class Api{
 		}
 		
 		//unsure if query workds unable to test
-		$query = "SELECT * FROM events WHERE event_id = :eventId";
+		$query = "SELECT * FROM " . Api::$tbl_Events . " WHERE event_id = :eventId";
 		
 		$queryParams = array(
 				":eventId" => $eventId
@@ -55,22 +61,114 @@ class Api{
 
 		$results = $this->dbConn->execute($query, $queryParams);
 
-		if(!$results){
-			//error kill process
-			return "Sometime went wrong in the query";
-		}
-		echo $results->rowCount();
-		//we fetch because eventIds must be unique
-		if($eventData = $results->fetch(PDO::FETCH_ASSOC)){
+		if(!$results)	return "Sometime went wrong in the query";
+
+		if($eventData = $results->fetch(PDO::FETCH_BOTH)){
 			$event = new Event($eventData['course_id'], $eventData['type_id'], $eventData['time'], $eventData['title'], $eventData['description']);
 			$event->setEventId($eventData['event_id']);
 			return $event;
 		}
 
 		return "event not found"; //event not found
-
 	}
-	//</editor-fold>
+
+	function getSchoolById($schoolId) {
+		if (! isset ( $schoolId )) {
+			return null;
+		}
+		
+		$query = "SELECT * FROM " . Api::$tbl_Schools . " WHERE school_id= :schoolId";
+	
+		$params = array(
+			":schooldId" => $schooldId		
+		);
+
+		$results = $this->dbConn->execute($query, $params);
+
+		if (!$results)	return "Sometime went wrong in the query";
+
+		if (!$row = $results->fetch(PDO::FETCH_BOTH)) {
+			return null;
+		} else {
+			return School::createFromTableRow ( $row );
+		}
+	}
+
+	function getCourseById($courseId) {
+		if (! isset ( $courseId )) {
+			return null;
+		}
+		
+		$query = "SELECT * FROM " . Api::$tbl_Courses . " WHERE course_id= :courseId";
+		$params = array(
+			":courseid" => $courseId
+		);
+
+		$results = $this->dbConn->execute($query, $params);
+
+		if (!$results)	return "Sometime went wrong in the query";
+
+		if (!$row = $results->fetch(PDO::FETCH_BOTH)) {
+			return null;
+		} else {
+			return Course::createFromTableRow ( $row );
+		}
+	}
+
+
+	function getUserById($userId) {
+		if (! isset ( $userId )) {
+			return null;
+		}
+
+		$query = "SELECT * FROM " . Api::$tbl_Users . " WHERE user_id= :userId";
+		$params = array(
+			":userId" => $userId
+		);
+
+		$results = $this->dbConn->execute($query, $params);
+
+		if (!$results)	return "Sometime went wrong in the query";
+
+		if (!$row = $results->fetch(PDO::FETCH_BOTH)) {
+			return null;
+		} else {
+			return User::createFromTableRow ( $row );
+		}
+	}
+
+
+	function getUsers() {
+		$query = "SELECT * FROM " . Api::$tbl_Users;
+		$results = $this->dbConn->execute($query, $params);
+		$usersList = array ();
+		while ( $results->fetch(PDO::FETCH_BOTH) ) {
+			$usersList [] = User::createFromTableRow ( $row );
+		}
+		return $usersList;
+	}
+
+
+	function getCourses() {
+		$query = "SELECT * FROM " . Api::$tbl_Courses;
+		$results = $this->dbConn->execute($query, $params);
+		$coursesList = array ();
+		while ( $results->fetch(PDO::FETCH_BOTH) ) {
+			$coursesList [] = Course::createFromTableRow ( $row );
+		}
+		return $coursesList;
+	}
+
+
+	function getSchools() {
+		$query = "SELECT * FROM " . Api::$tbl_Schools;
+		$results-fetch(PDO::FETCH_BOTH);
+		$schoolsList = array ();
+		while ( $results->fetch(PDO::FETCH_BOTH) ) {
+			$schoolsList [] = School::createFromTableRow ( $row );
+		}
+		return $schoolsList;
+	}
 }
-//</editor-fold>
+// </editor-fold>
 ?>
