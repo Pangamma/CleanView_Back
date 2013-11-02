@@ -69,7 +69,7 @@
 		*	@param	{string}	[type] optional type of return object	
 		*	@return {row}	row object
 		*/
-		public function fetch($type){
+		public function fetch(){
 			//TODO: support diffrent return types
 			return $this->data->fetch(PDO::FETCH_BOTH);
 		}

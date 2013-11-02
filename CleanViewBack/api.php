@@ -13,7 +13,8 @@
 	require_once('school.php');										#
 	require_once('user.php');										#
 	require_once('course.php');										#
-	require_once('./models/Table.php');					#
+	require_once('./models/Table.php');	
+	require_once('../config.php');				#
 #####################################################################
 //<editor-fold defaultstate="collapsed" desc="Api">
 class Api{
@@ -29,7 +30,7 @@ class Api{
 	//--------------------------------------------------------------------------
 	//constructor that makes the database connection using variables from config.
 	function __construct(){
-		$this->dbConn = mysqli_connect(DB_HOST, DB_USER,DB_PASS,DB_NAME, DB_PORT);
+		$this->dbConn = new Table(DB_HOST, DB_USER,DB_PASS,DB_NAME, DB_PORT);
 	}
 
 	//<editor-fold defaultstate="collapsed" desc="Event Handling">
