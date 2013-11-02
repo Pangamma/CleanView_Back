@@ -6,8 +6,9 @@
     </head>
     <body>
 		<?php
-		 $api = new Api();
-		 $api
+		require_once('restapi.php');
+		$rapi = new RestApi();
+		$rapi->
 		?>
     </body>
 </html>

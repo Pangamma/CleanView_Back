@@ -14,5 +14,15 @@ class RestApi extends Api{
 	function rawInput($actionStr = 'default',$jsonStr = '{}'){
 		
 	}
+	function getEventById($jsonStr){
+		$data = json_decode($jsonStr,false);
+		$id = $data['event_id'];
+		$event = parent::getEventById($id);
+		if (isset($event)){
+			return json_encode($event);
+		}else{
+			return Api::$error_prefix."Event not found by id: ".$id.".";
+		}
+	}
 }
 ?>
