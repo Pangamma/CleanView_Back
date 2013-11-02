@@ -63,7 +63,7 @@ class Api{
 
 		if(!$results)	return "Sometime went wrong in the query";
 
-		if($eventData = $results->fetch(PDO::FETCH_BOTH)){
+		if($eventData = $results->fetch()){
 			$event = new Event($eventData['course_id'], $eventData['type_id'], $eventData['time'], $eventData['title'], $eventData['description']);
 			$event->setEventId($eventData['event_id']);
 			return $event;
@@ -87,7 +87,7 @@ class Api{
 
 		if (!$results)	return "Sometime went wrong in the query";
 
-		if (!$row = $results->fetch(PDO::FETCH_BOTH)) {
+		if (!$row = $results->fetch()) {
 			return null;
 		} else {
 			return School::createFromTableRow ( $row );
@@ -108,7 +108,7 @@ class Api{
 
 		if (!$results)	return "Sometime went wrong in the query";
 
-		if (!$row = $results->fetch(PDO::FETCH_BOTH)) {
+		if (!$row = $results->fetch()) {
 			return null;
 		} else {
 			return Course::createFromTableRow ( $row );
@@ -130,7 +130,7 @@ class Api{
 
 		if (!$results)	return "Sometime went wrong in the query";
 
-		if (!$row = $results->fetch(PDO::FETCH_BOTH)) {
+		if (!$row = $results->fetch()) {
 			return null;
 		} else {
 			return User::createFromTableRow ( $row );
@@ -142,7 +142,7 @@ class Api{
 		$query = "SELECT * FROM " . Api::$tbl_Users;
 		$results = $this->dbConn->execute($query, $params);
 		$usersList = array ();
-		while ( $results->fetch(PDO::FETCH_BOTH) ) {
+		while ( $results->fetch() ) {
 			$usersList [] = User::createFromTableRow ( $row );
 		}
 		return $usersList;
@@ -153,7 +153,7 @@ class Api{
 		$query = "SELECT * FROM " . Api::$tbl_Courses;
 		$results = $this->dbConn->execute($query, $params);
 		$coursesList = array ();
-		while ( $results->fetch(PDO::FETCH_BOTH) ) {
+		while ( $results->fetch() ) {
 			$coursesList [] = Course::createFromTableRow ( $row );
 		}
 		return $coursesList;
@@ -162,9 +162,9 @@ class Api{
 
 	function getSchools() {
 		$query = "SELECT * FROM " . Api::$tbl_Schools;
-		$results-fetch(PDO::FETCH_BOTH);
+		$results-fetch();
 		$schoolsList = array ();
-		while ( $results->fetch(PDO::FETCH_BOTH) ) {
+		while ( $results->fetch() ) {
 			$schoolsList [] = School::createFromTableRow ( $row );
 		}
 		return $schoolsList;

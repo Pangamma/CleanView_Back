@@ -42,12 +42,36 @@
 					$statment = $this->db->prepare($query);
 					$statment->execute($params);
 
-					//TODO: create result object that does not expose PDO
-					return $statment;
+					return new Result($statment);
 				} catch (PDOException $ex) {
 					echo 'Query failed: ' . $ex->getMessage();
 					return false;
 				}
 			}
+	}
+
+	class Result{
+
+		private $data;
+
+		/**
+		*	Result wraper
+		*	@param	{PDOStatment}	resutl to wrap
+		*	@constructor
+		*/
+		public function Result($data){
+			$this->data = $data;
+		}
+
+		/**
+		*	fetch
+		*	returns single row
+		*	@param	{string}	[type] optional type of return object	
+		*	@return {row}	row object
+		*/
+		public function fetch($type){
+			//TODO: support diffrent return types
+			return $this->data->fetch(PDO::FETCH_BOTH);
+		}
 	}
 	?>
