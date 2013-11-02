@@ -36,10 +36,10 @@ class Api{
    /**
 	 * @param int $eventId the id of the event in question.
 	 * @return Event The event object if it exists | or null
-	 */
+	 *///fixed a weird sanitation glitch. (There has got to be a better and shorter way to sanitize our data. )
 	function getEventById($eventId){
 		if (!isset($eventId)){ /*$this->lastError = "eventId passed to getEventById method was not set."; */ return null; }
-		$query = "SELECT * FROM ".Api::$tbl_Events." WHERE `event_id`='".  mysqli_real_escape_string($eventId)."'";
+		$query = "SELECT * FROM ".Api::$tbl_Events." WHERE `event_id`='".  mysqli_real_escape_string($this->dbConn,$eventId)."'";
 		//failure is the fault of the developer. kill the entire program if a query fails.
 		$mysqli_result = mysqli_query($dbConn, $query) or die(mysqli_error($dbConn));
 		$mysqli_arr = mysqli_fetch_array($mysqli_result) or die(mysqli_error($dbConn));
