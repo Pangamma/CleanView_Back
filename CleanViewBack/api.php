@@ -21,7 +21,7 @@ class Api{
 	//--------------------------------------------------------------------------
 	//constructor that makes the database connection using variables from config.
 	function __construct(){
-		$this->$dbConn = mysqli_connect(DB_HOST, DB_USER,DB_PASS,DB_NAME, DB_PORT);
+		$this->dbConn = mysqli_connect(DB_HOST, DB_USER,DB_PASS,DB_NAME, DB_PORT);
 	}
 	//<editor-fold defaultstate="collapsed" desc="Event Handling">
 	/**
