@@ -81,7 +81,7 @@ class Api{
 		$query = "SELECT * FROM " . Api::$tbl_Schools . " WHERE school_id= :schoolId";
 	
 		$params = array(
-			":schooldId" => $schooldId		
+			":schoolId" => $schoolId		
 		);
 
 		$results = $this->dbConn->execute($query, $params);
@@ -102,7 +102,7 @@ class Api{
 		
 		$query = "SELECT * FROM " . Api::$tbl_Courses . " WHERE course_id= :courseId";
 		$params = array(
-			":courseid" => $courseId
+			":courseId" => $courseId
 		);
 
 		$results = $this->dbConn->execute($query, $params);
@@ -143,7 +143,7 @@ class Api{
 		$query = "SELECT * FROM " . Api::$tbl_Users;
 		$results = $this->dbConn->execute($query, $params);
 		$usersList = array ();
-		while ( $results->fetch() ) {
+		while ( $row = $results->fetch() ) {
 			$usersList [] = User::createFromTableRow ( $row );
 		}
 		return $usersList;
@@ -154,7 +154,7 @@ class Api{
 		$query = "SELECT * FROM " . Api::$tbl_Courses;
 		$results = $this->dbConn->execute($query, $params);
 		$coursesList = array ();
-		while ( $results->fetch() ) {
+		while ( $row = $results->fetch() ) {
 			$coursesList [] = Course::createFromTableRow ( $row );
 		}
 		return $coursesList;
@@ -163,9 +163,9 @@ class Api{
 
 	function getSchools() {
 		$query = "SELECT * FROM " . Api::$tbl_Schools;
-		$results-fetch();
+		$results = $this->dbConn->execute($query, $params);
 		$schoolsList = array ();
-		while ( $results->fetch() ) {
+		while ( $row = $results->fetch() ) {
 			$schoolsList [] = School::createFromTableRow ( $row );
 		}
 		return $schoolsList;

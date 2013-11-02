@@ -24,7 +24,7 @@ class School implements JsonSerializable {
 
 	public static function createFromTableRow($row) {
 	
-		return new self ($row [0], $row [1], $row [2], $row [3], $row [4] );
+		return new self ($row ['school_id'], $row ['name'], $row ['city'], $row ['state'], $row ['country'] );
 	}
 	
 	public function jsonSerialize() {
@@ -33,7 +33,7 @@ class School implements JsonSerializable {
 		$data ['name'] = $this->name;
 		$data ['city'] = $this->city;
 		$data ['state'] = $this->state;
-		$data ['contry'] = $this->country;
+		$data ['country'] = $this->country;
 
 		return $data;
 	}

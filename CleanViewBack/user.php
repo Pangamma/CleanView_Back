@@ -21,15 +21,15 @@ class User implements JsonSerializable {
 	
 	public static function createFromTableRow($row) {
 	
-		return new self ($row [0], $row [1], $row [2], $row [3], $row [4] );
+		return new self ($row ['user_id'], $row ['first_name'], $row ['last_name'], $row ['email'], $row ['username'] );
 	}
 
 
 	public function jsonSerialize() {
 		$data = array ();
-		$data ['userID'] = $this->userId;
-		$data ['firstName'] = $this->firstName;
-		$data ['lastName'] = $this->lastName;
+		$data ['user_id'] = $this->userId;
+		$data ['first_name'] = $this->firstName;
+		$data ['last_name'] = $this->lastName;
 		$data ['email'] = $this->email;
 		$data ['username'] = $this->username;
 

@@ -28,12 +28,12 @@ class Course implements JsonSerializable {
 	}
 	
 	public static function createFromTableRow($row) {
-		return new self ( $row [0], $row [1], $row [2], $row [3], $row [4], $row [5], $row [6], $row [7], $row [8] );
+		return new self ( $row ['course_id'], $row ['school_id'], $row ['title'], $row ['name'], $row ['section'], $row ['year'], $row ['quarter'], $row ['instructor'], $row ['sln'] );
 	}
 	
 	public function jsonSerialize() {
 		$data = array ();
-		$data ['courseID'] = $this->courseId;
+		$data ['course_id'] = $this->courseId;
 		$data ['school_id'] = $this->schoolId;
 		$data ['title'] = $this->title;
 		$data ['name'] = $this->name;
