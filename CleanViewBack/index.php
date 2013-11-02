@@ -6,9 +6,10 @@
     </head>
     <body>
 		<?php
-		require_once('restapi.php');
-		$rapi = new RestApi();
-		$rapi->
+		require_once('api.php');
+		$api = new Api();
+		$event = $api->getEventById(1);
+		echo json_encode($event);
 		?>
     </body>
 </html>
