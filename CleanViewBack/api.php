@@ -7,21 +7,24 @@
 # variables that can be used with the software we are making. 		#
 #####################################################################
 #	I N C L U D E _ R E S O U R C E S								#
-	require_once('../config.php');           						#
-	require_once('secure/init_variables.php');						#
+	// require_once('../config.php');           						#
+	require_once('./secure/init_variables.php');						#
+	require_once('./event.php');										#
+	require_once('./models/table.php');
 #####################################################################
 //<editor-fold defaultstate="collapsed" desc="Api">
 class Api{
 	private static $tbl_Courses = 'courses';
 	private static $tbl_Enrollments = 'enrollments';
-    private static $tbl_Events = 'events';
+  private static $tbl_Events = 'events';
 	
-    public static $error_prefix = 'Error : ';
+  public static $error_prefix = 'Error : ';
 	private $dbConn;
 	//--------------------------------------------------------------------------
 	//constructor that makes the database connection using variables from config.
 	function __construct(){
-		$this->dbConn = mysqli_connect(DB_HOST, DB_USER,DB_PASS,DB_NAME, DB_PORT);
+		//this should prorably be done with composition
+		$this->dbConn = new Table($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
 	}
 	//<editor-fold defaultstate="collapsed" desc="Event Handling">
 	/**
@@ -38,122 +41,36 @@ class Api{
 	 * @return Event The event object if it exists | or null
 	 *///fixed a weird sanitation glitch. (There has got to be a better and shorter way to sanitize our data. )
 	function getEventById($eventId){
-		if (!isset($eventId)){ /*$this->lastError = "eventId passed to getEventById method was not set."; */ return null; }
-		$query = "SELECT * FROM ".Api::$tbl_Events." WHERE `event_id`='".  mysqli_real_escape_string($this->dbConn,$eventId)."'";
-		//failure is the fault of the developer. kill the entire program if a query fails.
-		$mysqli_result = mysqli_query($this->dbConn, $query) or die(mysqli_error($this->dbConn));
-		$mysqli_arr = mysqli_fetch_array($mysqli_result) or die(mysqli_error($this->dbConn));
-		if (!isset($mysqli_arr)){return null;}else{ $row = mysqli_fetch_row($mysqli_arr) or die(mysqli_error($this->dbConn));}
-		if (!isset($row)){return null;}else{ 
-			// $courseId = -1, $typeId = -1,$dateTime = null,$title = 'event', $description = 'desc'){
-			$event = new Event($row['course_id'], $row['type_id'], $row['time'], $row['title'], $row['description']);
-			$event->setEventId($row['event_id']);
+		if (!isset($eventId)){ /*$this->lastError = "eventId passed to getEventById method was not set."; */ 
+			//TODO: return proper errors like 403 and 400
+			return "invaild request"; 
+		}
+		
+		//unsure if query workds unable to test
+		$query = "SELECT * FROM events WHERE event_id = :eventId";
+		
+		$queryParams = array(
+				":eventId" => $eventId
+		);
+
+		$results = $this->dbConn->execute($query, $queryParams);
+
+		if(!$results){
+			//error kill process
+			return "Sometime went wrong in the query";
+		}
+		echo $results->rowCount();
+		//we fetch because eventIds must be unique
+		if($eventData = $results->fetch(PDO::FETCH_ASSOC)){
+			$event = new Event($eventData['course_id'], $eventData['type_id'], $eventData['time'], $eventData['title'], $eventData['description']);
+			$event->setEventId($eventData['event_id']);
 			return $event;
 		}
-		return null;//if not found.
+
+		return "event not found"; //event not found
+
 	}
 	//</editor-fold>
-}
-//</editor-fold>
-//------------------------------------------------------------------------------
-// S U B _ C L A S S E S _ G O _ B E N E A T H _ T H I S _ S E C T I O N 
-//------------------------------------------------------------------------------
-//<editor-fold defaultstate="collapsed" desc="Event Object">
-class Event implements JsonSerializable{
-	private $eventId = -1;
-	private $courseId = -1;
-	private $dateTime;
-	private $title = 'event';
-	private $desc = 'event description';
-	private $typeId = 1;
-	/**
-	 * Create a new event Object to be used.
-	 * @param int $courseid is the id of the 
-	 * @param DateTime $dateTime time when item is due.
-	 * @param string $title will be the caption
-	 * @param string $description
-	 * @param int $typeid the type of event type.
-	 */
-	function __construct( $courseId = -1, $typeId = -1,$dateTime = null,$title = 'event', $description = 'desc'){
-		$this->courseId = $courseId;
-		$this->dateTime = $dateTime;
-		$this->title = $title;
-		$this->desc = $description;
-		$this->typeId = $typeId;
-	}
-	/** 
-	 * 
-	 * @param type $jsonStr should contain 
-	 */
-	public static function createEventFromJson($jsonStr){
-		
-	}
-	function getCourseId(){
-		return $this->courseId;
-	}
-	/** @param int courseId 
-	 * @return Event for use in chain coding.**/
-	function setCourseId($courseId){
-		$this->courseId = $courseId;
-		return $this;
-	}
-	/** @return int id (in the database) of the event. Will return -1 if it
-	 * does not exist.	 */
-	public function getEventId() {
-		return $this->eventId;
-	}
-	/** @param int eventId 
-	 * @return Event for use in chain coding.**/
-	public function setEventId($eventId) {
-		$this->eventId = $eventId;
-		return $this;
-	}
-	/** 
-	 * @return DateTime 
-	 */
-	public function getDateTime() {
-		return $this->dateTime;
-	}
-	/** @param int courseId 
-	 * @return Event for use in chain coding.**/
-	public function setDateTime($dateTime) {
-		$this->dateTime = $dateTime;
-	}
-
-	public function getTitle() {
-		return $this->title;
-	}
-
-	public function setTitle($title) {
-		$this->title = $title;
-	}
-
-	public function getDesc() {
-		return $this->desc;
-	}
-
-	public function setDesc($desc) {
-		$this->desc = $desc;
-	}
-
-	public function getTypeId() {
-		return $this->typeId;
-	}
-
-	public function setTypeId($typeId) {
-		$this->typeId = $typeId;
-	}
-
-	public function jsonSerialize() {
-		$data = array();
-		$data['event_id'] = $this->eventId;
-		$data['course_id'] = $this->courseId;
-		$data['time'] = $this->dateTime;
-		$data['description'] = $this->desc;
-		$data['type_id'] = $this->typeId;
-		return $data;
-	}
-	
 }
 //</editor-fold>
 ?>

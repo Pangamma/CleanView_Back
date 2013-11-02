@@ -12,10 +12,10 @@
 // who is calling the api function doesn't pass in proper variables, the 
 // function should return that error message. Should also return an error
 // if there are missing required parameters.
-$json = json_decode($_POST['json'],true);
+// $json = json_decode($_POST['json'],true);
 //^should this contain username/password as well, or not?
 //once again, authentication is a huge issue for us.
-$dbConn = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME,DB_PORT) or die('could not connect to database');
+// $dbConn = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME,DB_PORT) or die('could not connect to database');
 $user_id = -1;//something. We still need to figure out how we will have our user authenticate themselves in the database.
 
 
