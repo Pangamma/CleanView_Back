@@ -21,7 +21,7 @@ class RestApi extends Api{
 		if (isset($event)){
 			return json_encode($event);
 		}else{
-			return Api::$error_prefix."Event not found by id: ".$id.".";
+			return Api::$e_prefix."Event not found by id: ".$id.".";
 		}
 	}
 }

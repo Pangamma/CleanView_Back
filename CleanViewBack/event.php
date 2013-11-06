@@ -7,6 +7,7 @@ class Event implements JsonSerializable{
 	private $title = 'event';
 	private $desc = 'event description';
 	private $typeId = 1;
+	private $deleted = false;
 	/**
 	 * Create a new event Object to be used.
 	 * @param int $courseid is the id of the
@@ -14,13 +15,15 @@ class Event implements JsonSerializable{
 	 * @param string $title will be the caption
 	 * @param string $description
 	 * @param int $typeid the type of event type.
+	 * @param boolean $deleted true/false. Is the event visible to users?
 	 */
-	function __construct( $courseId = -1, $typeId = -1,$dateTime = null,$title = 'event', $description = 'desc'){
+	function __construct( $courseId = -1, $typeId = -1,$dateTime = null,$title = 'event', $description = 'desc',$deleted = false){
 		$this->courseId = $courseId;
 		$this->dateTime = $dateTime;
 		$this->title = $title;
 		$this->desc = $description;
 		$this->typeId = $typeId;
+		$this->deleted = $deleted;
 	}
 	/**
 	 *
@@ -92,6 +95,7 @@ class Event implements JsonSerializable{
 		$data['time'] = $this->dateTime;
 		$data['description'] = $this->desc;
 		$data['type_id'] = $this->typeId;
+		$data['deleted'] = $this->deleted;
 		return $data;
 	}
 
