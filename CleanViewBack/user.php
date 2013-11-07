@@ -16,7 +16,7 @@ class User implements JsonSerializable {
 
 
 	public static function createFromJson($json) {
-		return new self ( $json [userId], $json [firstName], $json [lastName], $json [$email], $json [username]);
+		return new self ( $json ['userId'], $json ['firstName'], $json ['lastName'], $json ['email'], $json ['username']);
 	}
 	
 	public static function createFromTableRow($row) {

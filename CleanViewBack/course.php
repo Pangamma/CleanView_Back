@@ -24,7 +24,7 @@ class Course implements JsonSerializable {
 	
 	
 	public static function createFromJson($json) {
-		return new self ( $json [courseId], $json [schoolId], $json [title], $json [$name], $json [section], $json [year], $json [quarter], $json [instructor], $json [sln] );
+		return new self ( $json ['courseId'], $json ['schoolId'], $json ['title'], $json ['name'], $json ['section'], $json ['year'], $json ['quarter'], $json ['instructor'], $json ['sln'] );
 	}
 	
 	public static function createFromTableRow($row) {
