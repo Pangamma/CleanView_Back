@@ -261,5 +261,24 @@ class Api {
 
 		$this->dbConn->execute($query, $params);
 	}
+	
+	function editCourse($courseJson) {
+		if (!isset($courseJson)) {
+			return null;
+		}
+	
+		$query = "UPDATE ".Api :: $tbl_Courses." SET (name=:name, school_id=:school_id, year=:year, quarter=:quarter, section=:section, sln=:sln) WHERE course_id= :course_id";
+		$params = array(
+				":name" => $courseJson ['name'],
+				":school_id" => $courseJson ['school_id'],
+				":year" => $courseJson ['year'],
+				":quarter" => $courseJson ['quarter'],
+				":section" => $courseJson ['section'],
+				":sln" => $courseJson ['sln'],
+				":course_id" => $courseJson ['course_id']
+		);
+		
+		$this->dbConn->execute($query, $params);
+	}
 }
 ?>
