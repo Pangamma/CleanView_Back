@@ -23,29 +23,95 @@ class Api {
 	private static $tbl_Events = 'events';
 	private static $tbl_Schools = 'schools';
 	private static $tbl_Users = 'users';
-	
+	private static $tbl_User_Groups = "user_groups";
 	public static $e_invalid_request = "Invalid Request.";
 	public static $e_bad_query = "Something went wrong in the query";
 	public static $e_prefix = 'Error : ';
-	private $dbConn;
+	private /*Table*/ $dbConn;
+	private /*boolean*/$isLoggedIn;
+	private /*boolean[]*/ $permissions;
 
 	//--------------------------------------------------------------------------
 	//constructor that makes the database connection using variables from config.
 	function __construct() {
 		$this->dbConn = new Table(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
+		session_start();
+		//can we count on session data, or do we need to recalculate our values?
+		$isLoggedIn = (isset($_SESSION['loggedin']) && $_SESSION['loggedin']);
+		if (!$isLoggedIn){
+			//session data is out. Do they have cookie data we can use?
+			if (isset($_COOKIE['user']) && isset($_COOKIE['pass'])){
+				login($_COOKIE['user'],$_COOKIE['pass'],true);
+			}
+		}
 	}
-
-	//<editor-fold defaultstate="collapsed" desc="add event">
-	/**
-	 * @param int $courseid is the id of the 
-	 * @param DateTime $dateTime time when item is due.
-	 * @param string $title will be the caption
-	 * @param string $description
-	 * @param int $typeid the type of event type.
+	
+	//<editor-fold defaultstate="collapsed" desc="login/logout">
+	/** 
+	 * pass in the username and password for the user to be logged in. 
+	 * @param string $user username
+	 * @param string $pass password 
+	 * @param boolean $preHashed false by default. only set to true if you are logging in from values stored in a user's cookie.
+	 * @return boolean|string
 	 */
-	function addEventByParams($courseid, $dateTime, $title = 'event', $description = 'event description', $typeid = 1) {
-		
+	function login($user,$pass,$preHashed = false){
+		if (!isset($user) || !isset($pass)){return false;}
+		$query = "SELECT * FROM ".Api::$tbl_Users." WHERE `username`=':user'";
+		$queryParams = array(":user" => $user);
+		$results = $this->dbConn->execute($query, $queryParams);
+		if (!$results)
+			return "Something went wrong in the query";
+		if ($row = $results->fetch()) {
+			$salt = $row['salt'];
+				$hash = ($preHashed) ? $pass : hash("sha256",$pass.$salt,false);
+				if ($row['password_hash'] == $hash){
+					$this->isLoggedIn = true;
+					$_SESSION['loggedin'] = true;				
+					$_SESSION['username'] = $row['username'];
+					//so they do not have to keep logging into our site.
+					setcookie("user",$user);
+					setcookie("pass",$row['password_hash']);
+					//get permissions.
+					$query = "SELECT * FROM ".Api::$tbl_User_Groups." WHERE `group_id`=:group_id";
+					$queryParams = array(":group_id" => $row['group_id']);
+					$results = $this->dbConn->execute($query, $queryParams);
+					if (!$results)
+						return "Something went wrong in the permissions query";
+					if ($row = $results->fetch()) {
+						$this->permissions = array();
+						foreach($row as $key => $val){
+							$this->permissions[$key] = ($val == 1);//converts to true/false
+						}
+						return true;
+					}
+				}
+				return false;
+		}
+		return false;
+		//how do we know if there are NO results?
 	}
+	function logout(){
+		$_SESSION['loggedin'] = false;				
+		$_SESSION['username'] = null;
+		//so they do not have to keep logging into our site.
+		setcookie("user",null);
+		setcookie("pass",null);
+		$this->isLoggedIn = false;
+	}
+	//</editor-fold>
+	//<editor-fold defaultstate="collapsed" desc="permissions">
+	function hasPermission($key){
+		if (!isset($this->permissions)) return false;
+		if (empty($this->permissions)) return false;
+		foreach($this->permissions as $val){
+			if ($key == $val){
+				return true;
+			}
+		}
+		return false;
+	}
+	//</editor-fold>
+	//<editor-fold defaultstate="collapsed" desc="add event">
 	/**
 	 * Add a configured event object as a new object in the database.
 	 * any previous event_id value will be ignored, so just create your event
@@ -67,7 +133,6 @@ class Api {
 			":courseId" => $event->getCourseId(),
 			":deleted" => ($event->isDeleted() ? 1 : 0)
 		);
-		
 	}
 	//</editor-fold>
 	////<editor-fold defaultstate="collapsed" desc="update event">
@@ -124,6 +189,11 @@ class Api {
 			return $event;
 		}
 		return "event not found"; //event not found
+	}
+	//</editor-fold>
+	//<editor-fold defaultstate="collapsed" desc="getEvents">
+	function getEvents($userId, $startTime = null, $endTime = null, $courseIds = null, $eventTypeIds = null){
+		
 	}
 	//</editor-fold>
 	//<editor-fold defaultstate="collapsed" desc="getSchoolById">
@@ -185,9 +255,13 @@ class Api {
 	}
 	//</editor-fold>
 	//<editor-fold defaultstate="collapsed" desc="getCourses">
+	/**
+	 * 
+	 * @return Course[]
+	 */
 	function getCourses() {
-		$query = "SELECT * FROM " . Api::tbl_Courses;
-		$results = $this->dbConn->execute($query, $params);
+		$query = "SELECT * FROM " . Api::$tbl_Courses;
+		$results = $this->dbConn->execute($query);
 		$coursesList = array();
 		while ($row = $results->fetch()) {
 			$coursesList [] = Course::createFromTableRow($row);
@@ -210,7 +284,6 @@ class Api {
 
 		if (!$results)
 			return "Sometime went wrong in the query";
-
 		if (!$row = $results->fetch()) {
 			return null;
 		} else {
@@ -219,6 +292,10 @@ class Api {
 	}
 	//</editor-fold>
 	//<editor-fold defaultstate="collapsed" desc="getUsers">
+	/** 
+	 * 
+	 * @return User[] array of user objects.
+	 */
 	function getUsers() {
 		$query = "SELECT * FROM " . Api::$tbl_Users;
 		$results = $this->dbConn->execute($query, $params);
@@ -229,8 +306,6 @@ class Api {
 		return $usersList;
 	}
 	//</editor-fold>
-	
-	
 	function addCourse($courseJson) {
 		if (!isset($courseJson)) {
 			return null;

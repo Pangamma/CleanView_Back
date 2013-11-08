@@ -42,11 +42,84 @@ class Course implements RowObject {
 		$data ['year'] = $this->year;
 		$data ['quarter'] = $this->quarter;
 		$data ['instructor'] = $this->instructor;
-		$data ['sln'] = $this->sln;
+		$data ['sln'] = $this->sln;//we're throwing this out, remember?
 		
 		return $data;
 	}
-	
+	//<editor-fold defaultstate="collapsed" desc="access">
+	public function getCourseId() {
+		return $this->courseId;
+	}
+
+	public function setCourseId($courseId) {
+		$this->courseId = $courseId;
+	}
+
+	public function getSchoolId() {
+		return $this->schoolId;
+	}
+
+	public function setSchoolId($schoolId) {
+		$this->schoolId = $schoolId;
+	}
+
+	public function getTitle() {
+		return $this->title;
+	}
+
+	public function setTitle($title) {
+		$this->title = $title;
+	}
+
+	public function getName() {
+		return $this->name;
+	}
+
+	public function setName($name) {
+		$this->name = $name;
+	}
+
+	public function getSection() {
+		return $this->section;
+	}
+
+	public function setSection($section) {
+		$this->section = $section;
+	}
+
+	public function getYear() {
+		return $this->year;
+	}
+
+	public function setYear($year) {
+		$this->year = $year;
+	}
+
+	public function getQuarter() {
+		return $this->quarter;
+	}
+
+	public function setQuarter($quarter) {
+		$this->quarter = $quarter;
+	}
+
+	public function getInstructor() {
+		return $this->instructor;
+	}
+
+	public function setInstructor($instructor) {
+		$this->instructor = $instructor;
+	}
+
+	public function getSln() {
+		return $this->sln;
+	}
+
+	public function setSln($sln) {
+		$this->sln = $sln;
+	}
+
+		//</editor-fold>
 }
 
 ?>

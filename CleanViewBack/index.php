@@ -8,9 +8,15 @@
 		<?php
 		require_once('api.php');
 		$api = new Api();
-		$api->setDeleted(4,false);
-		$event = $api->getEventById(4);
-		echo json_encode($event);
+		$courses = $api->getCourses();
+		foreach($courses as $key => $val){
+			echo $val->getName().'<br/>';
+		}
+//		$users = $api->getUsers();
+//		foreach($users as $user){
+//			echo $user->getUsername();
+//		}
+		
 		?>
     </body>
 </html>

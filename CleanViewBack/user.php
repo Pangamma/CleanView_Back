@@ -14,8 +14,6 @@ class User implements RowObject {
 		$this->email = $email;
 		$this->username = $username;
 	}
-
-
 	public static function createFromJson($json) {
 		return new self ( $json ['userId'], $json ['firstName'], $json ['lastName'], $json ['email'], $json ['username']);
 	}
@@ -35,6 +33,41 @@ class User implements RowObject {
 		$data ['username'] = $this->username;
 
 		return $data;
+	}
+	//<editor-fold defaultstate="collapsed" desc="accessors">
+	public function getUserId() {
+		return $this->userId;
+	}
+	public function setUserId($userId) {
+		$this->userId = $userId;
+	}
+	public function getFirstName() {
+		return $this->firstName;
+	}
+	public function setFirstName($firstName) {
+		$this->firstName = $firstName;
+	}
+	public function getLastName() {
+		return $this->lastName;
+	}
+	public function setLastName($lastName) {
+		$this->lastName = $lastName;
+	}
+
+	public function getEmail() {
+		return $this->email;
+	}
+
+	public function setEmail($email) {
+		$this->email = $email;
+	}
+
+	public function getUsername() {
+		return $this->username;
+	}
+
+	public function setUsername($username) {
+		$this->username = $username;
 	}
 }
 

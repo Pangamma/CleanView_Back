@@ -1,6 +1,6 @@
 	<?php
 	class Table{
-			private $db;
+			private /*PDO*/ $db;
 
 			/**
 			*	Table model
@@ -37,7 +37,7 @@
 			*	@param	{array}		params	assotiatve array of parameters
 			*	@return	{PDOStatement|boolean}	results		PDO if no error else false
 			*/
-			public function execute($query, $params){
+			public function execute($query, $params = array()){
 				try{
 					$statment = $this->db->prepare($query);
 					$statment->execute($params);
@@ -69,7 +69,7 @@
 		*	@param	{string}	[type] optional type of return object	
 		*	@return {row}	row object
 		*/
-		public function fetch($type){
+		public function fetch($type = null){
 			//TODO: support diffrent return types
 			return $this->data->fetch(PDO::FETCH_BOTH);
 		}

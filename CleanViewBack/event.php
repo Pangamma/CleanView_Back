@@ -18,7 +18,7 @@ class Event implements RowObject{
 	 * @param int $typeid the type of event type.
 	 * @param boolean $deleted true/false. Is the event visible to users?
 	 */
-	function __construct($eventId, $courseId, $dateTime, $title, $description, $typeId = 0, $deleted = 0){
+	function __construct($courseId, $dateTime, $title, $description, $eventId = -1, $typeId = 0, $deleted = 0){
 		$this->eventId = $eventId;
 		$this->courseId = $courseId;
 		$this->dateTime = $dateTime;
@@ -29,10 +29,10 @@ class Event implements RowObject{
 		
 	}
 	public static function createFromJson($json) {
-		return new self ($json ['event_id'], $json ['course_id'], $json ['time'], $json['title'],$json ['description'], $json ['type_id'] ,$json['deleted'] );
+		return new self ( $json ['course_id'], $json ['time'], $json['title'],$json ['description'],$json ['event_id'], $json ['type_id'] ,$json['deleted'] );
 	}
 	public static function createFromTableRow($row) {
-		return new self ($row ['event_id'], $row ['course_id'], $row ['time'], $row['title'],$row ['description'], $row ['type_id'] ,$row['deleted'] );
+		return new self ( $row ['course_id'], $row ['time'], $row['title'],$row ['description'],$row ['event_id'], $row ['type_id'] ,$row['deleted'] );
 	}
 	//<editor-fold defaultstate="collapsed" desc="accessors">
 	function getCourseId(){
@@ -66,13 +66,13 @@ class Event implements RowObject{
 	public function setDateTimeByObject($dateTime) {
 		$this->dateTime = $dateTime;
 		return $this;
-	}/**
+	}
 	public function setDateTime(int $year,int $month,int $day,int $hour,int $minute) {
 		$date =new DateTime();
 		$date->setDate($year, $month, $day);
-		$this->dateTime = $dateTime;
+		$date->setTime($hour, $minute, 0);
+		$this->dateTime = $date;
 	}
-	**/
 	public function getTitle() {
 		return $this->title;
 	}
