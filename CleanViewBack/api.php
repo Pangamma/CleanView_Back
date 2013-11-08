@@ -229,5 +229,37 @@ class Api {
 		return $usersList;
 	}
 	//</editor-fold>
+	
+	
+	function addCourse($courseJson) {
+		if (!isset($courseJson)) {
+			return null;
+		}
+	
+		$query = "INSERT INTO ".Api :: $tbl_Courses." (name, school_id, year, quarter, section, sln) VALUES (:name, :school_id, :year, :quarter, :section, :sln)";
+		$params = array(
+				":name" => $courseJson ['name'],
+				":school_id" => $courseJson ['school_id'],
+				":year" => $courseJson ['year'],
+				":quarter" => $courseJson ['quarter'],
+				":section" => $courseJson ['section'],
+				":sln" => $courseJson ['sln'],
+		);
+		
+		$this->dbConn->execute($query, $params);
+	}
+	
+	function deleteCourse($courseId) {
+		if (!isset($courseId)) {
+			return null;
+		}
+
+		$query = "DELETE FROM " . Api::$tbl_Courses . " WHERE course_id= :courseId";
+		$params = array(
+			":courseId" => $courseId
+		);
+
+		$this->dbConn->execute($query, $params);
+	}
 }
 ?>
