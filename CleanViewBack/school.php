@@ -19,7 +19,7 @@ class School implements RowObject {
 
 	public static function createFromJson($json) {
 		
-		return new self ($json [schoolId], $json [$name], $json [city], $json [state], $json [country] );
+		return new self ($json ['schoolId'], $json ['name'], $json ['city'], $json ['state'], $json ['country'] );
 	}
 
 
