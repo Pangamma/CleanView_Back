@@ -1,5 +1,6 @@
 <?php
-class User implements JsonSerializable {
+require_once('rowobject.php');
+class User implements RowObject {
 	private $userId;
 	private $firstName;
 	private $lastName;

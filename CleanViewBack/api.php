@@ -35,7 +35,7 @@ class Api {
 		$this->dbConn = new Table(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
 	}
 
-	//<editor-fold defaultstate="collapsed" desc="Event Handling">
+	//<editor-fold defaultstate="collapsed" desc="add event">
 	/**
 	 * @param int $courseid is the id of the 
 	 * @param DateTime $dateTime time when item is due.
@@ -48,33 +48,50 @@ class Api {
 	}
 	/**
 	 * Add a configured event object as a new object in the database.
-	 * any previous event_id value will be ignored. 
+	 * any previous event_id value will be ignored, so just create your event
+	 * and then don't worry about the title.
 	 * @param Event $event
 	 */
 	function addEventByObject($event) {
-		echo 'fuck you.';
+		if (!isset($event) || $event->getEventId() != -1){
+			return "Event object is invalid.";
+		}
+		$query = "INSERT INTO `".Api::$tbl_Events."` (`title`, `description`, `type_id`, `time`, `course_id`) VALUES (':title', ':description', :type_id, ':time', :course_id)";
+		$params = array(
+			":title" => $event->getTitle(),
+			":description" => $event->getDesc(),
+			":type_id" => $event->getTypeId(),
+			":time" => $event->getDateTime(),
+			":eventId" => $event->getEventId(),
+			":desc" => $event->getDesc(),
+			":courseId" => $event->getCourseId(),
+			":deleted" => ($event->isDeleted() ? 1 : 0)
+		);
+		
 	}
 	//</editor-fold>
-	//<editor-fold defaultstate="collapsed" desc="setDeleted">
+	////<editor-fold defaultstate="collapsed" desc="update event">
 	/**
-	 * Mark the event as deleted or not deleted. Will not actually remove the 
-	 * event from the table. Just hides it to normal users. If you want to 
-	 * "undelete" an item, just pass in deleted as false.
-	 * @param int $eventId
-	 * @param boolean $deleted is true by default.
+	 * Pass in an event object with complete information. The event will be 
+	 * updated into the database. Make sure the event ID is correct and set, 
+	 * otherwise this will not work.
+	 * @param Event $event
 	 */
-	function setDeleted($eventId,$deleted = true) {
-		if (!isset($eventId)){
-			return Api::$e_invalid_request;
+	function updateEventByObject(Event $event){
+		if (!isset($event) || $event->getEventId() == -1){
+			return "Event does not exist. You must create it before you can update it.";
 		}
-		$b = 0;
-		if ($deleted){
-			$b = 1;
-		}
-		$query = "UPDATE `".Api::$tbl_Events."` SET `deleted`=b':b' WHERE  `event_id`=:eventId";
+		$query = "UPDATE `".Api::$tbl_Events."` SET `title`=':title',"
+			."description=':desc',type_id=:type_id,`time`=':time',"
+			."course_id=:courseId,`deleted`=:deleted WHERE `event_id`=:eventId";
 		$params = array(
-			":eventId" => $eventId,
-			":b" => $b
+			":eventId" => $event->getEventId(),
+			":title" => $event->getTitle(),
+			":desc" => $event->getDesc(),
+			":type_id" => $event->getTypeId(),
+			":time" => $event->getDateTime(),
+			":courseId" => $event->getCourseId(),
+			":deleted" => ($event->isDeleted() ? 1 : 0)
 		);
 		$results = $this->dbConn->execute($query, $params);
 		if (!$results){
@@ -82,8 +99,9 @@ class Api {
 		}else{
 			return "Success!";
 		}
+		
 	}
-	//</editor-fold>
+	////</editor-fold>
 	//<editor-fold defaultstate="collapsed" desc="getEventById">
 	/**
 	 * @param int $eventId the id of the event in question.
@@ -101,9 +119,8 @@ class Api {
 		$results = $this->dbConn->execute($query, $queryParams);
 		if (!$results)
 			return "Something went wrong in the query";
-		if ($eventData = $results->fetch()) {
-			$event = new Event($eventData['course_id'], $eventData['type_id'], $eventData['time'], $eventData['title'], $eventData['description']);
-			$event->setEventId($eventData['event_id']);
+		if ($row = $results->fetch()) {
+			$event = Event::createFromTableRow($row);
 			return $event;
 		}
 		return "event not found"; //event not found
@@ -129,7 +146,7 @@ class Api {
 		if (!$row = $results->fetch()) {
 			return null;
 		} else {
-			return School::createFromTableRow($row);
+			return School::$createFromTableRow($row);
 		}
 	}
 	//</editor-fold>
@@ -169,7 +186,7 @@ class Api {
 	//</editor-fold>
 	//<editor-fold defaultstate="collapsed" desc="getCourses">
 	function getCourses() {
-		$query = "SELECT * FROM " . Api::$tbl_Courses;
+		$query = "SELECT * FROM " . Api::tbl_Courses;
 		$results = $this->dbConn->execute($query, $params);
 		$coursesList = array();
 		while ($row = $results->fetch()) {

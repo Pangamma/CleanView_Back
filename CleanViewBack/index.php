@@ -8,7 +8,7 @@
 		<?php
 		require_once('api.php');
 		$api = new Api();
-		$api->setDeleted(4,true);
+		$api->setDeleted(4,false);
 		$event = $api->getEventById(4);
 		echo json_encode($event);
 		?>
