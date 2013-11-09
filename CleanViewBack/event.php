@@ -67,11 +67,21 @@ class Event implements RowObject{
 		$this->dateTime = $dateTime;
 		return $this;
 	}
+	/** 
+	 * Set the time and date of this item's start time.
+	 * @param int $year YYYY
+	 * @param int $month MM
+	 * @param int $day DD
+	 * @param int $hour HH
+	 * @param int $minute MM
+	 * @return Event for use in chain coding. 
+	 */
 	public function setDateTime(int $year,int $month,int $day,int $hour,int $minute) {
 		$date =new DateTime();
 		$date->setDate($year, $month, $day);
 		$date->setTime($hour, $minute, 0);
 		$this->dateTime = $date;
+		return $this;
 	}
 	public function getTitle() {
 		return $this->title;
