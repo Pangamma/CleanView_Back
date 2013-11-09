@@ -26,6 +26,7 @@ class Api {
 	private static $tbl_User_Groups = "user_groups";
 	public static $e_invalid_request = "Invalid Request.";
 	public static $e_bad_query = "Something went wrong in the query";
+	public static $good_query = "Success";
 	public static $e_prefix = 'Error : ';
 	private /*Table*/ $dbConn;
 	private /*boolean*/$isLoggedIn;
@@ -133,6 +134,13 @@ class Api {
 			":courseId" => $event->getCourseId(),
 			":deleted" => ($event->isDeleted() ? 1 : 0)
 		);
+		
+		$results = $this->dbConn->execute($query, $params);
+		if (!$results){
+			return Api::$e_bad_query;
+		}else{
+			return Api::$good_query;
+		}
 	}
 	//</editor-fold>
 	////<editor-fold defaultstate="collapsed" desc="update event">
@@ -162,7 +170,7 @@ class Api {
 		if (!$results){
 			return Api::$e_bad_query;
 		}else{
-			return "Success!";
+			return Api::$good_query;
 		}
 		
 	}
@@ -305,25 +313,43 @@ class Api {
 		}
 		return $usersList;
 	}
-	//</editor-fold>
-	function addCourse($courseJson) {
-		if (!isset($courseJson)) {
-			return null;
+	
+	
+	/**
+	 * add course by object.
+	 * @param  Course $course
+	 * @return "Success" if succesfull, otherwise "Something went wrong in the query";
+	 */
+	function addCourseByObject(Course $course) {
+		if (!isset($course) || $curse->getCourseId() !=-1) {
+			return "Course object is invalid";
 		}
 	
 		$query = "INSERT INTO ".Api :: $tbl_Courses." (name, school_id, year, quarter, section, sln) VALUES (:name, :school_id, :year, :quarter, :section, :sln)";
 		$params = array(
-				":name" => $courseJson ['name'],
-				":school_id" => $courseJson ['school_id'],
-				":year" => $courseJson ['year'],
-				":quarter" => $courseJson ['quarter'],
-				":section" => $courseJson ['section'],
-				":sln" => $courseJson ['sln'],
+				":name" => $course->getName(),
+				":school_id" => $course ->getSchoolId(),
+				":year" => $course ->getYear(),
+				":quarter" => $course->getQuarter(),
+				":section" => $course-> getSection(),
+				":sln" => $course-> getSln(),
+				":course_id" => $course->getCourseId()
 		);
 		
-		$this->dbConn->execute($query, $params);
+		$results = $this->dbConn->execute($query, $params);
+		if (!$results){
+			return Api::$e_bad_query;
+		}else{
+			return Api::$good_query;
+		}
 	}
 	
+	
+	/**
+	 * delete course by id.
+	 * @param int $courseId
+	 * @return "Success" if succesfull, otherwise "Something went wrong in the query";
+	 */
 	function deleteCourse($courseId) {
 		if (!isset($courseId)) {
 			return null;
@@ -334,26 +360,43 @@ class Api {
 			":courseId" => $courseId
 		);
 
-		$this->dbConn->execute($query, $params);
+		$results = $this->dbConn->execute($query, $params);
+		if (!$results){
+			return Api::$e_bad_query;
+		}else{
+			return Api::$good_query;
+		}
 	}
 	
-	function editCourse($courseJson) {
-		if (!isset($courseJson)) {
-			return null;
+	
+	/**
+	 * update course by object.
+	 * @param Course $course
+	 * @return "Success" if succesfull, otherwise "Something went wrong in the query";
+	 */
+	function updateCourseByObject(Course $course) {
+		if (!isset($courseJson) || $courseJson->getCourseID()==-1) {
+			return "Course does not exist. You must create it before you can update it";
 		}
 	
 		$query = "UPDATE ".Api :: $tbl_Courses." SET (name=:name, school_id=:school_id, year=:year, quarter=:quarter, section=:section, sln=:sln) WHERE course_id= :course_id";
 		$params = array(
-				":name" => $courseJson ['name'],
-				":school_id" => $courseJson ['school_id'],
-				":year" => $courseJson ['year'],
-				":quarter" => $courseJson ['quarter'],
-				":section" => $courseJson ['section'],
-				":sln" => $courseJson ['sln'],
-				":course_id" => $courseJson ['course_id']
+				":name" => $course->getName(),
+				":school_id" => $course ->getSchoolId(),
+				":year" => $course ->getYear(),
+				":quarter" => $course->getQuarter(),
+				":section" => $course-> getSection(),
+				":sln" => $course-> getSln(),
+				":course_id" => $course->getCourseId()
 		);
 		
-		$this->dbConn->execute($query, $params);
+		$result = $this->dbConn->execute($query, $params);
+		if (!$results){
+			return Api::$e_bad_query;
+		}else{
+			return Api::$good_query;
+		}
 	}
+	
 }
 ?>
