@@ -12,6 +12,7 @@
 		foreach($courses as $key => $val){
 			echo $val->getName().'<br/>';
 		}
+		
 //		$users = $api->getUsers();
 //		foreach($users as $user){
 //			echo $user->getUsername();
