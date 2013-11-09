@@ -39,7 +39,7 @@ class Event implements RowObject{
 		return $this->courseId;
 	}
 	/** @param int courseId
-	 * @return Event for use in chain coding.**/
+	 * @return \Event for use in chain coding.**/
 	function setCourseId($courseId){
 		$this->courseId = $courseId;
 		return $this;
@@ -50,7 +50,7 @@ class Event implements RowObject{
 		return $this->eventId;
 	}
 	/** @param int eventId
-	 * @return Event for use in chain coding.**/
+	 * @return \Event for use in chain coding.**/
 	public function setEventId($eventId) {
 		$this->eventId = $eventId;
 		return $this;
@@ -62,7 +62,7 @@ class Event implements RowObject{
 		return $this->dateTime;
 	}
 	/** @param DateTime $dateTime
-	 * @return Event for use in chain coding.**/
+	 * @return \Event for use in chain coding.**/
 	public function setDateTimeByObject($dateTime) {
 		$this->dateTime = $dateTime;
 		return $this;
@@ -74,7 +74,7 @@ class Event implements RowObject{
 	 * @param int $day DD
 	 * @param int $hour HH
 	 * @param int $minute MM
-	 * @return Event for use in chain coding. 
+	 * @return \Event for use in chain coding. 
 	 */
 	public function setDateTime(int $year,int $month,int $day,int $hour,int $minute) {
 		$date =new DateTime();
@@ -86,20 +86,35 @@ class Event implements RowObject{
 	public function getTitle() {
 		return $this->title;
 	}
-
+	/**
+	 * set the name of this event.
+	 * @param string $title
+	 * @return \Event for use in chain coding.
+	 */
 	public function setTitle($title) {
 		$this->title = $title;
+		return $this;
 	}
 
 	public function getDesc() {
 		return $this->desc;
 	}
-
+	/**
+	 * set description of event.
+	 * @param string $desc
+	 * @return \Event for use in chain coding.
+	 */
 	public function setDesc($desc) {
 		$this->desc = $desc;
+		return $this;
 	}
+	/** 
+	 * @param type $bool
+	 * @return \Event
+	 */
 	public function setDeleted($bool) {
 		$this->deleted = $bool;
+		return $this;
 	}
 	public function isDeleted() {
 		return ($this->deleted == 1);
@@ -107,9 +122,14 @@ class Event implements RowObject{
 	public function getTypeId() {
 		return $this->typeId;
 	}
-
+	/**
+	 * 
+	 * @param int $typeId
+	 * @return \Event 
+	 */
 	public function setTypeId($typeId) {
 		$this->typeId = $typeId;
+		return $this;
 	}
 	//</editor-fold>
 	public function jsonSerialize() {
