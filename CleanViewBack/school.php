@@ -38,6 +38,46 @@ class School implements RowObject {
 
 		return $data;
 	}
+	
+	//<editor-fold defaultstate="collapsed" desc="access">
+	public function getSchoolId (){
+		return $this ->schoolId;
+	}
+	
+	public function setSchoolId($schoolId) {
+		$this->schoolId = $schoolId;
+	}
+	
+	public function getName (){
+		return $this ->name;
+	}
+	
+	public function setName($name) {
+		$this->name = $name;
+	}
+	public function getCity (){
+		return $this ->city;
+	}
+	
+	public function setCity($city) {
+		$this->city = $city;
+	}
+	
+	public function getState (){
+		return $this ->state;
+	}
+	
+	public function setState($state) {
+		$this->city = $state;
+	}
+	
+	public function getCountry (){
+		return $this ->country;
+	}
+	
+	public function setCountry($country) {
+		$this->country = $country;
+	}
 }
 
 ?>
