@@ -238,6 +238,9 @@ class Api {
 		}
 		return $schoolsList;
 	}
+	
+	
+	
 	//</editor-fold>
 	//<editor-fold defaultstate="collapsed" desc="getCourseById">
 	function getCourseById($courseId) {
@@ -397,6 +400,83 @@ class Api {
 			return Api::$good_query;
 		}
 	}
+	
+	/**
+         * adds school by Object
+         * @param School $school
+         * @return "Success" if succesfull, otherwise "Something went wrong in the query"
+         */
+        function addSchoolByObject(School $school) {
+                if (!isset($school)) {
+                        return "School object is invalid";
+                }
+        
+                $query = "INSERT INTO ".Api :: $tbl_Schools." (schoolId, name, city, state, country) VALUES (:schoolId,:name, :city, :state, :country)";
+                $params = array(
+                                ":name" => $school->getName(),
+                                ":schoolId" => $school ->getSchoolId(),
+                                ":city" => $school ->getCity(),
+                                ":state" => $school->getState(),
+                                ":country" => $school-> getCountry(),
+                    
+                );
+                
+                $results = $this->dbConn->execute($query, $params);
+                if (!$results){
+                        return Api::$e_bad_query;
+                }else{
+                        return Api::$good_query;
+                }
+        }
+        /**
+         * updates School by Object
+         * @param School $school
+         * @return "Success" if succesfull, otherwise "Something went wrong in the query";
+         */
+        function updateSchoolByObject(School $school) {
+            if (!isset($school)){
+                        return "School does not exist. You must create it before you can update it.";
+                }
+                $query = "UPDATE `".Api::$tbl_Schools
+                        ."name=':name',city=:city,`country`=':country',"
+                        ."WHERE `schoolId`=:schoolId";
+                $params = array(
+                        ":schoolId" => $school->getschoolId(),
+                        ":name" => $school->getName(),
+                        ":city" => $school->getCity(),
+                        ":country" => $school->getCountry(),
+                        ":state" => $school->getState(),
+                );
+                $results = $this->dbConn->execute($query, $params);
+                if (!$results){
+                        return Api::$e_bad_query;
+                }else{
+                        return Api::$good_query;
+                }
+                
+        }
+        /**
+         * delete school by ID
+         * @param type $schoolId
+         * @return "Success" if succesfull, otherwise "Something went wrong in the query";
+         */
+        function deleteSchool($schoolId) {
+                if (!isset($schoolId)) {
+                        return null;
+                }
+
+                $query = "DELETE FROM " . Api::$tbl_Schools . " WHERE schoolId= :schoolId";
+                $params = array(
+                        ":schoolId" => $schoolId
+                );
+
+                $results = $this->dbConn->execute($query, $params);
+                if (!$results){
+                        return Api::$e_bad_query;
+                }else{
+                        return Api::$good_query;
+                }
+        }
 	
 }
 ?>
