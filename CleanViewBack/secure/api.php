@@ -43,6 +43,19 @@ class Api {
 			if (isset($_COOKIE['user']) && isset($_COOKIE['pass'])){
 				login($_COOKIE['user'],$_COOKIE['pass'],true);
 			}
+		}else{
+			//if logged in, assume this data is stored in a session already.
+			//if user permissions change during use, assume fuck. dammit.
+			if (isset($_SESSION['userJson']) && isset($_SESSION['permissionsJson'])){
+				$this->user = User::createFromJson($_SESSION['userJson']);
+				$this->permissions = json_decode($_SESSION['permissionsJson']);
+			}else{
+				//make them reauthenticate... 
+				$_SESSION['loggedin'] = false;
+				if (isset($_COOKIE['user']) && isset($_COOKIE['pass'])){
+					login($_COOKIE['user'],$_COOKIE['pass'],true);
+				}
+			}
 		}
 	}
 	
@@ -69,6 +82,7 @@ class Api {
 					$this->user = User::createFromTableRow($row);
 					$_SESSION['loggedin'] = true;				
 					$_SESSION['username'] = $row['username'];
+					$_SESSION['userJson'] = json_encode($this->user);
 					//so they do not have to keep logging into our site.
 					setcookie("user",$user);
 					setcookie("pass",$row['password_hash']);
@@ -85,6 +99,7 @@ class Api {
 								$this->permissions[$key] = ($val == 1);//converts to true/false
 							}		
 						}
+						$_SESSION['permissionsJson'] = json_encode($this->permissions);
 						return true;
 					}
 				}
