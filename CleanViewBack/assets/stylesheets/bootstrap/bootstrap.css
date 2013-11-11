@@ -235,7 +235,7 @@ textarea {
 /* line 9, ../../sass/bootstrap/_scaffolding.scss */
 body {
   margin: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "cartogothic_stdregular", Arial, sans-serif;
   font-size: 14px;
   line-height: 20px;
   color: #333333;
@@ -420,8 +420,8 @@ a.text-success:focus {
 /* line 59, ../../sass/bootstrap/_type.scss */
 h1, h2, h3, h4, h5, h6 {
   margin: 10px 0;
-  font-family: inherit;
-  font-weight: bold;
+  font-family: "cartogothic_stdregular", Arial, sans-serif;
+  font-weight: "cartogothic_stdbold", Arial, sans-serif;
   line-height: 20px;
   color: inherit;
   text-rendering: optimizelegibility;
@@ -777,7 +777,7 @@ input,
 button,
 select,
 textarea {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "cartogothic_stdregular", Arial, sans-serif;
 }
 
 /* line 55, ../../sass/bootstrap/_forms.scss */

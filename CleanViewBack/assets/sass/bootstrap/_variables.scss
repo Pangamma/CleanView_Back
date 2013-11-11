@@ -14,6 +14,7 @@ $grayDarker:            #222 !default;
 $grayDark:              #333 !default;
 $gray:                  #555 !default;
 $grayLight:             #999 !default;
+$grayCustom:            #cccccc !default;
 $grayLighter:           #eee !default;
 $white:                 #fff !default;
 
@@ -89,14 +90,17 @@ $linkColorHover:        darken($linkColor, 15%) !default;
 $sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif !default;
 $serifFontFamily:       Georgia, "Times New Roman", Times, serif !default;
 $monoFontFamily:        Monaco, Menlo, Consolas, "Courier New", monospace !default;
+$arsenalFontFamily:     "arsenal", Arial, sans-serif !default;
+$cartoGothicRegular:    "cartogothic_stdregular", Arial, sans-serif !default;
+$cartoGothicBold:       "cartogothic_stdbold", Arial, sans-serif !default;
 
 $baseFontSize:          14px !default;
-$baseFontFamily:        $sansFontFamily !default;
+$baseFontFamily:        $cartoGothicRegular !default;
 $baseLineHeight:        20px !default;
 $altFontFamily:         $serifFontFamily !default;
 
-$headingsFontFamily:    inherit !default; // empty to use BS default, $baseFontFamily
-$headingsFontWeight:    bold !default;    // instead of browser default, bold
+$headingsFontFamily:    $cartoGothicRegular !default; // empty to use BS default, $baseFontFamily
+$headingsFontWeight:    $cartoGothicBold !default;    // instead of browser default, bold
 $headingsColor:         inherit !default; // empty to use BS default, $textColor
 
 
