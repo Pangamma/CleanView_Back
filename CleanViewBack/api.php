@@ -64,7 +64,7 @@ class Api {
 			return "Something went wrong in the query";
 		if ($row = $results->fetch()) {
 			$salt = $row['salt'];
-				$hash = ($preHashed) ? $pass : hash("sha256",$pass.$salt,false);
+				$hash = ($perHashed) ? $pass : hash("sha256",$pass.$salt,false);
 				if ($row['password_hash'] == $hash){
 					$this->isLoggedIn = true;
 					$_SESSION['loggedin'] = true;				
@@ -296,6 +296,7 @@ class Api {
 		if (!$results)
 			return "Sometime went wrong in the query";
 		if (!$row = $results->fetch()) {
+			//user does not exist
 			return null;
 		} else {
 			return User::createFromTableRow($row);
@@ -309,7 +310,7 @@ class Api {
 	 */
 	function getUsers() {
 		$query = "SELECT * FROM " . Api::$tbl_Users;
-		$results = $this->dbConn->execute($query, $params);
+		$results = $this->dbConn->execute($query, [	]);
 		$usersList = array();
 		while ($row = $results->fetch()) {
 			$usersList [] = User::createFromTableRow($row);
@@ -317,6 +318,67 @@ class Api {
 		return $usersList;
 	}
 	
+
+	/**
+	* add user
+	*	adds new user to database
+	*	param	{json}	User object
+	*/
+	function addUser ( $userId, $firstName, $lastName, $email, $username, $pass ) {
+		
+		$salt = uniqid().uniqid();
+		$user = new User($userId, $firstName, $lastName, $email, $username, $pass, $salt);
+		
+		$query = "INSERT INTO " . Api::$tbl_Users . " (user_id, first_name, last_name, email, username, hash, salt)"
+		." VALUES (:user_id, :first_name, :last_name, :email, :username, :hash, :salt)";
+		$params = array(
+			":user_id" => $user_id,
+			":first_name" => $first_name,
+			":last_name" => $last_name,
+			":email" =>  $email,
+			":username" => $username,
+			":hash" => $hash,
+			":salt" => $salt,
+		);
+		return $this->dbConn->execute($query, $params);
+	}
+
+	/**
+	*	update user
+	*	@param	{string}	user_id
+	*	@param	{object}	user_params	associative array of updated params
+	*	@return {boolean|User} false if failed update else User object
+	*/
+	function updateUser ( $user_id , $user_params ) {
+		$old_user = getUserById( $user_id );
+		
+		if( ! ( $old_user instanceof User ) ) {
+			return ( $old_user == null ) ? "user does not exist" : $old_user;
+		}
+		
+		$old_user = $old_user->updateUser($user_params);
+
+		$query = "UPDATE " . Api::$tbl_Users . " SET user_id= :user_id, first_name = :first_name, last_name = :last_name ".
+			"email = :email, username = :username, hash = :hash, salt = :salt";
+		
+		$params = $old_user->tableSerialize();
+
+		$this->dbConn->execute($query, $params);
+	}
+
+	/**
+	*	delete user
+	*	@param	{string}	user id
+	*/
+	function deleteUser ($user_id) {
+		//TODO: validate delete
+		$query = "DELETE FROM " . Api::$tbl_Users . " WHERE user_id= :userId ";
+		$param = array(
+			":userId" => $user_id
+		);
+
+		return $this->dbCon->execute($query, $params);
+	}
 	
 	/**
 	 * add course by object.
