@@ -31,7 +31,7 @@
 			
 			<h1 class="b-header__logo">Logo</h1>
 				
-			<form class="b-login-form" action="sign_up.php">
+			<form class="b-login-form">
 				<input type="text" class="b-login-form__email" placeholder="Email">
 				<input type="password" class="b-login-form__password" placeholder="Password">
 				<button type="submit" class="b-login-form__button">Sign in</button>
@@ -51,7 +51,7 @@
 	        <div class="b-signup__main">
 		        <h1 class="b-signup__logo">Logo and name</h1>
 		        <p class="b-signup__lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-		        <a class="b-signup__button" href="sign_up.php">Sign up today</a>
+		        <a class="b-signup__button" href="#">Sign up today</a>
 	    	</div>
       	</div>
 
