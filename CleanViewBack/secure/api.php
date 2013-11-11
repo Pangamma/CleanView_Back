@@ -17,18 +17,19 @@ require_once('course.php');		  #
 require_once('models/Table.php');
 #####################################################################
 class Api {
-	private static $tbl_Courses = 'courses';
-	private static $tbl_Enrollments = 'enrollments';
-	private static $tbl_Events = 'events';
-	private static $tbl_Schools = 'schools';
-	private static $tbl_Users = 'users';
-	private static $tbl_User_Groups = "user_groups";
-	public static $e_invalid_request = "Invalid Request.";
-	public static $e_bad_query = "Something went wrong in the query";
-	public static $e_prefix = 'Error : ';
+	private static $TBL_COURSES = 'courses';
+	private static $TBL_ENROLLMENTS = 'enrollments';
+	private static $TBL_EVENTS = 'events';
+	private static $TBL_SCHOOLS = 'schools';
+	private static $TBL_USERS = 'users';
+	private static $TBL_USER_GROUPS = "user_groups";
+	public static $E_INVALID_REQUEST = "Invalid Request.";
+	public static $E_BAD_QUERY = "Something went wrong in the query";
+	public static $E_PREFIX = 'Error : ';
 	private /*Table*/ $dbConn;
 	private /*boolean*/$isLoggedIn;
 	private /*boolean[]*/ $permissions;
+	private /*User*/ $user;//current user who is logged in.
 
 	//--------------------------------------------------------------------------
 	//constructor that makes the database connection using variables from config.
@@ -55,7 +56,7 @@ class Api {
 	 */
 	function login($user,$pass,$preHashed = false){
 		if (!isset($user) || !isset($pass)){return false;}
-		$query = "SELECT * FROM ".Api::$tbl_Users." WHERE `username`=':user'";
+		$query = "SELECT * FROM ".Api::$TBL_USERS." WHERE `username`=':user'";
 		$queryParams = array(":user" => $user);
 		$results = $this->dbConn->execute($query, $queryParams);
 		if (!$results)
@@ -65,13 +66,14 @@ class Api {
 				$hash = ($preHashed) ? $pass : hash("sha256",$pass.$salt,false);
 				if ($row['password_hash'] == $hash){
 					$this->isLoggedIn = true;
+					$this->user = User::createFromTableRow($row);
 					$_SESSION['loggedin'] = true;				
 					$_SESSION['username'] = $row['username'];
 					//so they do not have to keep logging into our site.
 					setcookie("user",$user);
 					setcookie("pass",$row['password_hash']);
 					//get permissions.
-					$query = "SELECT * FROM ".Api::$tbl_User_Groups." WHERE `group_id`=:group_id";
+					$query = "SELECT * FROM ".Api::$TBL_USER_GROUPS." WHERE `group_id`=:group_id";
 					$queryParams = array(":group_id" => $row['group_id']);
 					$results = $this->dbConn->execute($query, $queryParams);
 					if (!$results)
@@ -79,7 +81,9 @@ class Api {
 					if ($row = $results->fetch()) {
 						$this->permissions = array();
 						foreach($row as $key => $val){
-							$this->permissions[$key] = ($val == 1);//converts to true/false
+							if ($key != "group_id" && $key != "group_name"){
+								$this->permissions[$key] = ($val == 1);//converts to true/false
+							}		
 						}
 						return true;
 					}
@@ -96,6 +100,7 @@ class Api {
 		setcookie("user",null);
 		setcookie("pass",null);
 		$this->isLoggedIn = false;
+		$this->user = null;
 	}
 	//</editor-fold>
 	//<editor-fold defaultstate="collapsed" desc="permissions">
@@ -121,7 +126,7 @@ class Api {
 		if (!isset($event) || $event->getEventId() != -1){
 			return "Event object is invalid.";
 		}
-		$query = "INSERT INTO `".Api::$tbl_Events."` (`title`, `description`, `type_id`, `time`, `course_id`) VALUES (':title', ':description', :type_id, ':time', :course_id)";
+		$query = "INSERT INTO `".Api::$TBL_EVENTS."` (`title`, `description`, `type_id`, `time`, `course_id`) VALUES (':title', ':description', :type_id, ':time', :course_id)";
 		$params = array(
 			":title" => $event->getTitle(),
 			":description" => $event->getDesc(),
@@ -145,7 +150,7 @@ class Api {
 		if (!isset($event) || $event->getEventId() == -1){
 			return "Event does not exist. You must create it before you can update it.";
 		}
-		$query = "UPDATE `".Api::$tbl_Events."` SET `title`=':title',"
+		$query = "UPDATE `".Api::$TBL_EVENTS."` SET `title`=':title',"
 			."description=':desc',type_id=:type_id,`time`=':time',"
 			."course_id=:courseId,`deleted`=:deleted WHERE `event_id`=:eventId";
 		$params = array(
@@ -159,7 +164,7 @@ class Api {
 		);
 		$results = $this->dbConn->execute($query, $params);
 		if (!$results){
-			return Api::$e_bad_query;
+			return Api::$E_BAD_QUERY;
 		}else{
 			return "Success!";
 		}
@@ -173,10 +178,10 @@ class Api {
 	function getEventById($eventId) {
 		if (!isset($eventId)) {
 			//TODO: return proper errors like 403 and 400
-			return Api::$e_invalid_request;
+			return Api::$E_INVALID_REQUEST;
 		}
 		//unsure if query works unable to test
-		$query = "SELECT * FROM " . Api::$tbl_Events . " WHERE event_id = :eventId";
+		$query = "SELECT * FROM " . Api::$TBL_EVENTS . " WHERE event_id = :eventId";
 		$queryParams = array(
 			":eventId" => $eventId
 		);
@@ -201,7 +206,7 @@ class Api {
 			return null;
 		}
 
-		$query = "SELECT * FROM " . Api::$tbl_Schools . " WHERE school_id= :schoolId";
+		$query = "SELECT * FROM " . Api::$TBL_SCHOOLS . " WHERE school_id= :schoolId";
 
 		$params = array(
 			":schoolId" => $schoolId
@@ -215,13 +220,13 @@ class Api {
 		if (!$row = $results->fetch()) {
 			return null;
 		} else {
-			return School::$createFromTableRow($row);
+			return School::createFromTableRow($row);
 		}
 	}
 	//</editor-fold>
 	//<editor-fold defaultstate="collapsed" desc="getSchools">
 	function getSchools() {
-		$query = "SELECT * FROM " . Api::$tbl_Schools;
+		$query = "SELECT * FROM " . Api::$TBL_SCHOOLS;
 		$results = $this->dbConn->execute($query, $params);
 		$schoolsList = array();
 		while ($row = $results->fetch()) {
@@ -236,7 +241,7 @@ class Api {
 			return null;
 		}
 
-		$query = "SELECT * FROM " . Api::$tbl_Courses . " WHERE course_id= :courseId";
+		$query = "SELECT * FROM " . Api::$TBL_COURSES . " WHERE course_id= :courseId";
 		$params = array(
 			":courseId" => $courseId
 		);
@@ -259,7 +264,7 @@ class Api {
 	 * @return Course[]
 	 */
 	function getCourses() {
-		$query = "SELECT * FROM " . Api::$tbl_Courses;
+		$query = "SELECT * FROM " . Api::$TBL_COURSES;
 		$results = $this->dbConn->execute($query);
 		$coursesList = array();
 		while ($row = $results->fetch()) {
@@ -274,7 +279,7 @@ class Api {
 			return null;
 		}
 
-		$query = "SELECT * FROM " . Api::$tbl_Users . " WHERE user_id= :userId";
+		$query = "SELECT * FROM " . Api::$TBL_USERS . " WHERE user_id= :userId";
 		$params = array(
 			":userId" => $userId
 		);
@@ -296,7 +301,7 @@ class Api {
 	 * @return User[] array of user objects.
 	 */
 	function getUsers() {
-		$query = "SELECT * FROM " . Api::$tbl_Users;
+		$query = "SELECT * FROM " . Api::$TBL_USERS;
 		$results = $this->dbConn->execute($query, $params);
 		$usersList = array();
 		while ($row = $results->fetch()) {
@@ -310,7 +315,7 @@ class Api {
 			return null;
 		}
 	
-		$query = "INSERT INTO ".Api :: $tbl_Courses." (name, school_id, year, quarter, section, sln) VALUES (:name, :school_id, :year, :quarter, :section, :sln)";
+		$query = "INSERT INTO ".Api :: $TBL_COURSES." (name, school_id, year, quarter, section, sln) VALUES (:name, :school_id, :year, :quarter, :section, :sln)";
 		$params = array(
 				":name" => $courseJson ['name'],
 				":school_id" => $courseJson ['school_id'],
@@ -328,7 +333,7 @@ class Api {
 			return null;
 		}
 
-		$query = "DELETE FROM " . Api::$tbl_Courses . " WHERE course_id= :courseId";
+		$query = "DELETE FROM " . Api::$TBL_COURSES . " WHERE course_id= :courseId";
 		$params = array(
 			":courseId" => $courseId
 		);
@@ -341,7 +346,7 @@ class Api {
 			return null;
 		}
 	
-		$query = "UPDATE ".Api :: $tbl_Courses." SET (name=:name, school_id=:school_id, year=:year, quarter=:quarter, section=:section, sln=:sln) WHERE course_id= :course_id";
+		$query = "UPDATE ".Api :: $TBL_COURSES." SET (name=:name, school_id=:school_id, year=:year, quarter=:quarter, section=:section, sln=:sln) WHERE course_id= :course_id";
 		$params = array(
 				":name" => $courseJson ['name'],
 				":school_id" => $courseJson ['school_id'],
@@ -351,7 +356,6 @@ class Api {
 				":sln" => $courseJson ['sln'],
 				":course_id" => $courseJson ['course_id']
 		);
-		
 		$this->dbConn->execute($query, $params);
 	}
 }
