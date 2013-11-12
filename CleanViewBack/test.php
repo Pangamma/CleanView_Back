@@ -21,7 +21,7 @@ if (isset ( $rest [3] )) {
 		case 'schools' :
 			$result;
 			if (isset ( $rest [4] )) {
-				$result = $api->getSchoolById ( $rest [4] );
+				$result = $api->searchSchoolbyName ( $rest [4] );
 			} else {
 				$result = $api->getSchools ();
 			}

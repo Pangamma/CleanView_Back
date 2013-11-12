@@ -307,6 +307,20 @@ class Api {
 		return $coursesList;
 	}
 	
+	function searchSchoolByName($search_query) {
+		$query = "SELECT * FROM " . Api::$TBL_SCHOOLS. " WHERE `name` LIKE concat('%',:search_query,'%')";
+	
+		$params = array(
+				":search_query" => $search_query
+		);
+	
+		$results = $this->dbConn->execute($query, $params);
+		$schoolsList = array();
+		while ($row = $results->fetch()) {
+			$schoolsList [] = School::createFromTableRow($row);
+		}
+		return $schoolsList;
+	}
 	
 	//</editor-fold>
 	//<editor-fold defaultstate="collapsed" desc="getUserById">
