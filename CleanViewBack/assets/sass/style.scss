@@ -400,21 +400,31 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   @include pull(2);
   margin-top: 20px;
 }
-.b-addclasses-form__school-dash{
-  @include column(4);
+.b-addclasses-form__school-dash, .b-addclasses-form__major-dash, .b-addclasses-form__classes-dash{
+  @include column(12);
 }
-.b-addclasses-form__school-list{
-  @include column(8);
-
+.b-addclasses-form__school-list, .b-addclasses-form__major-list, .b-addclasses-form__classes-list{
+  @include column(12);
+}
+.b-addclasses-form__input-group--search{
+  @include column(4);
+  margin-left: 40px !important;
+}
+.b-addclasses-form__input-group--ur-school, .b-addclasses-form__input-group--ur-major, .b-addclasses-form__input-group--ur-classes{
+  @include column(7);
 }
 .b-addclasses-form__title{
   font-size: 20px;
   text-align: center;
   font-weight: normal;
+  margin-right: 20px;
 }
-.b-addclasses-form__med-title{
+.b-addclasses-form__ur-school-title, .b-addclasses-form__major-title, .b-addclasses-form__classes-title{
   font-size: 16px;
   font-weight: normal;
+  line-height: 20px;
+  margin-top: 0;
+  margin-bottom: 10px;
 }
 .b-addclasses-form__title, .b-addclasses-form__input-group, .b-addclasses-form__button{
   margin-top: 10px; 
@@ -422,6 +432,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 }
 .b-addclasses-form__label{
   margin-bottom: 10px;
+  font-size: 16px;
 }
 .b-addclasses-form__school, .b-addclasses-form__major, .b-addclasses-form__classes{
   @extend .g-input;
@@ -429,17 +440,17 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 .b-addclasses-form__school:focus, .b-addclasses-form__major:focus, .b-addclasses-form__classes:focus{
   border-color: $plump !important;
 } 
-.b-school-list{
+.b-school-list, .b-major-list, .b-classes-list{
   list-style-type: none;
   margin-left: 20px;
   margin-right: 20px;
   height: 300px;
   overflow: auto;
 }
-.b-school-list__item-img, .b-school-list__item-title, .b-school-list__item-btn{
+.b-school-list__item-img, .b-school-list__item-title, .b-school-list__item-btn, .b-major-list__item-title, .b-major-list__item-btn, .b-classes-list__item-title, .b-classes-list__item-btn{
   display: inline;
 } 
-.b-school-list__item{
+.b-school-list__item, .b-major-list__item, .b-classes-list__item{
   margin-bottom: 5px;
   padding: 0;
   margin-top: 0;
@@ -447,12 +458,12 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 .b-school-list__item-img{
   margin-bottom: 5px; 
 }
-.b-school-list__item-title{
+.b-school-list__item-title, .b-major-list__item-title, .b-classes-list__item-title{
   font-size: 14px;
   font-weight: normal;
   margin-left: 5px;
 }
-.b-school-list__item-btn{
+.b-school-list__item-btn, .b-major-list__item-btn, .b-classes-list__item-btn{
   @extend .btn;
   background-color: white;
   border-color: $grayCustom;
@@ -465,7 +476,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin-right: 20px;
   @include transition(all .3s ease);
 }
-.b-school-list__item-btn:hover, .b-school-list__item-btn:focus{
+.b-school-list__item-btn:hover, .b-school-list__item-btn:focus, .b-major-list__item-btn:hover, .b-major-list__item-btn:focus, .b-classes-list__item-btn:hover, .b-classes-list__item-btn:focus{
   background-color: $plump;
   border-color: $plump;
   color: white;
@@ -473,11 +484,11 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 .b-addclasses-form__btn, .b-addclasses-form__btn:hover, .b-addclasses-form__btn:active{
   @extend .btn;
   @include transition(all .3s ease);
-  display: block;
+  display: inline-block;
   float: none;
   margin-bottom: 20px;
-  margin-right: auto;
-  margin-left: auto;
+  //margin-right: auto;
+  //margin-left: auto;
   background-color: white;
   border-color: $plump;
   color: $plump;
@@ -487,13 +498,18 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   border-color: $plump !important;
   color: white !important;
 }
-.b-urschool-item__name{
+.b-urschool-item__name, .b-urmajor-item__name{
   display: inline-block;
-  width: 197px;
   font-size: 14px;
+  margin-right: 5px;
 }
-.b-urschool-item__rmv-img{
+.b-urschool-item__rmv-img, .b-urmajor-item__rmv-img{
   height: 25px;
+}
+.b-addclasses-form__btn-group{
+  display: block;
+  float: none;
+  text-align: center;
 }
 /*-------- END Add classes page ---------*/
 
