@@ -1,5 +1,6 @@
 <?php
-require ('api.php');
+require_once ('../config.php');
+require_once ('secure/api.php');
 
 $rest = explode ( '/', $_SERVER ['REQUEST_URI'] );
 
@@ -31,7 +32,7 @@ if (isset ( $rest [3] )) {
 		case 'courses' :
 			$result;
 			if (isset ( $rest [4] )) {
-				$result = $api->getCourseById ( $rest [4] );
+				$result = $api->searchCourses ( $rest [4] );
 			} else {
 				$result = $api->getCourses ();
 			}

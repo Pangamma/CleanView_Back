@@ -287,6 +287,27 @@ class Api {
 		}
 		return $coursesList;
 	}
+	
+	/**
+	 *
+	 * @return Course[]
+	 */
+	function searchCoursesByNameOrTitle($search_query) {
+		$query = "SELECT * FROM " . Api::$TBL_COURSES. " WHERE `name` LIKE concat('%',:search_query,'%') OR `title` LIKE concat('%',:search_query,'%')";
+		
+		$params = array(
+				":search_query" => $search_query
+		);
+		
+		$results = $this->dbConn->execute($query, $params);
+		$coursesList = array();
+		while ($row = $results->fetch()) {
+			$coursesList [] = Course::createFromTableRow($row);
+		}
+		return $coursesList;
+	}
+	
+	
 	//</editor-fold>
 	//<editor-fold defaultstate="collapsed" desc="getUserById">
 	function getUserById($userId) {
