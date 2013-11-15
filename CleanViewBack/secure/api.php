@@ -8,8 +8,7 @@
 # variables that can be used with the software we are making. 		#
 #####################################################################
 #	I N C L U D E _ R E S O U R C E S								#
-// require_once('../config.php');           						#
-require_once('../../config.php');	#
+require_once('../config.php');	#//relative to file calling it...?
 require_once('event.php');		  #
 require_once('school.php');		  #
 require_once('user.php');		  #
@@ -27,7 +26,7 @@ class Api {
 	public static $E_BAD_QUERY = "Something went wrong in the query";
 	public static $E_PREFIX = 'Error : ';
 	private /*Table*/ $dbConn;
-	private /*boolean*/$isLoggedIn;
+	private /*boolean*/$isLoggedIn; function isLoggedIn(){return $this->isLoggedIn;}
 	private /*boolean[]*/ $permissions;
 	private /*User*/ $user;//current user who is logged in.
 
@@ -37,11 +36,24 @@ class Api {
 		$this->dbConn = new Table(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
 		session_start();
 		//can we count on session data, or do we need to recalculate our values?
+		$this->isLoggedIn = $this->loadPreExistingLogin();
+	}
+	
+	//<editor-fold defaultstate="collapsed" desc="login/logout">
+	/**
+	 * loads in login data from session data if it exists. If it does not exist,
+	 * method will check for cookie data if it matches what is found in the db.
+	 * @return boolean whether API was able to use pre-existing login data to
+	 * automatically log-in as the current user.
+	 */
+	function loadPreExistingLogin(){
 		$isLoggedIn = (isset($_SESSION['loggedin']) && $_SESSION['loggedin']);
 		if (!$isLoggedIn){
 			//session data is out. Do they have cookie data we can use?
 			if (isset($_COOKIE['user']) && isset($_COOKIE['pass'])){
-				login($_COOKIE['user'],$_COOKIE['pass'],true);
+				//assume that if they had a cookie, they selected "rememberme"
+				//in a past transaction.
+				return ($this->login($_COOKIE['user'],$_COOKIE['pass'],true,true) === true);
 			}
 		}else{
 			//if logged in, assume this data is stored in a session already.
@@ -49,31 +61,34 @@ class Api {
 			if (isset($_SESSION['userJson']) && isset($_SESSION['permissionsJson'])){
 				$this->user = User::createFromJson($_SESSION['userJson']);
 				$this->permissions = json_decode($_SESSION['permissionsJson']);
+				return true;
 			}else{
 				//make them reauthenticate... 
 				$_SESSION['loggedin'] = false;
 				if (isset($_COOKIE['user']) && isset($_COOKIE['pass'])){
-					login($_COOKIE['user'],$_COOKIE['pass'],true);
+					return ($this->login($_COOKIE['user'],$_COOKIE['pass'],true,true) === true);
+				}else{
+					return false;
 				}
 			}
 		}
 	}
-	
-	//<editor-fold defaultstate="collapsed" desc="login/logout">
 	/** 
 	 * pass in the username and password for the user to be logged in. 
 	 * @param string $user username
 	 * @param string $pass password 
 	 * @param boolean $preHashed false by default. only set to true if you are logging in from values stored in a user's cookie.
+	 * @param boolean $rememberMe false by default. If set to true, it will store username and a login hash to a cookie so that
+	 * it may be loaded as a saved login later.
 	 * @return boolean|string
 	 */
-	function login($user,$pass,$preHashed = false){
+	function login($user,$pass,$preHashed = false,$rememberMe = false){
 		if (!isset($user) || !isset($pass)){return false;}
 		$query = "SELECT * FROM ".Api::$TBL_USERS." WHERE `username`=':user'";
 		$queryParams = array(":user" => $user);
 		$results = $this->dbConn->execute($query, $queryParams);
 		if (!$results)
-			return "Something went wrong in the query";
+			echo "Something went wrong in the query";
 		if ($row = $results->fetch()) {
 			$salt = $row['salt'];
 				$hash = ($preHashed) ? $pass : hash("sha256",$pass.$salt,false);
@@ -84,8 +99,10 @@ class Api {
 					$_SESSION['username'] = $row['username'];
 					$_SESSION['userJson'] = json_encode($this->user);
 					//so they do not have to keep logging into our site.
-					setcookie("user",$user);
-					setcookie("pass",$row['password_hash']);
+					if ($rememberMe){
+						setcookie("user",$user);
+						setcookie("pass",$row['password_hash']);
+					}
 					//get permissions.
 					$query = "SELECT * FROM ".Api::$TBL_USER_GROUPS." WHERE `group_id`=:group_id";
 					$queryParams = array(":group_id" => $row['group_id']);
