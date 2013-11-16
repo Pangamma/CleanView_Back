@@ -128,7 +128,7 @@ body {
 
 body {
   padding-top: 0;
-  padding-bottom: 60px;
+  //padding-bottom: 60px;
 }
 /* Bootstrap overrides */
 .btn{
@@ -149,7 +149,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 /* END Bootstrap overrides */
 
 /* Other stuff */
-.g-container{
+.g-index-container{
   @extend .container;
   margin: 0 auto;
   max-width: 1000px;
@@ -162,9 +162,14 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   moz-box-shadow: none;
 }
 /* END Other stuff */
-
+.b-body{
+  height: 100%; width: 100%; margin: 0;
+}
 .b-body--index{
   background-color: $clouds;
+}
+.b-body--grey{
+  background-color: $gray-bknd;
 }
 
 /* Header */
@@ -172,6 +177,8 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   padding-top: 40px;
   padding-left: 20px;
   padding-right: 20px;
+}
+.b-header--clouds{
   background-color: $clouds;
 }
 .b-header__logo{
@@ -183,14 +190,18 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin-left: 20px;
   color: $plump;
 }
-.b-login-form{
-  @extend .form-horizontal; 
+.b-login-form{ 
   @extend .pull-right;
   margin-right: 20px;
+  display: inline-block;
+  position: relative;
+  width: 428px;
+  height: 57px;
 }
 .b-login-form__email, .b-login-form__password{
   @extend .input-medium;
   @extend .g-input;
+  margin-bottom: 0 !important;
 }
 .b-login-form__email:focus, .b-login-form__password:focus{
   border-color: $plump !important;
@@ -200,6 +211,9 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   color: white;
   background-color: $plump;
   border-color: $plump;
+  display: inline-block; 
+  float: right; 
+  margin-left: 10px;
 }
 .b-login-form__button:hover, .b-login-form__button:active, .b-login-form__button:focus{
   color: white;
@@ -207,14 +221,23 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   border-color: $plump;
 }
 .b-login-form__rmbr-label{
-  @extend .checkbox;
-  @extend .pull-left;
-  display: inline-block;
+  display: block;padding-left: 15px;text-indent: -15px;
+}
+.b-login-form__password, .b-login-form__email{
+  display: block !important;
+  float:none;
 } 
-.b-login-form__forgot-password{
-  @extend .pull-left;
+.b-login-form__forgot-password, .b-login-form__rmbr-input{
+  margin-left: 2px;
+  margin-top: 0 !important;
+}
+.b-login-form__rmbr-input{
+  width: 13px;height: 13px;padding: 0;margin:0;vertical-align: bottom;position: relative;top: -4px;*overflow: hidden; right: 1px;
+}
+.b-login-form__input-group{
   display: inline-block; 
-  margin-left: 55px;
+  float: right; 
+  margin-left: 10px;
 }
 /* END Header */
 
@@ -245,6 +268,8 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   @extend .lead;
   font-size: 24px;
   line-height: 1.25;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 .b-signup__button{
   @extend .btn;
@@ -305,10 +330,6 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 /* END Dashboard block */
 
 /*------------ Sign up page ------------- */
-.b-body--signup, .b-body--add-classes{
-  background-color: #e6e6e6;
-  //background-color: #BDAEC6;
-}
 .b-signup-page-logo{
   text-align: center; 
   margin-top: 20px; 
@@ -340,7 +361,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   font-size: 20px;
   font-weight: normal;
 }
-.b-signup-form__name, .b-signup-form__email, .b-signup-form__password, .b-signup-form__password-confirm{
+.b-signup-form__firstname, .b-signup-form__lastname, .b-signup-form__email, .b-signup-form__password, .b-signup-form__password-confirm{
   @extend .g-input;
 }
 .b-signup-form__button{
@@ -355,8 +376,11 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   background-color: $gold;
   border-color: $gold;
 }
-.b-signup-form__name:focus, .b-signup-form__email:focus, .b-signup-form__password:focus, .b-signup-form__password-confirm:focus{
+.b-signup-form__firstname:focus, .b-signup-form__lastname:focus, .b-signup-form__email:focus, .b-signup-form__password:focus, .b-signup-form__password-confirm:focus{
   border-color: $plump !important;
+}
+.b-signup-form__facebook-img, .b-signup-form__google-plus-img{
+  height: 40px;
 }
 /*---------- END Sign up page -----------*/
 
@@ -513,6 +537,109 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 }
 /*-------- END Add classes page ---------*/
 
+/*---------- Calendar day page ----------*/
+.b-header--calendar{
+  @include column(12);
+  background-color: white;
+  padding-top: 20px;
+  padding-left: 0;
+  padding-right: 0;
+  margin-bottom: 5px; 
+}
+.b-button-list, .b-cal-navlist{
+  list-style-type: none;
+  display: inline-block;
+  float: right;
+}
+.b-button-list__button, .b-cal-navlist__item{
+  display: inline-block;
+}
+.b-button-list{
+  border-right: 2px solid $plump;
+}
+.b-button-list__button{
+  border-top: 2px solid $plump;
+  border-bottom: 2px solid $plump;
+  border-left: 2px solid $plump;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  width: 50px;
+  color: $plump;
+  text-align: center;
+}
+.b-button-list__button--active{
+  background-color: $plump;
+  color: white;
+}
+.b-cal-navlist{
+  margin-right: 20px;
+}
+.b-day-dash, .b-main-dash, .b-conf-dash{
+  background-color: $gray-bknd;
+}
+.b-day-dash{
+  @include column(2);
+}
+.b-main-dash{
+  @include column(7);
+}
+.b-conf-dash{
+  @include column(3);
+}
+.b-day-dash__container{
+  background-color: white; 
+  margin-top: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+.b-day-dash__day--active{
+  background-color: $plump;
+  color: white;
+}
+.b-day-dash__up, .b-day-dash__down{
+  color: rgba(91,59,112,0.1);
+  @include transition(all .3s ease);
+}
+.b-day-dash__up:hover, .b-day-dash__down:hover{
+  background-color: $plump;
+  @include transition(all .3s ease);
+}
+.b-day-dash__day-name, .b-day-dash__month-year, .b-day-dash__day-num, .b-day-dash__year, .b-day-dash__time{
+  text-align: center;
+}
+.b-day-dash__day-name{
+  font-size: 25px;
+  line-height: 25px;
+}
+.b-day-dash__month-year{
+  font-size: 18px;
+}
+.b-day-dash__day-num{
+  font-size: 65px;
+  line-height: 65px;
+}
+.b-day-dash__time{
+  font-size: 20px;
+  line-height: 20px;
+  margin-top: 5px;
+}
+.b-sync-block__container, .b-reminders-block__container{
+  background-color: white; 
+  margin: 5px;
+}
+.b-reminders-block__container{
+  margin-top: 10px;
+}
+.b-conf-dash__container{
+  background-color: white; 
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
+/*------- END Calendar day page ---------*/
+.g-container{
+  @extend .container;
+}
 /* Footer */
 	footer{@extend .g-span12;}
 /* END Footer */
