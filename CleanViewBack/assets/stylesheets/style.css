@@ -9527,14 +9527,14 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   font-size: 21px;
   padding: 14px 24px;
   margin-top: 20px;
-  background-color: #caa91e;
+  background-color: #F5EF00;
   border-color: #caa91e;
   text-shadow: none;
 }
 
 /* line 259, ../sass/style.scss */
 .b-signup__button:hover, .b-signup__button:active, .b-signup__button:focus {
-  background-color: #caa91e;
+  background-color: #EAE200;
   border-color: #caa91e;
 }
 
