@@ -443,5 +443,19 @@ class Api {
 		);
 		$this->dbConn->execute($query, $params);
 	}
+	
+        function addEnrollment($courseId,$userId = -1){
+            if ($userId == -1)
+            $userId = $this->user->getUserId();
+            $query="INSERT INTO `" .Api::$TBL_ENROLLMENTS . "` (`userId`, `courseId`) VALUES (:userid, :courseid)";
+            $params = array(
+            ":userid" => $userId,
+            ":courseid" => $courseId
+  );
+  $results = $this->dbConn->execute($query, $params);
+  if (!$results){
+      return "Something went wrong in the query";
+  }
+}	
 }
 ?>
