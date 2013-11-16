@@ -27,7 +27,6 @@ class Api {
 	public static $E_PREFIX = 'Error : ';
 	private /*Table*/ $dbConn;
 	private /*boolean*/$isLoggedIn; function isLoggedIn(){return $this->isLoggedIn;}
-	private /*boolean[]*/ $permissions;
 	private /*User*/ $user;//current user who is logged in.
 
 	//--------------------------------------------------------------------------
@@ -53,16 +52,17 @@ class Api {
 			if (isset($_COOKIE['user']) && isset($_COOKIE['pass'])){
 				//assume that if they had a cookie, they selected "rememberme"
 				//in a past transaction.
-				return ($this->login($_COOKIE['user'],$_COOKIE['pass'],true,true) === true);
+				return ($this->login($_COOKIE['user'],$_COOKIE['pass'],true,true) == true);
 			}
 		}else{
 			//if logged in, assume this data is stored in a session already.
-			//if user permissions change during use, assume fuck. dammit.
-			if (isset($_SESSION['userJson']) && isset($_SESSION['permissionsJson'])){
+			if (isset($_SESSION['userJson'])){
 				$this->user = User::createFromJson($_SESSION['userJson']);
-				$this->permissions = json_decode($_SESSION['permissionsJson']);
-				return true;
+				if ($this->user != null){
+					return true;
+				}
 			}else{
+				echo $_SESSION['userJson'];
 				//make them reauthenticate... 
 				$_SESSION['loggedin'] = false;
 				if (isset($_COOKIE['user']) && isset($_COOKIE['pass'])){
@@ -72,24 +72,28 @@ class Api {
 				}
 			}
 		}
+		return false;
 	}
 	/** 
 	 * pass in the username and password for the user to be logged in. 
 	 * @param string $user username
 	 * @param string $pass password 
-	 * @param boolean $preHashed false by default. only set to true if you are logging in from values stored in a user's cookie.
 	 * @param boolean $rememberMe false by default. If set to true, it will store username and a login hash to a cookie so that
+	 * @param boolean $preHashed false by default. only set to true if you are logging in from values stored in a user's cookie.
 	 * it may be loaded as a saved login later.
 	 * @return boolean|string
 	 */
-	function login($user,$pass,$preHashed = false,$rememberMe = false){
-		if (!isset($user) || !isset($pass)){return false;}
-		$query = "SELECT * FROM ".Api::$TBL_USERS." WHERE `username`=':user'";
-		$queryParams = array(":user" => $user);
-		$results = $this->dbConn->execute($query, $queryParams);
+	function login($user,$pass,$rememberMe = false,$preHashed = false){
+//		if (!isset($user) || !isset($pass)){return false;}
+//		$query = "SELECT * FROM ".Api::$TBL_USERS." WHERE `username`=':user'";
+//		$queryParams = array(":user" => $user);
+//		$results = $this->dbConn->execute($query, $queryParams);
+		
+		$results = $this->dbConn->execute("SELECT * FROM `users`");
 		if (!$results)
 			echo "Something went wrong in the query";
-		if ($row = $results->fetch()) {
+		$row = $results->fetch();
+		if ($row) {
 			$salt = $row['salt'];
 				$hash = ($preHashed) ? $pass : hash("sha256",$pass.$salt,false);
 				if ($row['password_hash'] == $hash){
@@ -103,22 +107,7 @@ class Api {
 						setcookie("user",$user);
 						setcookie("pass",$row['password_hash']);
 					}
-					//get permissions.
-					$query = "SELECT * FROM ".Api::$TBL_USER_GROUPS." WHERE `group_id`=:group_id";
-					$queryParams = array(":group_id" => $row['group_id']);
-					$results = $this->dbConn->execute($query, $queryParams);
-					if (!$results)
-						return "Something went wrong in the permissions query";
-					if ($row = $results->fetch()) {
-						$this->permissions = array();
-						foreach($row as $key => $val){
-							if ($key != "group_id" && $key != "group_name"){
-								$this->permissions[$key] = ($val == 1);//converts to true/false
-							}		
-						}
-						$_SESSION['permissionsJson'] = json_encode($this->permissions);
-						return true;
-					}
+					return true;
 				}
 				return false;
 		}
@@ -133,18 +122,6 @@ class Api {
 		setcookie("pass",null);
 		$this->isLoggedIn = false;
 		$this->user = null;
-	}
-	//</editor-fold>
-	//<editor-fold defaultstate="collapsed" desc="permissions">
-	function hasPermission($key){
-		if (!isset($this->permissions)) return false;
-		if (empty($this->permissions)) return false;
-		foreach($this->permissions as $val){
-			if ($key == $val){
-				return true;
-			}
-		}
-		return false;
 	}
 	//</editor-fold>
 	//<editor-fold defaultstate="collapsed" desc="add event">

@@ -1046,7 +1046,7 @@ textarea::-webkit-input-placeholder {
 }
 
 /* line 263, ../sass/bootstrap/_forms.scss */
-.input-medium, .b-login-form__email, .b-login-form__password {
+.input-medium, .b-login-form__username, .b-login-form__password {
   width: 150px;
 }
 
@@ -9418,7 +9418,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 }
 
 /* line 158, ../sass/style.scss */
-.g-input, .b-login-form__email, .b-login-form__password, .b-signup-form__name, .b-signup-form__email, .b-signup-form__password, .b-signup-form__password-confirm, .b-addclasses-form__school, .b-addclasses-form__major, .b-addclasses-form__classes {
+.g-input, .b-login-form__username, .b-login-form__password, .b-signup-form__name, .b-signup-form__email, .b-signup-form__password, .b-signup-form__password-confirm, .b-addclasses-form__school, .b-addclasses-form__major, .b-addclasses-form__classes {
   border-width: 2px !important;
   webkit-box-shadow: none;
   box-shadow: none;
@@ -9456,7 +9456,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 }
 
 /* line 195, ../sass/style.scss */
-.b-login-form__email:focus, .b-login-form__password:focus {
+.b-login-form__username:focus, .b-login-form__password:focus {
   border-color: #5b3b70 !important;
 }
 

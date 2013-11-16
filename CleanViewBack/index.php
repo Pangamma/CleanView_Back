@@ -5,11 +5,20 @@
 		require_once('secure/api.php');
 		$api = new Api();
 		if ($api->isLoggedIn()){
-			echo '<meta http-equiv="refresh" content="0; url=home.php">';
-		}
-		//else, we assume login failed, but... let's try something first.
+			// die after printing a redirect because nothing more is needed
+			// by the page. 
+			echo '<meta http-equiv="refresh" content="0; url=home.php">';die();
+		}//else, we assume login failed, but... let's try something first.
 		//is rememberMe box checked or not?
 		$rememberMe = (isset($_POST["b-login-form_rmbr"]) && $_POST["b-login-form_rmbr"] == "on");
+		$username = (isset($_POST["b-login-form_username"]) ? $_POST["b-login-form_username"] : null);
+		$password = (isset($_POST["b-login-form_password"]) ? $_POST["b-login-form_password"] : null);
+		if (isset($username) && isset($password)){
+			$api->login($username, $password,$rememberMe,false);
+			if ($api->isLoggedIn()){
+				echo '<meta http-equiv="refresh" content="0; url=home.php">';die();
+			}
+		}//else, we tried. Go ahead and load the index page. 
 	?>
 		<meta charset="utf-8">
 		<title>PeerCalendar</title>
@@ -38,8 +47,14 @@
 			<div class="g-container">
 				<h1 class="b-header__logo">PeerCalendar</h1>
 				<form class="b-login-form" action="index.php" method="post">
-					<input type="text" class="b-login-form__email" placeholder="Email">
-					<input type="password" class="b-login-form__password" placeholder="Password">
+					<?php 
+						if (!isset($username)){
+							echo '<input name ="b-login-form_username" type="text" class="b-login-form__username" placeholder="Username">';
+						}else{
+							echo '<input name ="b-login-form_username" type="text" class="b-login-form__username" placeholder="'.$username.'" value="'.$username.'">';	
+						}
+					?>
+					<input name ="b-login-form_password" type="password" class="b-login-form__password" placeholder="Password">
 					<button type="submit" class="b-login-form__button">Log in</button>
 					<div>
 						<label class="b-login-form__rmbr-label">

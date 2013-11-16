@@ -6,7 +6,6 @@ class User implements RowObject {
 	private $lastName;
 	private $email;
 	private $username;
-
 	function __construct($userId, $firstName, $lastName, $email, $username) {
 		$this->userId = $userId;
 		$this->firstName = $firstName;
@@ -14,13 +13,36 @@ class User implements RowObject {
 		$this->email = $email;
 		$this->username = $username;
 	}
-	public static function createFromJson($json) {
-		return new self ( $json ['userId'], $json ['firstName'], $json ['lastName'], $json ['email'], $json ['username']);
+	/** 
+	 * Will return a new object if the input is valid, or null if it isn't.
+	 * @param string $jsonStr
+	 * @return null|\self
+	 */
+	public static function createFromJson($jsonStr) {
+		$json = json_decode($jsonStr,true);
+		if (
+				!isset($json['user_id']) 
+				|| !isset($json ['first_name']) 
+				|| !isset($json['last_name']) 
+				|| !isset($json['email']) 
+				|| !isset($json ['username'])
+		){
+			return null;
+		}else{
+			return new self ( $json ['user_id'], $json ['first_name'], $json ['last_name'], $json ['email'], $json ['username']);
+		}
 	}
-	
+	/** 
+	 * Will return a new object if the input is valid, or null if it isn't.
+	 * @param type $row
+	 * @return null|\self
+	 */
 	public static function createFromTableRow($row) {
-	
-		return new self ($row ['user_id'], $row ['first_name'], $row ['last_name'], $row ['email'], $row ['username'] );
+		if (!isset($row ['user_id']) || !isset($row ['first_name']) || !isset($row['last_name']) || !isset($row['email']) || !isset($row['username'])){
+			return null;
+		}else{
+			return new self ($row ['user_id'], $row ['first_name'], $row ['last_name'], $row ['email'], $row ['username'] );
+		}
 	}
 
 

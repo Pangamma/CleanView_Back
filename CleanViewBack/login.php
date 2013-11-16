@@ -1,3 +1,3 @@
 <?php
-//if successfull login, go to home. else... say it failed.
+	echo hash("sha256","banana"."tentacles",false);
 ?>
