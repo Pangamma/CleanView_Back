@@ -11,10 +11,10 @@
 		}//else, we assume login failed, but... let's try something first.
 		//is rememberMe box checked or not?
 		$rememberMe = (isset($_POST["b-login-form_rmbr"]) && $_POST["b-login-form_rmbr"] == "on");
-		$username = (isset($_POST["b-login-form_username"]) ? $_POST["b-login-form_username"] : null);
+		$email = (isset($_POST["b-login-form_email"]) ? $_POST["b-login-form_email"] : null);
 		$password = (isset($_POST["b-login-form_password"]) ? $_POST["b-login-form_password"] : null);
-		if (isset($username) && isset($password)){
-			$api->login($username, $password,$rememberMe,false);
+		if (isset($email) && isset($password)){
+			$api->login($email, $password,$rememberMe,false);
 			if ($api->isLoggedIn()){
 				echo '<meta http-equiv="refresh" content="0; url=home.php">';die();
 			}
@@ -48,10 +48,10 @@
 				<h1 class="b-header__logo">PeerCalendar</h1>
 				<form class="b-login-form" action="index.php" method="post">
 					<?php 
-						if (!isset($username)){
-							echo '<input name ="b-login-form_username" type="text" class="b-login-form__username" placeholder="Username">';
+						if (!isset($email)){
+							echo '<input name ="b-login-form_email" type="text" class="b-login-form__email" placeholder="Email">';
 						}else{
-							echo '<input name ="b-login-form_username" type="text" class="b-login-form__username" placeholder="'.$username.'" value="'.$username.'">';	
+							echo '<input name ="b-login-form_email" type="text" class="b-login-form__email" placeholder="'.$email.'" value="'.$email.'">';	
 						}
 					?>
 					<input name ="b-login-form_password" type="password" class="b-login-form__password" placeholder="Password">

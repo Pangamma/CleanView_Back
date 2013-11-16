@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+	<?php
+	if (isset($_POST['is_sent'])){
+	}
+	?>
     <meta charset="utf-8">
     <title>PeerCalendar</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,20 +37,20 @@
           
           <form class="b-signup-form__form" action="add_classes.php">
 			<input type="hidden" name="is_sent" value="1" />
-            <div class="b-signup-form__input-group">
-              <input type="text" class="b-signup-form__email" placeholder="Email">
+			<div class="b-signup-form__input-group">
+              <input type="text" name="fName" class="b-signup-form__firstName" placeholder="First Name">
             </div>
 			<div class="b-signup-form__input-group">
-              <input type="text" class="b-signup-form__name" placeholder="Name">
-            </div>  
-            <div class="b-signup-form__input-group">
-              <input type="text" class="b-signup-form__email" placeholder="Email">
+              <input type="text" name="lName" class="b-signup-form__lastName" placeholder="Last Name">
             </div>
             <div class="b-signup-form__input-group">
-              <input type="password" class="b-signup-form__password" placeholder="Password">
+              <input type="text" name="email" class="b-signup-form__email" placeholder="Email">
+            </div>
+            <div class="b-signup-form__input-group">
+              <input type="password" name="password" class="b-signup-form__password" placeholder="Password">
             </div>  
               <div class="b-signup-form__input-group">
-              <input type="password" class="b-signup-form__password-confirm" placeholder="Confirm Password">
+              <input type="password" name="confirmpassword" class="b-signup-form__password-confirm" placeholder="Confirm Password">
             </div>  
             <button type="submit" class="b-signup-form__button">Create an Account</button>
           </form>

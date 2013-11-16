@@ -60,10 +60,10 @@ class Api {
 		$isLoggedIn = (isset($_SESSION['loggedin']) && $_SESSION['loggedin']);
 		if (!$isLoggedIn){
 			//session data is out. Do they have cookie data we can use?
-			if (isset($_COOKIE['user']) && isset($_COOKIE['pass'])){
+			if (isset($_COOKIE['email']) && isset($_COOKIE['pass'])){
 				//assume that if they had a cookie, they selected "rememberme"
 				//in a past transaction.
-				return ($this->login($_COOKIE['user'],$_COOKIE['pass'],true,true) == true);
+				return ($this->login($_COOKIE['email'],$_COOKIE['pass'],true,true) == true);
 			}
 		}else{
 			//if logged in, assume this data is stored in a session already.
@@ -76,8 +76,8 @@ class Api {
 				echo $_SESSION['userJson'];
 				//make them reauthenticate... 
 				$_SESSION['loggedin'] = false;
-				if (isset($_COOKIE['user']) && isset($_COOKIE['pass'])){
-					return ($this->login($_COOKIE['user'],$_COOKIE['pass'],true,true) === true);
+				if (isset($_COOKIE['email']) && isset($_COOKIE['pass'])){
+					return ($this->login($_COOKIE['email'],$_COOKIE['pass'],true,true) === true);
 				}else{
 					return false;
 				}
@@ -86,21 +86,19 @@ class Api {
 		return false;
 	}
 	/** 
-	 * pass in the username and password for the user to be logged in. 
-	 * @param string $user username
+	 * pass in the email and password for the user to be logged in. 
+	 * @param string $email email
 	 * @param string $pass password 
 	 * @param boolean $rememberMe false by default. If set to true, it will store username and a login hash to a cookie so that
 	 * @param boolean $preHashed false by default. only set to true if you are logging in from values stored in a user's cookie.
 	 * it may be loaded as a saved login later.
 	 * @return boolean|string
 	 */
-	function login($user,$pass,$rememberMe = false,$preHashed = false){
-//		if (!isset($user) || !isset($pass)){return false;}
-//		$query = "SELECT * FROM ".Api::$TBL_USERS." WHERE `username`=':user'";
-//		$queryParams = array(":user" => $user);
-//		$results = $this->dbConn->execute($query, $queryParams);
-		
-		$results = $this->dbConn->execute("SELECT * FROM `users`");
+	function login($email,$pass,$rememberMe = false,$preHashed = false){
+		if (!isset($email) || !isset($pass)){return false;}
+		$query = "SELECT * FROM ".Api::$TBL_USERS." WHERE `username`=':user'";
+		$queryParams = array(":user" => $email);
+		$results = $this->dbConn->execute($query, $queryParams);
 		if (!$results)
 			echo "Something went wrong in the query";
 		$row = $results->fetch();
@@ -111,11 +109,11 @@ class Api {
 					$this->isLoggedIn = true;
 					$this->user = User::createFromTableRow($row);
 					$_SESSION['loggedin'] = true;				
-					$_SESSION['username'] = $row['username'];
+					$_SESSION['email'] = $row['email'];
 					$_SESSION['userJson'] = json_encode($this->user);
 					//so they do not have to keep logging into our site.
 					if ($rememberMe){
-						setcookie("user",$user);
+						setcookie("email",$email);
 						setcookie("pass",$row['password_hash']);
 					}
 					return true;
@@ -128,7 +126,7 @@ class Api {
 	function logout(){
 		$_SESSION['loggedin'] = false;
 		$_SESSION['userJson'] = null;				
-		$_SESSION['username'] = null;
+		$_SESSION['email'] = null;
 		//so they do not have to keep logging into our site.
 		setcookie("user",null);
 		setcookie("pass",null);
