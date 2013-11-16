@@ -4,7 +4,7 @@
   if ($api->isLoggedIn()){
     // die after printing a redirect because nothing more is needed
     // by the page.
-    header( 'Location: calendar_home.php'); // success go to calendar
+    echo '<meta http-equiv="refresh" content="0; url=home.php">'; die();
   }//else, we assume login failed, but... let's try something first.
   //is rememberMe box checked or not?
   $rememberMe = (isset($_POST["b-login-form_rmbr"]) && $_POST["b-login-form_rmbr"] == "on");
@@ -13,11 +13,12 @@
   if (isset($email) && isset($password)){
     $api->login($email, $password,$rememberMe,false);
     if ($api->isLoggedIn()){
-      header('Location: calendar_home.php'); // success go to calendar
+      echo '<meta http-equiv="refresh" content="0; url=home.php">'; die();
     }
   }//else, we tried. Go ahead and load the index page.
 
-  // Should add if failed go to the failed_login.php like on facebook
+  // Should add if success go to the calendar_home.php if failed go to 
+  // the failed_login.php like on facebook
   // And ajax validation on failed_login.php page
 ?>
 

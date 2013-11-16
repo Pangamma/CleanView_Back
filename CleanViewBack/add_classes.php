@@ -22,7 +22,7 @@
         <link rel="shortcut icon" href="../assets/ico/favicon.png">
     </head>
     
-    <body class="b-body b-body--add-classes">
+    <body class="b-body b-body--grey">
         <h1 class="b-signup-page-logo">PeerCalendar</h1>
         <div class="b-addclasses-form">
             
