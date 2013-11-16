@@ -5,13 +5,11 @@ class User implements RowObject {
 	private $firstName;
 	private $lastName;
 	private $email;
-	private $username;
-	function __construct($userId, $firstName, $lastName, $email, $username) {
+	function __construct($userId, $firstName, $lastName, $email) {
 		$this->userId = $userId;
 		$this->firstName = $firstName;
 		$this->lastName = $lastName;
 		$this->email = $email;
-		$this->username = $username;
 	}
 	/** 
 	 * Will return a new object if the input is valid, or null if it isn't.
@@ -24,12 +22,11 @@ class User implements RowObject {
 				!isset($json['user_id']) 
 				|| !isset($json ['first_name']) 
 				|| !isset($json['last_name']) 
-				|| !isset($json['email']) 
-				|| !isset($json ['username'])
+				|| !isset($json['email'])
 		){
 			return null;
 		}else{
-			return new self ( $json ['user_id'], $json ['first_name'], $json ['last_name'], $json ['email'], $json ['username']);
+			return new self ( $json ['user_id'], $json ['first_name'], $json ['last_name'], $json ['email']);
 		}
 	}
 	/** 
@@ -38,10 +35,10 @@ class User implements RowObject {
 	 * @return null|\self
 	 */
 	public static function createFromTableRow($row) {
-		if (!isset($row ['user_id']) || !isset($row ['first_name']) || !isset($row['last_name']) || !isset($row['email']) || !isset($row['username'])){
+		if (!isset($row ['user_id']) || !isset($row ['first_name']) || !isset($row['last_name']) || !isset($row['email'])){
 			return null;
 		}else{
-			return new self ($row ['user_id'], $row ['first_name'], $row ['last_name'], $row ['email'], $row ['username'] );
+			return new self ($row ['user_id'], $row ['first_name'], $row ['last_name'], $row ['email']);
 		}
 	}
 
@@ -52,7 +49,6 @@ class User implements RowObject {
 		$data ['first_name'] = $this->firstName;
 		$data ['last_name'] = $this->lastName;
 		$data ['email'] = $this->email;
-		$data ['username'] = $this->username;
 
 		return $data;
 	}
@@ -82,14 +78,6 @@ class User implements RowObject {
 
 	public function setEmail($email) {
 		$this->email = $email;
-	}
-
-	public function getUsername() {
-		return $this->username;
-	}
-
-	public function setUsername($username) {
-		$this->username = $username;
 	}
 }
 

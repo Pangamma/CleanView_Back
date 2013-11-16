@@ -1,6 +1,7 @@
 	<?php
 	class Table{
-			private /*PDO*/ $db;
+			/** @var PDO **/
+			private  $db;
 
 			/**
 			*	Table model

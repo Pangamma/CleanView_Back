@@ -25,9 +25,12 @@ class Api {
 	public static $E_INVALID_REQUEST = "Invalid Request.";
 	public static $E_BAD_QUERY = "Something went wrong in the query";
 	public static $E_PREFIX = 'Error : ';
-	private /*Table*/ $dbConn;
-	private /*boolean*/$isLoggedIn; function isLoggedIn(){return $this->isLoggedIn;}
-	private /*User*/ $user;
+	/** @var Table **/
+	private $dbConn;
+	/** @var boolean **/
+	private $isLoggedIn; function isLoggedIn(){return $this->isLoggedIn;}
+	/** @var User **/
+	private $user;
 	private $isConnected = false;//current user who is logged in.
 
 	//--------------------------------------------------------------------------
@@ -96,8 +99,8 @@ class Api {
 	 */
 	function login($email,$pass,$rememberMe = false,$preHashed = false){
 		if (!isset($email) || !isset($pass)){return false;}
-		$query = "SELECT * FROM ".Api::$TBL_USERS." WHERE `username`=':user'";
-		$queryParams = array(":user" => $email);
+		$query = "SELECT * FROM ".Api::$TBL_USERS." WHERE `email`=':email'";
+		$queryParams = array(":email" => $email);
 		$results = $this->dbConn->execute($query, $queryParams);
 		if (!$results)
 			echo "Something went wrong in the query";
@@ -215,8 +218,18 @@ class Api {
 	}
 	//</editor-fold>
 	//<editor-fold defaultstate="collapsed" desc="getEvents">
-	function getEvents($userId, $startTime = null, $endTime = null, $courseIds = null, $eventTypeIds = null){
-		
+	/**
+	 * 
+	 * if no params are given, userid is taken from the api's current user obj.
+	 * @param string $jsonStr
+	 */
+	function getEvents($jsonStr = null/*,userId, $startTime = null, $endTime = null, $courseIds = null, $eventTypeIds = null*/){
+		/**
+		 * if no time is given, assume the current month.
+		 * if no userid is given, assume the current user's id.
+		 * if no course list is given, assume all courses for given user.
+		 * if no event type list is given, assume all event types.
+		 */
 	}
 	//</editor-fold>
 	//<editor-fold defaultstate="collapsed" desc="getSchoolById">
@@ -252,6 +265,24 @@ class Api {
 			$schoolsList [] = School::createFromTableRow($row);
 		}
 		return $schoolsList;
+	}
+	//</editor-fold>
+	//<editor-fold defaultstate="collapsed" desc="getCoursesByUserId">
+	/**
+	 * 
+	 * @param int $id if no id is specified, method uses the current user's id.
+	 * @return Course[] list of courses
+	 */
+	function getCoursesByUserId($id = -1){
+		if ($id == -1 && isset($this->user)) $id = $this->user->getUserId();
+		$query = "SELECT * FROM ".API::$TBL_ENROLLMENTS." WHERE `user_id`=:user_id";
+		$params = array(":user_id" => $id);
+		$results = $this->dbConn->execute($query, $params);
+		$courses = array();if (!$results) return $courses;
+		while ($row = $results->fetch()) {
+			$courses[] = Course::createFromTableRow($row);
+		}
+		return $courses;
 	}
 	//</editor-fold>
 	//<editor-fold defaultstate="collapsed" desc="getCourseById">
