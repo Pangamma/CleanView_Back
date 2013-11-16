@@ -32,7 +32,11 @@
           <h2 class="b-signup-form__title">Create an Account</h2>
           
           <form class="b-signup-form__form" action="add_classes.php">
+			<input type="hidden" name="is_sent" value="1" />
             <div class="b-signup-form__input-group">
+              <input type="text" class="b-signup-form__email" placeholder="Email">
+            </div>
+			<div class="b-signup-form__input-group">
               <input type="text" class="b-signup-form__name" placeholder="Name">
             </div>  
             <div class="b-signup-form__input-group">

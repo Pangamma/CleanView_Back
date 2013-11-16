@@ -27,18 +27,29 @@ class Api {
 	public static $E_PREFIX = 'Error : ';
 	private /*Table*/ $dbConn;
 	private /*boolean*/$isLoggedIn; function isLoggedIn(){return $this->isLoggedIn;}
-	private /*User*/ $user;//current user who is logged in.
+	private /*User*/ $user;
+	private $isConnected = false;//current user who is logged in.
 
 	//--------------------------------------------------------------------------
 	//constructor that makes the database connection using variables from config.
-	function __construct() {
-		$this->dbConn = new Table(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
+	/**
+	 * @param boolean $connectInConstructor automatically connect to the database?
+	 * This should be left as true unless you know what you are doing. 
+	 * We might even want to remove it. Idk. Still trying to decide.
+	 */
+	function __construct($connectInConstructor = true) {
 		session_start();
-		//can we count on session data, or do we need to recalculate our values?
-		$this->isLoggedIn = $this->loadPreExistingLogin();
+		if ($connectInConstructor){
+			$this->connectToDatabase();
+			//can we count on session data, or do we need to recalculate our values?
+			$this->isLoggedIn = $this->loadPreExistingLogin();
+		}
 	}
-	
 	//<editor-fold defaultstate="collapsed" desc="login/logout">
+	function connectToDatabase(){
+		$this->dbConn = new Table(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
+		$this->isConnected = true;
+	}
 	/**
 	 * loads in login data from session data if it exists. If it does not exist,
 	 * method will check for cookie data if it matches what is found in the db.
@@ -115,7 +126,8 @@ class Api {
 		//how do we know if there are NO results?
 	}
 	function logout(){
-		$_SESSION['loggedin'] = false;				
+		$_SESSION['loggedin'] = false;
+		$_SESSION['userJson'] = null;				
 		$_SESSION['username'] = null;
 		//so they do not have to keep logging into our site.
 		setcookie("user",null);
