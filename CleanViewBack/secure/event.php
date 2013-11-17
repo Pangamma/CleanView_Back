@@ -3,7 +3,7 @@ require_once('rowobject.php');
 class Event implements RowObject{
 	private $eventId = -1;
 	private $courseId = -1;
-	private $dateTime;
+	private $time;
 	private $title = 'event';
 	private $desc = 'event description';
 	private $typeId = 1;
@@ -12,16 +12,16 @@ class Event implements RowObject{
 	 * Create a new event Object to be used.
 	 * @param int $courseid is the id of the
 	 * @param int $courseid is the id of the event.
-	 * @param DateTime $dateTime time when item is due.
+	 * @param int $time UNIX time when event is due.
 	 * @param string $title will be the caption
 	 * @param string $description
 	 * @param int $typeid the type of event type.
 	 * @param boolean $deleted true/false. Is the event visible to users?
 	 */
-	function __construct($courseId, $dateTime, $title, $description, $eventId = -1, $typeId = 0, $deleted = 0){
+	function __construct($courseId, $time, $title, $description, $eventId = -1, $typeId = 0, $deleted = 0){
 		$this->eventId = $eventId;
 		$this->courseId = $courseId;
-		$this->dateTime = $dateTime;
+		$this->time = $time;
 		$this->title = $title;
 		$this->desc = $description;
 		$this->typeId = $typeId;
@@ -49,22 +49,24 @@ class Event implements RowObject{
 	public function getEventId() {
 		return $this->eventId;
 	}
-	/** @param int eventId
-	 * @return \Event for use in chain coding.**/
-	public function setEventId($eventId) {
-		$this->eventId = $eventId;
-		return $this;
-	}
 	/**
 	 * @return DateTime
 	 */
 	public function getDateTime() {
-		return $this->dateTime;
+		$dateTime = new DateTime();
+		$dateTime->setTimestamp($this->time);
+		return $dateTime;
+	}	
+	/**
+	 * @return int number of seconds based on unix time.
+	 */
+	public function getUnixTime() {
+		return $this->time;
 	}
 	/** @param DateTime $dateTime
 	 * @return \Event for use in chain coding.**/
 	public function setDateTimeByObject($dateTime) {
-		$this->dateTime = $dateTime;
+		$this->time = $dateTime->getTimestamp();
 		return $this;
 	}
 	/** 
@@ -77,10 +79,10 @@ class Event implements RowObject{
 	 * @return \Event for use in chain coding. 
 	 */
 	public function setDateTime(int $year,int $month,int $day,int $hour,int $minute) {
-		$date =new DateTime();
+		$date = new DateTime();
 		$date->setDate($year, $month, $day);
 		$date->setTime($hour, $minute, 0);
-		$this->dateTime = $date;
+		$this->time = $date->getTimestamp();
 		return $this;
 	}
 	public function getTitle() {
@@ -136,7 +138,7 @@ class Event implements RowObject{
 		$data = array();
 		$data['event_id'] = $this->eventId;
 		$data['course_id'] = $this->courseId;
-		$data['time'] = $this->dateTime;
+		$data['time'] = $this->time;
 		$data['description'] = $this->desc;
 		$data['type_id'] = $this->typeId;
 		$data['deleted'] = $this->deleted;
