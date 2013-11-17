@@ -8,14 +8,16 @@
 # variables that can be used with the software we are making. 		#
 #####################################################################
 #	I N C L U D E _ R E S O U R C E S								#
-require_once('../config.php');	#//relative to file calling it...?
-require_once('event.php');		  #
-require_once('school.php');		  #
-require_once('user.php');		  #
-require_once('course.php');		  #
+require_once('../config.php'); #//relative to file calling it...?
+require_once('event.php');	#
+require_once('school.php');	#
+require_once('user.php');	#
+require_once('course.php');	#
 require_once('models/Table.php');
 #####################################################################
+
 class Api {
+
 	private static $TBL_COURSES = 'courses';
 	private static $TBL_ENROLLMENTS = 'enrollments';
 	private static $TBL_EVENTS = 'events';
@@ -25,14 +27,26 @@ class Api {
 	public static $E_INVALID_REQUEST = "Invalid Request.";
 	public static $E_BAD_QUERY = "Something went wrong in the query";
 	public static $E_PREFIX = 'Error : ';
-	/** @var Table **/
-	private $dbConn;
-	/** @var boolean **/
-	private $isLoggedIn; function isLoggedIn(){return $this->isLoggedIn;}
-	/** @var User **/
-	private $user;
-	private $isConnected = false;//current user who is logged in.
 
+	/** @var Table * */
+	private $dbConn;
+
+	/** @var boolean * */
+	private $isLoggedIn;
+	/** 
+	 * returns true if and only if the database is connected,
+	 * the user object is valid, AND the user is actively logged in.
+	 * @return boolean
+	 */
+	function isLoggedIn() {
+		return ($this->isLoggedIn && isset($this->user) && isset($this->dbConn) && $this->isConnected);
+	}
+
+	/** @var User * */
+	private $user;
+	private $isConnected = false; //current user who is logged in.
+
+	//<editor-fold defaultstate="collapsed" desc="constructor">
 	//--------------------------------------------------------------------------
 	//constructor that makes the database connection using variables from config.
 	/**
@@ -40,55 +54,60 @@ class Api {
 	 * This should be left as true unless you know what you are doing. 
 	 * We might even want to remove it. Idk. Still trying to decide.
 	 */
+
 	function __construct($connectInConstructor = true) {
 		session_start();
-		if ($connectInConstructor){
+		if ($connectInConstructor) {
 			$this->connectToDatabase();
 			//can we count on session data, or do we need to recalculate our values?
 			$this->isLoggedIn = $this->loadPreExistingLogin();
 		}
 	}
+
+	//</editor-fold>
 	//<editor-fold defaultstate="collapsed" desc="login/logout">
-	function connectToDatabase(){
+	function connectToDatabase() {
 		$this->dbConn = new Table(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
 		$this->isConnected = true;
 	}
+
 	/**
 	 * loads in login data from session data if it exists. If it does not exist,
 	 * method will check for cookie data if it matches what is found in the db.
 	 * @return boolean whether API was able to use pre-existing login data to
 	 * automatically log-in as the current user.
 	 */
-	function loadPreExistingLogin(){
+	function loadPreExistingLogin() {
 		$isLoggedIn = (isset($_SESSION['loggedin']) && $_SESSION['loggedin']);
-		if (!$isLoggedIn){
+		if (!$isLoggedIn) {
 			//session data is out. Do they have cookie data we can use?
-			if (isset($_COOKIE['email']) && isset($_COOKIE['pass'])){
+			if (isset($_COOKIE['email']) && isset($_COOKIE['pass'])) {
 				//assume that if they had a cookie, they selected "rememberme"
 				//in a past transaction.
-				return ($this->login($_COOKIE['email'],$_COOKIE['pass'],true,true) == true);
+				return ($this->login($_COOKIE['email'], $_COOKIE['pass'], true, true) == true);
 			}
-		}else{
+		} else {
 			//if logged in, assume this data is stored in a session already.
-			if (isset($_SESSION['userJson'])){
+			if (isset($_SESSION['userJson'])) {
 				$this->user = User::createFromJson($_SESSION['userJson']);
-				if ($this->user != null){
+				if ($this->user != null) {
 					return true;
 				}
-			}else{
+			} else {
 				echo $_SESSION['userJson'];
 				//make them reauthenticate... 
 				$_SESSION['loggedin'] = false;
-				if (isset($_COOKIE['email']) && isset($_COOKIE['pass'])){
-					return ($this->login($_COOKIE['email'],$_COOKIE['pass'],true,true) === true);
-				}else{
+				if (isset($_COOKIE['email']) && isset($_COOKIE['pass'])) {
+					return ($this->login($_COOKIE['email'], $_COOKIE['pass'], true, true) === true);
+				} else {
 					return false;
 				}
 			}
 		}
 		return false;
 	}
-	/** 
+
+	/**
 	 * pass in the email and password for the user to be logged in. 
 	 * @param string $email email
 	 * @param string $pass password 
@@ -97,9 +116,11 @@ class Api {
 	 * it may be loaded as a saved login later.
 	 * @return boolean|string
 	 */
-	function login($email,$pass,$rememberMe = false,$preHashed = false){
-		if (!isset($email) || !isset($pass)){return false;}
-		$query = "SELECT * FROM ".Api::$TBL_USERS." WHERE `email`=':email'";
+	function login($email, $pass, $rememberMe = false, $preHashed = false) {
+		if (!isset($email) || !isset($pass)) {
+			return false;
+		}
+		$query = "SELECT * FROM " . Api::$TBL_USERS . " WHERE `email`=':email'";
 		$queryParams = array(":email" => $email);
 		$results = $this->dbConn->execute($query, $queryParams);
 		if (!$results)
@@ -107,35 +128,37 @@ class Api {
 		$row = $results->fetch();
 		if ($row) {
 			$salt = $row['salt'];
-				$hash = ($preHashed) ? $pass : hash("sha256",$pass.$salt,false);
-				if ($row['password_hash'] == $hash){
-					$this->isLoggedIn = true;
-					$this->user = User::createFromTableRow($row);
-					$_SESSION['loggedin'] = true;				
-					$_SESSION['email'] = $row['email'];
-					$_SESSION['userJson'] = json_encode($this->user);
-					//so they do not have to keep logging into our site.
-					if ($rememberMe){
-						setcookie("email",$email);
-						setcookie("pass",$row['password_hash']);
-					}
-					return true;
+			$hash = ($preHashed) ? $pass : hash("sha256", $pass . $salt, false);
+			if ($row['password_hash'] == $hash) {
+				$this->isLoggedIn = true;
+				$this->user = User::createFromTableRow($row);
+				$_SESSION['loggedin'] = true;
+				$_SESSION['email'] = $row['email'];
+				$_SESSION['userJson'] = json_encode($this->user);
+				//so they do not have to keep logging into our site.
+				if ($rememberMe) {
+					setcookie("email", $email);
+					setcookie("pass", $row['password_hash']);
 				}
-				return false;
+				return true;
+			}
+			return false;
 		}
 		return false;
 		//how do we know if there are NO results?
 	}
-	function logout(){
+
+	function logout() {
 		$_SESSION['loggedin'] = false;
-		$_SESSION['userJson'] = null;				
+		$_SESSION['userJson'] = null;
 		$_SESSION['email'] = null;
 		//so they do not have to keep logging into our site.
-		setcookie("user",null);
-		setcookie("pass",null);
+		setcookie("user", null);
+		setcookie("pass", null);
 		$this->isLoggedIn = false;
 		$this->user = null;
 	}
+
 	//</editor-fold>
 	//<editor-fold defaultstate="collapsed" desc="add event">
 	/**
@@ -145,21 +168,22 @@ class Api {
 	 * @param Event $event
 	 */
 	function addEventByObject($event) {
-		if (!isset($event) || $event->getEventId() != -1){
+		if (!isset($event) || $event->getEventId() != -1) {
 			return "Event object is invalid.";
 		}
-		$query = "INSERT INTO `".Api::$TBL_EVENTS."` (`title`, `description`, `type_id`, `time`, `course_id`) VALUES (':title', ':description', :type_id, ':time', :course_id)";
+		$query = "INSERT INTO `" . Api::$TBL_EVENTS . "` (`title`, `description`, `type_id`, `time`, `course_id`) VALUES (':title', ':description', :type_id, :time, :course_id)";
 		$params = array(
 			":title" => $event->getTitle(),
 			":description" => $event->getDesc(),
 			":type_id" => $event->getTypeId(),
-			":time" => $event->getDateTime(),
+			":time" => $event->getUnixTime(),
 			":eventId" => $event->getEventId(),
 			":desc" => $event->getDesc(),
 			":courseId" => $event->getCourseId(),
 			":deleted" => ($event->isDeleted() ? 1 : 0)
 		);
 	}
+
 	//</editor-fold>
 	////<editor-fold defaultstate="collapsed" desc="update event">
 	/**
@@ -168,35 +192,36 @@ class Api {
 	 * otherwise this will not work.
 	 * @param Event $event
 	 */
-	function updateEventByObject(Event $event){
-		if (!isset($event) || $event->getEventId() == -1){
+	function updateEventByObject($event) {
+		
+		if (!isset($event) || $event->getEventId() == -1) {
 			return "Event does not exist. You must create it before you can update it.";
 		}
-		$query = "UPDATE `".Api::$TBL_EVENTS."` SET `title`=':title',"
-			."description=':desc',type_id=:type_id,`time`=':time',"
-			."course_id=:courseId,`deleted`=:deleted WHERE `event_id`=:eventId";
+		$query = "UPDATE `" . Api::$TBL_EVENTS . "` SET `title`=':title',"
+				. "description=':desc',type_id=:type_id,`time`=:time,"
+				. "course_id=:courseId,`deleted`=:deleted WHERE `event_id`=:eventId";
 		$params = array(
 			":eventId" => $event->getEventId(),
 			":title" => $event->getTitle(),
 			":desc" => $event->getDesc(),
 			":type_id" => $event->getTypeId(),
-			":time" => $event->getDateTime(),
+			":time" => $event->getUnixTime(),
 			":courseId" => $event->getCourseId(),
 			":deleted" => ($event->isDeleted() ? 1 : 0)
 		);
 		$results = $this->dbConn->execute($query, $params);
-		if (!$results){
+		if (!$results) {
 			return Api::$E_BAD_QUERY;
-		}else{
+		} else {
 			return "Success!";
 		}
-		
 	}
+
 	////</editor-fold>
 	//<editor-fold defaultstate="collapsed" desc="getEventById">
 	/**
 	 * @param int $eventId the id of the event in question.
-	 * @return Event The event object if it exists | or error message string.**/
+	 * @return Event The event object if it exists | or error message string.* */
 	function getEventById($eventId) {
 		if (!isset($eventId)) {
 			//TODO: return proper errors like 403 and 400
@@ -216,6 +241,7 @@ class Api {
 		}
 		return "event not found"; //event not found
 	}
+
 	//</editor-fold>
 	//<editor-fold defaultstate="collapsed" desc="getEvents">
 	/**
@@ -223,7 +249,7 @@ class Api {
 	 * if no params are given, userid is taken from the api's current user obj.
 	 * @param string $jsonStr
 	 */
-	function getEvents($jsonStr = null/*,userId, $startTime = null, $endTime = null, $courseIds = null, $eventTypeIds = null*/){
+	function getEvents($jsonStr = null/* ,userId, $startTime = null, $endTime = null, $courseIds = null, $eventTypeIds = null */) {
 		/**
 		 * if no time is given, assume the current month.
 		 * if no userid is given, assume the current user's id.
@@ -231,6 +257,7 @@ class Api {
 		 * if no event type list is given, assume all event types.
 		 */
 	}
+
 	//</editor-fold>
 	//<editor-fold defaultstate="collapsed" desc="getSchoolById">
 	function getSchoolById($schoolId) {
@@ -255,6 +282,7 @@ class Api {
 			return School::createFromTableRow($row);
 		}
 	}
+
 	//</editor-fold>
 	//<editor-fold defaultstate="collapsed" desc="getSchools">
 	function getSchools() {
@@ -266,6 +294,7 @@ class Api {
 		}
 		return $schoolsList;
 	}
+
 	//</editor-fold>
 	//<editor-fold defaultstate="collapsed" desc="getCoursesByUserId">
 	/**
@@ -273,17 +302,21 @@ class Api {
 	 * @param int $id if no id is specified, method uses the current user's id.
 	 * @return Course[] list of courses
 	 */
-	function getCoursesByUserId($id = -1){
-		if ($id == -1 && isset($this->user)) $id = $this->user->getUserId();
-		$query = "SELECT * FROM ".API::$TBL_ENROLLMENTS." WHERE `user_id`=:user_id";
+	function getCoursesByUserId($id = -1) {
+		if ($id == -1 && isset($this->user))
+			$id = $this->user->getUserId();
+		$query = "SELECT * FROM " . API::$TBL_ENROLLMENTS . " WHERE `user_id`=:user_id";
 		$params = array(":user_id" => $id);
 		$results = $this->dbConn->execute($query, $params);
-		$courses = array();if (!$results) return $courses;
+		$courses = array();
+		if (!$results)
+			return $courses;
 		while ($row = $results->fetch()) {
 			$courses[] = Course::createFromTableRow($row);
 		}
 		return $courses;
 	}
+
 	//</editor-fold>
 	//<editor-fold defaultstate="collapsed" desc="getCourseById">
 	function getCourseById($courseId) {
@@ -307,6 +340,7 @@ class Api {
 			return Course::createFromTableRow($row);
 		}
 	}
+
 	//</editor-fold>
 	//<editor-fold defaultstate="collapsed" desc="getCourses">
 	/**
@@ -322,18 +356,18 @@ class Api {
 		}
 		return $coursesList;
 	}
-	
+
 	/**
 	 *
 	 * @return Course[]
 	 */
 	function searchCoursesByNameOrTitle($search_query) {
-		$query = "SELECT * FROM " . Api::$TBL_COURSES. " WHERE `name` LIKE concat('%',:search_query,'%') OR `title` LIKE concat('%',:search_query,'%')";
-		
+		$query = "SELECT * FROM " . Api::$TBL_COURSES . " WHERE `name` LIKE concat('%',:search_query,'%') OR `title` LIKE concat('%',:search_query,'%')";
+
 		$params = array(
-				":search_query" => $search_query
+			":search_query" => $search_query
 		);
-		
+
 		$results = $this->dbConn->execute($query, $params);
 		$coursesList = array();
 		while ($row = $results->fetch()) {
@@ -341,14 +375,14 @@ class Api {
 		}
 		return $coursesList;
 	}
-	
+
 	function searchSchoolByName($search_query) {
-		$query = "SELECT * FROM " . Api::$TBL_SCHOOLS. " WHERE `name` LIKE concat('%',:search_query,'%')";
-	
+		$query = "SELECT * FROM " . Api::$TBL_SCHOOLS . " WHERE `name` LIKE concat('%',:search_query,'%')";
+
 		$params = array(
-				":search_query" => $search_query
+			":search_query" => $search_query
 		);
-	
+
 		$results = $this->dbConn->execute($query, $params);
 		$schoolsList = array();
 		while ($row = $results->fetch()) {
@@ -356,7 +390,7 @@ class Api {
 		}
 		return $schoolsList;
 	}
-	
+
 	//</editor-fold>
 	//<editor-fold defaultstate="collapsed" desc="getUserById">
 	function getUserById($userId) {
@@ -379,9 +413,10 @@ class Api {
 			return User::createFromTableRow($row);
 		}
 	}
+
 	//</editor-fold>
 	//<editor-fold defaultstate="collapsed" desc="getUsers">
-	/** 
+	/**
 	 * 
 	 * @return User[] array of user objects.
 	 */
@@ -394,25 +429,26 @@ class Api {
 		}
 		return $usersList;
 	}
+
 	//</editor-fold>
 	function addCourse($courseJson) {
 		if (!isset($courseJson)) {
 			return null;
 		}
-	
-		$query = "INSERT INTO ".Api :: $TBL_COURSES." (name, school_id, year, quarter, section, sln) VALUES (:name, :school_id, :year, :quarter, :section, :sln)";
+
+		$query = "INSERT INTO " . Api :: $TBL_COURSES . " (name, school_id, year, quarter, section, sln) VALUES (:name, :school_id, :year, :quarter, :section, :sln)";
 		$params = array(
-				":name" => $courseJson ['name'],
-				":school_id" => $courseJson ['school_id'],
-				":year" => $courseJson ['year'],
-				":quarter" => $courseJson ['quarter'],
-				":section" => $courseJson ['section'],
-				":sln" => $courseJson ['sln'],
+			":name" => $courseJson ['name'],
+			":school_id" => $courseJson ['school_id'],
+			":year" => $courseJson ['year'],
+			":quarter" => $courseJson ['quarter'],
+			":section" => $courseJson ['section'],
+			":sln" => $courseJson ['sln'],
 		);
-		
+
 		$this->dbConn->execute($query, $params);
 	}
-	
+
 	function deleteCourse($courseId) {
 		if (!isset($courseId)) {
 			return null;
@@ -425,37 +461,41 @@ class Api {
 
 		$this->dbConn->execute($query, $params);
 	}
-	
+
 	function editCourse($courseJson) {
 		if (!isset($courseJson)) {
 			return null;
 		}
-	
-		$query = "UPDATE ".Api :: $TBL_COURSES." SET (name=:name, school_id=:school_id, year=:year, quarter=:quarter, section=:section, sln=:sln) WHERE course_id= :course_id";
+
+		$query = "UPDATE " . Api :: $TBL_COURSES . " SET (name=:name, school_id=:school_id, year=:year, quarter=:quarter, section=:section, sln=:sln) WHERE course_id= :course_id";
 		$params = array(
-				":name" => $courseJson ['name'],
-				":school_id" => $courseJson ['school_id'],
-				":year" => $courseJson ['year'],
-				":quarter" => $courseJson ['quarter'],
-				":section" => $courseJson ['section'],
-				":sln" => $courseJson ['sln'],
-				":course_id" => $courseJson ['course_id']
+			":name" => $courseJson ['name'],
+			":school_id" => $courseJson ['school_id'],
+			":year" => $courseJson ['year'],
+			":quarter" => $courseJson ['quarter'],
+			":section" => $courseJson ['section'],
+			":sln" => $courseJson ['sln'],
+			":course_id" => $courseJson ['course_id']
 		);
 		$this->dbConn->execute($query, $params);
 	}
-	
-        function addEnrollment($courseId,$userId = -1){
-            if ($userId == -1)
-            $userId = $this->user->getUserId();
-            $query="INSERT INTO `" .Api::$TBL_ENROLLMENTS . "` (`userId`, `courseId`) VALUES (:userid, :courseid)";
-            $params = array(
-            ":userid" => $userId,
-            ":courseid" => $courseId
-  );
-  $results = $this->dbConn->execute($query, $params);
-  if (!$results){
-      return "Something went wrong in the query";
-  }
-}	
+	/**
+	 * @param int $courseId id of the course you are adding.
+	 * @param int $userId if no userId is given, method assumes current user's id as parameter.
+	 * @return boolean did it work or not?
+	 */
+	function addEnrollment($courseId, $userId = -1) {
+		if ($userId == -1)
+			$userId = $this->user->getUserId();
+		$query = "INSERT INTO `" . Api::$TBL_ENROLLMENTS . "` (`userId`, `courseId`) VALUES (:userid, :courseid)";
+		$params = array(
+			":userid" => $userId,
+			":courseid" => $courseId
+		);
+		$results = $this->dbConn->execute($query, $params);
+		return ($results != false);
+	}
+
 }
+
 ?>

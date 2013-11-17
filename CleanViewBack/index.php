@@ -4,7 +4,7 @@
   if ($api->isLoggedIn()){
     // die after printing a redirect because nothing more is needed
     // by the page.
-    echo '<meta http-equiv="refresh" content="0; url=home.php">'; die();
+    echo '<meta http-equiv="refresh" content="0; url=calendar_home.php">'; die();
   }//else, we assume login failed, but... let's try something first.
   //is rememberMe box checked or not?
   $rememberMe = (isset($_POST["b-login-form_rmbr"]) && $_POST["b-login-form_rmbr"] == "on");
@@ -13,7 +13,7 @@
   if (isset($email) && isset($password)){
     $api->login($email, $password,$rememberMe,false);
     if ($api->isLoggedIn()){
-      echo '<meta http-equiv="refresh" content="0; url=home.php">'; die();
+      echo '<meta http-equiv="refresh" content="0; url=calendar_home.php">'; die();
     }
   }//else, we tried. Go ahead and load the index page.
 
@@ -54,7 +54,7 @@
 			
 			<h1 class="b-header__logo">PeerCalendar</h1>
 				
-			<form class="b-login-form" action="calendar_home.php">
+			<form class="b-login-form" action="index.php" method="post">
 				<button type="submit" class="b-login-form__button">Log in</button>
         
         <div class="b-login-form__input-group">
