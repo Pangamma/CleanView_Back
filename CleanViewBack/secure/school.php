@@ -33,6 +33,14 @@ class School implements RowObject {
 		$data ['country'] = $this->country;
 		return $data;
 	}
+
+	/**
+	*	getName
+	*	@return {string} 	name
+	*/
+	public function getName() {
+		return $this->name;
+	}
 }
 
 ?>

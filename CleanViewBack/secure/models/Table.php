@@ -28,10 +28,7 @@
 			    exit;
 				}
 			}
-
-			//TODO: write crud operations
-
-
+			
 			/**
 			*	executes query
 			*	@param	{string}	query
@@ -40,7 +37,7 @@
 			*/
 			public function execute($query, $params = array()){
 				try{
-					$statment = $this->db->prepare($query);
+					$statment = $db->prepare($query);
 					$statment->execute($params);
 
 					return $statment;

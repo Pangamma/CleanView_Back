@@ -1,40 +1,21 @@
 <?php 
 	require_once ('../config.php');
 	require_once ('secure/api.php');
-	
-	$api = new Api ();
-	
-	$api->addUser ( $_POST['b-signup-form__firstname'], 
-			        $_POST['b-signup-form__lastname'], 
-					$_POST['b-signup-form__email'], 
-					$_POST['b-signup-form__username'], 
-					$_POST['b-signup-form__password'] ) ;
-	
+	require_once ('boilerplate.php');
+
+    $api = new Api ();
+    
+    $api->addUser ( $_POST['b-signup-form__firstname'], 
+                    $_POST['b-signup-form__lastname'], 
+                    $_POST['b-signup-form__email'], 
+                    $_POST['b-signup-form__username'], 
+                    $_POST['b-signup-form__password'] ) ;
+    
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>PeerCalendar</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
-
-        <link href="assets/stylesheets/style.css" rel="stylesheet">
-
-        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-        <!--[if lt IE 9]>
-          <script src="../assets/js/html5shiv.js"></script>
-        <![endif]-->
-
-        <!-- Fav and touch icons -->
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-        <link rel="shortcut icon" href="../assets/ico/favicon.png">
-    </head>
+    <?php head() ?>
     
     <body class="b-body b-body--grey">
         <h1 class="b-signup-page-logo">PeerCalendar</h1>
@@ -67,41 +48,19 @@
                             <p style="margin-left: 20px; font-size: 16px;">Schools</p>
                             <div style="border-bottom: 2px solid #E2E3D9; margin-left: 20px; margin-right: 40px; margin-bottom: 20px;"></div>
                             <ul class="b-school-list">
-                                <li class="b-school-list__item">
-                                    <img class="b-school-list__item-img" src="http://placehold.it/50x50" alt=""><!-- 
-                                --><h3 class="b-school-list__item-title">University of Washington, Bothell</h3> 
-                                    <button type="submit" class="b-school-list__item-btn">Add</button>
-                                </li>
-                                <li class="b-school-list__item">
-                                    <img class="b-school-list__item-img" src="http://placehold.it/50x50" alt=""><!--
-                                    --><h3 class="b-school-list__item-title">The Cooper Union for the Advancement of Science and Art</h3> 
-                                    <button type="submit" class="b-school-list__item-btn">Add</button>
-                                </li>
-                                <li class="b-school-list__item">
-                                    <img class="b-school-list__item-img" src="http://placehold.it/50x50" alt=""><!--
-                                    --><h3 class="b-school-list__item-title">Blah</h3> 
-                                    <button type="submit" class="b-school-list__item-btn">Add</button>
-                                </li>
-                                <li class="b-school-list__item">
-                                    <img class="b-school-list__item-img" src="http://placehold.it/50x50" alt=""><!--
-                                    --><h3 class="b-school-list__item-title">Blah</h3> 
-                                    <button type="submit" class="b-school-list__item-btn">Add</button>
-                                </li>
-                                <li class="b-school-list__item">
-                                    <img class="b-school-list__item-img" src="http://placehold.it/50x50" alt=""><!--
-                                    --><h3 class="b-school-list__item-title">Blah</h3> 
-                                    <button type="submit" class="b-school-list__item-btn">Add</button>
-                                </li>
-                                <li class="b-school-list__item">
-                                    <img class="b-school-list__item-img" src="http://placehold.it/50x50" alt=""><!--
-                                    --><h3 class="b-school-list__item-title">Blah</h3> 
-                                    <button type="submit" class="b-school-list__item-btn">Add</button>
-                                </li>
-                                <li class="b-school-list__item">
-                                    <img class="b-school-list__item-img" src="http://placehold.it/50x50" alt=""><!--
-                                    --><h3 class="b-school-list__item-title">Blah</h3> 
-                                    <button type="submit" class="b-school-list__item-btn">Add</button>
-                                </li>
+                                <?php
+
+                                    $schools = $api->getSchools();
+
+                                    foreach( $schools as $school ) {
+                                        ?>
+                                        <li class = "b-school-list__item" >
+                                            <img class="b-school-list__item-img" src="http://placehold.it/50x50" alt=""> 
+                                            <h3 class="b-school-list__item-title"><? $school->getName() ?></h3> 
+                                            <button type="submit" class="b-school-list__item-btn">Add</button>
+                                        </li>
+                                    <?php } 
+                                ?>
                             </ul>
                         </div>
                         <div style="border-bottom: 2px solid #E2E3D9; margin-left: 40px; margin-right: 40px; margin-bottom: 20px; margin-top: 10px;"></div>     
