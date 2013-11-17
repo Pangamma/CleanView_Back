@@ -54,6 +54,7 @@
 			
 			<h1 class="b-header__logo">PeerCalendar</h1>
 				
+			<form class="b-login-form" action="calendar_home.php" method="post">
 			<form class="b-login-form" action="index.php" method="post">
 				<button type="submit" class="b-login-form__button">Log in</button>
         

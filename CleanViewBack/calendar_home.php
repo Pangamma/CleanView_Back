@@ -1,3 +1,18 @@
+<?php 
+	require_once ('../config.php');
+	require_once ('secure/api.php');
+	
+	$api = new Api ();
+	
+	if (!$api->isLoggedIn() && !$api->login($_POST['b-login-form__email'], $_POST['b-login-form__password']))
+	{
+		echo "login failed";
+		// header( 'Location: failed_login.php' );
+		// die;
+	}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
