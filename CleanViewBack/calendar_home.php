@@ -4,7 +4,7 @@
 	
 	$api = new Api ();
 	
-	if (!$api->isLoggedIn() || !$api->login($_POST['b-login-form__email'], $_POST['b-login-form__password']))
+	if (!$api->isLoggedIn() && !$api->login($_POST['b-login-form__email'], $_POST['b-login-form__password']))
 	{
 		echo "login failed";
 		// header( 'Location: failed_login.php' );
