@@ -56,7 +56,7 @@ class Event implements RowObject{
 		$dateTime = new DateTime();
 		$dateTime->setTimestamp($this->time);
 		return $dateTime;
-	}	
+	}
 	/**
 	 * @return int number of seconds based on unix time.
 	 */

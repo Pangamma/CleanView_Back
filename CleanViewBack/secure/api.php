@@ -24,9 +24,9 @@ class Api {
 	private static $TBL_SCHOOLS = 'schools';
 	private static $TBL_USERS = 'users';
 	private static $TBL_USER_GROUPS = "user_groups";
-	public static $E_INVALID_REQUEST = "Invalid Request.";
-	public static $E_BAD_QUERY = "Something went wrong in the query";
-	public static $E_PREFIX = 'Error : ';
+	public static $E_INVALID_REQUEST = "Error : Invalid Request.";
+	public static $E_BAD_QUERY = "Error : Something went wrong in the query";
+	public static $E_NOT_LOGGED_IN = "Error : No connection exists to the database, or user of API is not logged in properly.";
 
 	/** @var Table * */
 	private $dbConn;
@@ -42,9 +42,9 @@ class Api {
 		return ($this->isLoggedIn && isset($this->user) && isset($this->dbConn) && $this->isConnected);
 	}
 
-	/** @var User * */
-	private $user;
-	private $isConnected = false; //current user who is logged in.
+	/** @var User **/
+	private $user;//current user who is logged in
+	private $isConnected = false;
 
 	//<editor-fold defaultstate="collapsed" desc="constructor">
 	//--------------------------------------------------------------------------
@@ -63,7 +63,6 @@ class Api {
 			$this->isLoggedIn = $this->loadPreExistingLogin();
 		}
 	}
-
 	//</editor-fold>
 	//<editor-fold defaultstate="collapsed" desc="login/logout">
 	function connectToDatabase() {
@@ -114,7 +113,7 @@ class Api {
 	 * @param boolean $rememberMe false by default. If set to true, it will store username and a login hash to a cookie so that
 	 * @param boolean $preHashed false by default. only set to true if you are logging in from values stored in a user's cookie.
 	 * it may be loaded as a saved login later.
-	 * @return boolean|string
+	 * @return boolean did it work or not?
 	 */
 	function login($email, $pass, $rememberMe = false, $preHashed = false) {
 		if (!isset($email) || !isset($pass)) {
@@ -124,8 +123,10 @@ class Api {
 		$queryParams = array(":email" => $email);
 		$results = $this->dbConn->execute($query, $queryParams);
 		if (!$results)
-			echo "Something went wrong in the query";
+			return false;
 		$row = $results->fetch();
+		echo "connected-->".$this->isConnected;
+		var_dump($row);
 		if ($row) {
 			$salt = $row['salt'];
 			$hash = ($preHashed) ? $pass : hash("sha256", $pass . $salt, false);
@@ -243,21 +244,81 @@ class Api {
 	}
 
 	//</editor-fold>
-	//<editor-fold defaultstate="collapsed" desc="getEvents">
+	//<editor-fold defaultstate="collapsed" desc="getEventsByUserId">
 	/**
-	 * 
 	 * if no params are given, userid is taken from the api's current user obj.
-	 * @param string $jsonStr
+	 * 
+	 * @param int $userId
+	 * @param int $start Unix time
+	 * @param int $end Unix time
+	 * @param int[] $eventTypeIds
+	 * @return Event[]
 	 */
-	function getEvents($jsonStr = null/* ,userId, $startTime = null, $endTime = null, $courseIds = null, $eventTypeIds = null */) {
-		/**
-		 * if no time is given, assume the current month.
-		 * if no userid is given, assume the current user's id.
-		 * if no course list is given, assume all courses for given user.
-		 * if no event type list is given, assume all event types.
-		 */
+	function getEventsByUserId($userId,$start,$end,$eventTypeIds = array()){
+		return $this->getEventsByCourseObjList($this->getCoursesByUserId($userId), $start, $end,$eventTypeIds);
 	}
-
+	//</editor-fold>
+	//<editor-fold defaultstate="collapsed" desc="getEventsByCourseList">
+	/**
+	 * @param Course[] $courseList
+	 * @param int $start
+	 * @param int $end
+	 * @param int[] $eventTypes if no array is given, method assumes all event types are okay to be returned.
+	 * @return Event[]
+	 */
+	function getEventsByCourseObjList($courseList,$start,$end,$eventTypes = array()){
+		$intList = array();
+		foreach($courseList as $val){
+			$intList[] = $val->getCourseId();
+		}
+		return $this->getEventsByCourseIdList($intList, $start, $end, $eventTypes);
+	}
+	/**
+	 * What a terribly messy method.
+	 * @param int[] $idList list of course id numbers
+	 * @param int $start Unix time
+	 * @param int $end Unix time
+	 * @param int[] $eventTypes
+	 * @return Event[]
+	 */
+	function getEventsByCourseIdList($idList,$start,$end,$eventTypes = array()){
+		$events = array();
+		if (!$this->isLoggedIn()){
+			echo Api::$E_NOT_LOGGED_IN;
+			return $events;
+		}
+		if (!empty($idList)){
+			$query = "SELECT * FROM `".Api::$TBL_EVENTS."` WHERE `time` <= :start AND `time` >= :end AND (";
+			$params = array(":start" => $start, ":end" => $end);
+			//add all courses to query list. 
+			foreach($idList as $key => $val){
+				if ($key != 0){
+					$query .= " OR";
+				}
+				$query .= " `course_id`=:c".$key;
+				$params[":c".$key] = $val;
+			}
+			$query .= ")";
+			if (empty($eventTypes)){
+				$query .= "AND (";
+				//add all courses to query list. 
+				foreach($eventTypes as $key => $val){
+					if ($key != 0){
+						$query .= " OR";
+					}
+					$query .= " `type_id`=:e".$key;
+					$params[":e".$key] = $val;
+				}
+				$query .= ")";
+			}
+			$query .= "ORDER BY `time` ASC";
+			$results = $this->dbConn->execute($query, $params);
+			if ($row = $results->fetch()){
+				$events[] = Event::createFromTableRow($row);
+			}
+		}
+		return $events;
+	}
 	//</editor-fold>
 	//<editor-fold defaultstate="collapsed" desc="getSchoolById">
 	function getSchoolById($schoolId) {
@@ -398,11 +459,10 @@ class Api {
 			return null;
 		}
 
-		$query = "SELECT * FROM " . Api::$TBL_USERS . " WHERE user_id= :userId";
+		$query = "SELECT * FROM `" . Api::$TBL_USERS . "` WHERE `user_id`=:userId";
 		$params = array(
 			":userId" => $userId
 		);
-
 		$results = $this->dbConn->execute($query, $params);
 
 		if (!$results)
@@ -431,6 +491,7 @@ class Api {
 	}
 
 	//</editor-fold>
+	//<editor-fold defaultstate="collapsed" desc="addCourse">
 	function addCourse($courseJson) {
 		if (!isset($courseJson)) {
 			return null;
@@ -448,7 +509,8 @@ class Api {
 
 		$this->dbConn->execute($query, $params);
 	}
-
+	//</editor-fold> //by json, not by object. 
+	//<editor-fold defaultstate="collapsed" desc="deleteCourse">
 	function deleteCourse($courseId) {
 		if (!isset($courseId)) {
 			return null;
@@ -461,8 +523,9 @@ class Api {
 
 		$this->dbConn->execute($query, $params);
 	}
-
-	function editCourse($courseJson) {
+	//</editor-fold>
+	//<editor-fold defaultstate="collapsed" desc="updateCourse">
+	function updateCourse($courseJson) {
 		if (!isset($courseJson)) {
 			return null;
 		}
@@ -479,6 +542,8 @@ class Api {
 		);
 		$this->dbConn->execute($query, $params);
 	}
+	//</editor-fold>
+	//<editor-fold defaultstate="collapsed" desc="addEnrollment">
 	/**
 	 * @param int $courseId id of the course you are adding.
 	 * @param int $userId if no userId is given, method assumes current user's id as parameter.
@@ -495,6 +560,16 @@ class Api {
 		$results = $this->dbConn->execute($query, $params);
 		return ($results != false);
 	}
+	//</editor-fold>
+	//<editor-fold defaultstate="collapsed" desc="getCurrentUser">
+	/** 
+	 * returns null if not connected to database.
+	 * @return User|null
+	 */
+	function getCurrentUser() {
+		return $this->user;//could still return null, but unlikely.
+	}
+	//</editor-fold>
 
 }
 
