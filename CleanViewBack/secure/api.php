@@ -108,6 +108,10 @@ class Api {
 		if ($row) {
 			$salt = $row['salt'];
 				$hash = ($preHashed) ? $pass : hash("sha256",$pass.$salt,false);
+				
+				echo $pass;
+				echo $hash;
+				
 				if ($row['password_hash'] == $hash){
 					$this->isLoggedIn = true;
 					$this->user = User::createFromTableRow($row);
@@ -451,11 +455,36 @@ class Api {
             $params = array(
             ":userid" => $userId,
             ":courseid" => $courseId
-  );
-  $results = $this->dbConn->execute($query, $params);
-  if (!$results){
-      return "Something went wrong in the query";
-  }
-}	
+	  );
+	  $results = $this->dbConn->execute($query, $params);
+	  if (!$results){
+	      return "Something went wrong in the query";
+	  }
+	}
+
+	/**
+	 * add user
+	 *        adds new user to database
+	 *        param        {json}        User object
+	 */
+	function addUser ( $firstName, $lastName, $email, $username, $pass ) {
+	
+		$salt = uniqid().uniqid();
+	
+		$password_hash = hash("sha256",$pass.$salt,false);
+		
+		$query = "INSERT INTO " . Api::$TBL_USERS . " (first_name, last_name, email, username, password_hash, salt)"
+				." VALUES (:first_name, :last_name, :email, :username, :password_hash, :salt)";
+		$params = array(
+				":first_name" => $firstName,
+				":last_name" => $lastName,
+				":email" =>  $email,
+				":username" => $username,
+				":password_hash" => $password_hash,
+				":salt" => $salt,
+		);
+		
+		return $this->dbConn->execute($query, $params);
+	}
 }
 ?>
