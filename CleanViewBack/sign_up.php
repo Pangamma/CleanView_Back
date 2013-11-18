@@ -1,27 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>PeerCalendar</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <!-- Le styles -->
-    <link href="assets/stylesheets/style.css" rel="stylesheet">
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="../assets/js/html5shiv.js"></script>
-    <![endif]-->
-
-    <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-    <link rel="shortcut icon" href="../assets/ico/favicon.png">
-  </head>
+<?php include('head.php'); ?>
 
   <body class="b-body b-body--grey">
     <h1 class="b-signup-page-logo">PeerCalendar</h1>
@@ -31,7 +8,7 @@
           
           <h2 class="b-signup-form__title">Create an Account</h2>
           
-          <form id="b-signup-form__form" class="b-signup-form__form" action="add_classes.php">
+          <form id="b-signup-form__form" class="b-signup-form__form" action="add_school.php">
             <div class="b-signup-form__input-group">
               <input type="text" name="b-signup-form__firstname" class="b-signup-form__firstname g-required-input" placeholder="First Name">
             </div>

@@ -161,6 +161,12 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   box-shadow: none; 
   moz-box-shadow: none;
 }
+.g-input-error{
+  border-color: red !important;
+}
+.g-empty-error, .g-wrong-email-error, .g-same-password-error{
+  color:red;
+}
 /* END Other stuff */
 .b-body{
   height: 100%; width: 100%; margin: 0;
