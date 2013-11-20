@@ -43,7 +43,7 @@
 					return $statment;
 				} catch (PDOException $ex) {
 					echo 'Query failed: ' . $ex->getMessage();
-					return false;
+					return $ex->getMessage();
 				}
 			}
 	}

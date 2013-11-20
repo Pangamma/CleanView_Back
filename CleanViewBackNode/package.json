@@ -1,0 +1,11 @@
+{
+	"name": "cleanviewback",
+	"private": false,
+	"dependencies": {
+		"async": "*",
+		"socket.io" : "*",
+		"express": "3.2.5",
+		"uuid": "1.4.1",
+		"mysql" : "*"
+	}
+}

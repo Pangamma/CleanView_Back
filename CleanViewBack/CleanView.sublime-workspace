@@ -1,0 +1,1784 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"configu",
+				"configurationsCatalog"
+			],
+			[
+				"fse",
+				"fs.writeFile(path, data, encoding_, callback);"
+			],
+			[
+				"newModules",
+				"newModulesMap"
+			],
+			[
+				"proto",
+				"protocol"
+			],
+			[
+				"proper",
+				"propertiesCallback"
+			],
+			[
+				"instance",
+				"instanceDataJson"
+			],
+			[
+				"consumer_",
+				"consumer_secret"
+			],
+			[
+				"consum",
+				"consumer_secret"
+			],
+			[
+				"ts",
+				"tty.WriteStream(fd);"
+			],
+			[
+				"sales",
+				"flo-salesforce"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "secure/models/Table.php",
+			"settings":
+			{
+				"buffer_size": 1222,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "boilerplate.php",
+			"settings":
+			{
+				"buffer_size": 1120,
+				"line_ending": "Windows",
+				"name": "<?php"
+			}
+		},
+		{
+			"file": "add_classes.php",
+			"settings":
+			{
+				"buffer_size": 13912,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "secure/school.php",
+			"settings":
+			{
+				"buffer_size": 1046,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "assets/js/add_classes_page.js",
+			"settings":
+			{
+				"buffer_size": 4942,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "secure/api.php",
+			"settings":
+			{
+				"buffer_size": 18726,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 104.0,
+		"selected_items":
+		[
+			[
+				"forma",
+				"Format: Php"
+			],
+			[
+				"php",
+				"Set Syntax: PHP"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"p",
+				"Set Syntax: PHP"
+			],
+			[
+				"ph",
+				"Set Syntax: PHP"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"javas",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"javasc",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"javs",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"java",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"jav",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"f",
+				"Format: Javascript"
+			],
+			[
+				"form",
+				"Format: Javascript"
+			],
+			[
+				"minif",
+				"Minify Javascript"
+			],
+			[
+				"mini",
+				"Minify Javascript"
+			],
+			[
+				"format",
+				"Format: Javascript"
+			],
+			[
+				"pretty",
+				"Pretty JSON: Reformat (Pretty Print) JSON"
+			],
+			[
+				"FORMAT",
+				"Format: Javascript"
+			],
+			[
+				"fo",
+				"Format: Javascript"
+			],
+			[
+				"prett",
+				"Pretty JSON: Reformat (Pretty Print) JSON"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"js",
+				"Nodejs::UglifyJS"
+			],
+			[
+				"json",
+				"Pretty JSON: Reformat (Pretty Print) JSON"
+			],
+			[
+				"package ",
+				"Package Control: Install Package"
+			],
+			[
+				"package con",
+				"Package Control: Add Channel"
+			],
+			[
+				"javascr",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"packag",
+				"Preferences: Browse Packages"
+			],
+			[
+				"nodejs",
+				"Nodejs::Default File Settings"
+			],
+			[
+				"pre",
+				"Preferences: Settings - User"
+			],
+			[
+				"prefrences",
+				"Preferences: Settings - User"
+			],
+			[
+				"prefre",
+				"Preferences: Settings - User"
+			],
+			[
+				"",
+				"Nodejs::Build Completions"
+			],
+			[
+				"node",
+				"NodeEval"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Osmond/school/CleanView_Back/CleanViewBack/index.php",
+		"/C/Users/Osmond/school/CleanView_Back/CleanViewBack/user.php",
+		"/C/Users/Osmond/school/CleanView_Back/CleanViewBack/models/Table.php",
+		"/C/Users/Osmond/school/CleanView_Back/CleanViewBack/api.php",
+		"/C/Users/Osmond/Documents/print.js",
+		"/C/Users/Osmond/school/CleanView_Back/CleanViewBack/api2.php",
+		"/C/Users/Osmond/Documents/uid.php",
+		"/C/Users/Osmond/school/CleanView_Back/CleanViewBack/secure/add_course.php",
+		"/C/Users/Osmond/school/CleanView_Back/CleanViewBack/secure/init_variables.php",
+		"/C/Users/Osmond/school/CleanView_Back/CleanViewBack/event.php",
+		"/C/wamp/www/models/Table.php",
+		"/C/wamp/www/api.php",
+		"/C/Users/Osmond/school/CleanView_Back/CleanViewBack/test.php",
+		"/C/Users/Osmond/AppData/Roaming/Sublime Text 2/Packages/Default/Default (Windows).sublime-keymap",
+		"/C/wamp/www/secure/init_variables.php",
+		"/C/Users/Osmond/school/CleanView_Back/CleanViewBack/models/mysql/table.php",
+		"/C/Users/Osmond/AppData/Roaming/Sublime Text 2/Packages/User/Package Control.sublime-settings",
+		"/C/Users/Osmond/AppData/Roaming/Sublime Text 2/Packages/Phpcs/phpcs.sublime-settings",
+		"/C/Users/Osmond/AppData/Roaming/Sublime Text 2/Packages/Phpcs/Default (Windows).sublime-keymap",
+		"/C/Users/Osmond/work/flo/api/modules-catalog/azure/index.js",
+		"/C/Users/Osmond/work/flo/api/modules-catalog/azure/azure.js",
+		"/C/Users/Osmond/work/flo/api/app.js",
+		"/C/Users/Osmond/work/flo/api/config/service.yaml",
+		"/C/Users/Osmond/work/flo/api/models/azure/tables.js",
+		"/C/Users/Osmond/work/flo/api/engine/execution/loadable-module.js",
+		"/C/Users/Osmond/work/flo/api/controllers/engine.js",
+		"/C/Users/Osmond/work/flo/api/engine/execution/instance-context.js",
+		"/C/Users/Osmond/work/flo/api/engine/execution/instance.js",
+		"/C/Users/Osmond/work/flo/api/engine/execution/modules-catalog.js",
+		"/C/Users/Osmond/work/flo/api/models/azure/blobs.js",
+		"/C/Users/Osmond/work/flo/api/modules-catalog/smartsheet/index.js",
+		"/C/Users/Osmond/work/flo/api/engine/execution/configurations-catalog.js",
+		"/C/Users/Osmond/work/flo/api/engine/builtin/metadata.js",
+		"/C/Users/Osmond/work/flo/api/modules-catalog/smartsheet/adapter/smartsheet.js",
+		"/C/Users/Osmond/work/flo/api/modules-catalog/smartsheet/node_modules/restjs/tools/oauth2.js",
+		"/C/Users/Osmond/Documents/flo/api/config/service.yaml",
+		"/C/Users/Osmond/work/flo/old/adapters/twilio.js",
+		"/C/Users/Osmond/work/flo/api/modules-catalog/twilio/twilio.js",
+		"/C/Users/Osmond/work/flo/api/invokeFlo.js",
+		"/C/Users/Osmond/work/flo/api/engine/utils/data-utils.js",
+		"/C/Users/Osmond/work/flo/api/controllers/configurations.js",
+		"/C/Users/Osmond/work/flo/api/modules-catalog/mscrm/create.js",
+		"/C/Users/Osmond/work/flo/api/modules-catalog/mscrm/adapter.js",
+		"/C/Users/Osmond/work/modules/tools/fileUploader/sources/azure/floactions/updateTableEntry.json",
+		"/C/Users/Osmond/work/modules/tools/fileUploader/sources/azure/floactions/deleteTableEntry.json",
+		"/C/Users/Osmond/work/modules/tools/fileUploader/sources/azure/floactions/writeToTable.json",
+		"/C/Users/Osmond/work/modules/tools/fileUploader/sources/azure/floactions/readFromTable.json",
+		"/C/Users/Osmond/work/modules/tools/fileUploader/sources/azure/floactions/scanTable.json",
+		"/C/Users/Osmond/work/modules/tools/fileUploader/sources/azure/actions/deleteTableEntry.json",
+		"/C/Users/Osmond/work/flo/api/modules-catalog/mscrm/index.js",
+		"/C/Users/Osmond/work/modules/tools/fileUploader/sources/azure/actions/scanTable.json",
+		"/C/Users/Osmond/work/flo/api/modules-catalog/mscrm/getEntityMetadata.js",
+		"/C/Users/Osmond/work/modules/tools/fileUploader/sources/azure/adapter/azure.js",
+		"/C/Users/Osmond/work/flo/api/modules-catalog/mscrm/getOrgs.js",
+		"/C/Users/Osmond/work/flo/api/node_modules/azure/lib/services/table/tableservice.js",
+		"/C/Users/Osmond/work/flo/api/modules-catalog/email/email.js",
+		"/C/Users/Osmond/work/flo/api/scripts/middleware.js",
+		"/C/Users/Osmond/work/flo/api/config/api.js",
+		"/C/Users/Osmond/work/flo/api/modules-catalog/googlespreadsheets/index.js",
+		"/C/xampp/htdocs/wordpress/wp-config-sample.php",
+		"/C/Users/Osmond/work/flo/api/modules-catalog/facebook/adapter/facebook.js",
+		"/C/Users/Osmond/work/flo/api/modules-catalog/facebook/index.js",
+		"/C/Users/Osmond/work/flo/api/scripts/output.js",
+		"/C/Users/Osmond/work/flo/api/config/engine.js",
+		"/C/Users/Osmond/work/flo/api/modules-catalog/googlespreadsheets/adapter/index.js",
+		"/C/Users/Osmond/work/restjs/tools/rest.js",
+		"/C/Users/Osmond/work/flo/.gitignore",
+		"/C/Users/Osmond/work/flo-scheduler/scheduler/models/redis/cache.js",
+		"/C/Users/Osmond/work/common/modules/smartsheet/actions/addRow.json",
+		"/C/Users/Osmond/work/common/modules/smartsheet/actions/addSheet.json",
+		"/C/Users/Osmond/work/common/modules/smartsheet/actions/addColumns.json",
+		"/C/Users/Osmond/work/flo/api/modules-catalog/http/index.js",
+		"/C/Users/Osmond/work/flo/api/engine/utils/unpack.js",
+		"/C/Users/Osmond/work/common/modules/smartsheet/adapter/index.js",
+		"/C/Users/Osmond/work/flo-scheduler/scheduler/modules-catalog/smartsheet/smartsheet.js",
+		"/C/Users/Osmond/work/common/modules/smartsheet/monitor/smartsheet.js",
+		"/C/Users/Osmond/work/common/modules/smartsheet/config.json",
+		"/C/Users/Osmond/work/common/modules/smartsheet/floconfig.json",
+		"/C/Users/Osmond/work/common/modules/smartsheet/flomodule.json",
+		"/C/Users/Osmond/work/common/modules/smartsheet/floactions/addSheet.json",
+		"/C/Users/Osmond/work/common/modules/smartsheet/floactions/addColumns.json",
+		"/C/Users/Osmond/work/common/modules/smartsheet/floactions/addRow.json",
+		"/C/Users/Osmond/work/common/modules/smartsheet/floactions/monitor.json",
+		"/C/Users/Osmond/work/flo/api/modules-catalog/smartsheet/node_modules/restjs/tools/rest.js",
+		"/C/Users/Osmond/work/common/modules/mscrm/adapter/adapter.js",
+		"/C/Users/Osmond/work/flo/api/modules-catalog/mscrm/getEntities.js",
+		"/C/Users/Osmond/work/common/modules/mscrm/adapter/getEntityMetadata.js",
+		"/C/Users/Osmond/work/flo/api/node_modules/underscore/index.js",
+		"/C/Users/Osmond/work/flo/api/engine/utils/remove.js",
+		"/C/Users/Osmond/work/flo/api/package.json",
+		"/C/Users/Osmond/work/flo/api/lastupdate.json",
+		"/C/Users/Osmond/work/common/modules/mscrm/floactions/create.json",
+		"/C/Users/Osmond/work/common/modules/mscrm/adapter/index.js",
+		"/C/Users/Osmond/work/common/modules/mscrm/actions/create.json",
+		"/C/Users/Osmond/work/flo/api/modules/sources/mscrm/adapter.js",
+		"/C/Users/Osmond/work/common/modules/smartsheet/events/monitor.json",
+		"/C/Users/Osmond/work/flo/api/modules-catalog/googlespreadsheets/node_modules/google-spreadsheet/node_modules/request/node_modules/http-signature/node_modules/asn1/lib/ber/types.js",
+		"/C/Users/Osmond/work/flo/api/modules-catalog/salesforce/adapter/salesforce.js",
+		"/C/Users/Osmond/work/common/modules/salesforce/adapter/adapter/salesforce.js",
+		"/C/Users/Osmond/work/flo/api/modules/sources/salesforce/adapter/salesforce.js",
+		"/C/Users/Osmond/work/populateData.js",
+		"/C/Users/Osmond/work/flo/api/common/log.js",
+		"/C/Users/Osmond/work/flo/api/modules/sources/smartsheet/index.js",
+		"/C/Users/Osmond/work/flo/api/modules-catalog/salesforce/index.js",
+		"/C/Users/Osmond/AppData/Roaming/Sublime Text 2/Packages/JSHint Gutter/.jshintrc",
+		"/C/Users/Osmond/work/flo/api/smartsheetlookupobject.js",
+		"/C/Users/Osmond/work/flo/old/adapters/salesforce.js",
+		"/C/Users/Osmond/work/flo/api/config/keys.json",
+		"/C/Users/Osmond/AppData/Roaming/Sublime Text 2/Packages/Nodejs/Nodejs.sublime-settings",
+		"/C/Users/Osmond/AppData/Roaming/Sublime Text 2/Packages/NodeEval/NodeEval.sublime-settings",
+		"/C/Users/Osmond/work/common/modules/salesforce/adapter/index.js",
+		"/C/Users/Osmond/AppData/Roaming/Sublime Text 2/Packages/JsFormat/JsFormat.sublime-settings",
+		"/C/Users/Osmond/work/flo/api/engine/builtin/sequence.js",
+		"/C/Users/Osmond/AppData/Roaming/Sublime Text 2/Packages/User/JsFormat.sublime-settings",
+		"/C/Users/Osmond/work/flo/api/node_modules/azure/lib/services/blob/blobservice.js",
+		"/C/Users/Osmond/work/common/modules/mscrm/actions/account.json",
+		"/C/Users/Osmond/work/flo-ui/designer/config/oauth.js",
+		"/C/Users/Osmond/work/flo/api/engine/builtin/interpret.js",
+		"/C/Users/Osmond/work/api.sublime-project",
+		"/C/Users/Osmond/work/flo-ui/designer/config/metadata.js",
+		"/C/Users/Osmond/work/flo/api/engine/builtin/conditional.js",
+		"/C/Users/Osmond/work/flo-scheduler/scheduler/monitors/module.js",
+		"/C/Users/Osmond/work/flo-scheduler/scheduler/app.js",
+		"/C/Users/Osmond/work/flo-ui/designer/public/j/src/modules/designer-data.js",
+		"/C/Users/Osmond/work/common/modules/smartsheet/adapter/adapter/smartsheet.js",
+		"/C/Users/Osmond/work/flo-scheduler/scheduler/modules-catalog/linkedin/linkedin.js",
+		"/C/Users/Osmond/work/common/modules/smartsheet/adapter/test/test.js",
+		"/C/Users/Osmond/work/flo-scheduler/scheduler/scripts/flo.js"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"C:\\Users\\Osmond\\work\\flo\\api",
+			"C:\\Users\\Osmond\\work\\flo\\api\\modules-catalog\\salesforce",
+			"C:\\Users\\Osmond\\work\\flo\\api\\modules-catalog",
+			"C:\\Users\\Osmond\\work\\flo",
+			"C:\\Users\\Osmond\\work\\flo-ui\\designer",
+			"C:\\Users\\Osmond\\work\\flo\\api",
+			"C:\\Users\\Osmond\\work\\flo-scheduler\\scheduler",
+			"C:\\Users\\Osmond\\work\\flo-scheduler",
+			"C:\\Users\\Osmond\\work\\flo\\api",
+			"C:\\Users\\Osmond\\work\\common\\modules\\smartsheet",
+			"C:\\Users\\Osmond\\work\\flo\\api",
+			"C:\\Users\\Osmond\\work",
+			"C:\\Users\\Osmond\\work/flo-api/designer",
+			"C:\\Users\\Osmond\\work\\flo-api\\designer",
+			"C:\\Users\\Osmond\\work\\flo\\api",
+			"C:\\Users\\Osmond\\work\\flo-scheduler/scheduler",
+			"C:\\Users\\Osmond\\work/flo/api",
+			"C:\\Users\\Osmond\\documents/travel project",
+			"C:\\Users\\Osmond\\work\\flo\\api",
+			"C:\\Users\\Osmond\\work\\common/modules/dropbox/monitor",
+			"C:\\Users\\Osmond\\work\\flo-scheduler",
+			"C:\\Users\\Osmond\\work\\flo",
+			"C:\\Users\\Osmond\\work\\flo-scheduler",
+			"C:\\Users\\Osmond\\work\\flo-ui",
+			"C:\\Users\\Osmond\\work\\flo-scheduler",
+			"C:\\Users\\Osmond\\work\\flo",
+			"C:\\Users\\Osmond\\work\\flo-scheduler",
+			"C:\\Users\\Osmond\\Documents\\flo-scheduler",
+			"C:\\Users\\Osmond\\Documents\\flo-ui",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"select",
+			"'\"",
+			"login",
+			"b-addclasses-form__btn--next",
+			"b-school-list__item-btn",
+			"click",
+			"js",
+			"getschools",
+			"results",
+			"array",
+			"update",
+			"create",
+			"updateUser",
+			"update",
+			"session_",
+			"getuser",
+			"user",
+			"update",
+			"[",
+			":",
+			"tableSerialize",
+			"update",
+			"userId",
+			"user",
+			"userId",
+			"updateUser",
+			"getuser",
+			"null",
+			":",
+			",",
+			":",
+			",",
+			":",
+			":user_id, :first_name, :last_name, :email, :username, :pass, :salt",
+			"insert",
+			"insert into",
+			"byid",
+			"getuser",
+			"courses",
+			"&",
+			"userId",
+			"=",
+			" $",
+			"users",
+			"pdo::fetch_both",
+			"dbConn",
+			"null",
+			"row",
+			"Api",
+			"::",
+			"private ",
+			"switch",
+			"tbl_Events",
+			"console.log",
+			"update",
+			"console.log",
+			"keys",
+			"hash",
+			"show",
+			"for step",
+			"this",
+			"_walkDefinition",
+			"load",
+			"merge",
+			"configurationsCatalog",
+			"configutaion",
+			"path",
+			"fs",
+			"merge",
+			"expandTemplates",
+			"merge",
+			"initializeStep",
+			"_walkDefinition",
+			"configs",
+			"_walkDefinition",
+			"modulesMap",
+			"stepObject",
+			"execute",
+			"expandTemplates",
+			"execute",
+			"instanceLoaded",
+			"_walkDefinition",
+			"floEngine",
+			"configurationLoader",
+			"getsheetid",
+			"createRow",
+			"tables.list",
+			"list",
+			"scan",
+			"list",
+			"deactivate",
+			"error",
+			"createRow",
+			"getsheet ",
+			"getsheet",
+			"rest",
+			"getSheet",
+			"createrow",
+			"require.cache",
+			"listblobs",
+			"blobSERVICE.",
+			"lastupdate",
+			"pro",
+			"deactivate",
+			"rest",
+			"RestJs",
+			"restJs",
+			"inactive",
+			"req.instance.status",
+			"status",
+			"module not found",
+			"output.json",
+			"track(",
+			"trach(",
+			"track",
+			"message",
+			"type",
+			"data.type",
+			"data",
+			"message",
+			"output",
+			"new",
+			"update",
+			"archiveInput",
+			"update",
+			"track",
+			"log.track",
+			"log\\.track\\(['|\"]tracking"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"salt",
+			"hash",
+			"username",
+			"email",
+			"lastName",
+			"firstName",
+			"email",
+			"lastName",
+			"firstName",
+			"",
+			"eventData",
+			"$this->",
+			"\"",
+			"'",
+			"\"",
+			"self",
+			"\"",
+			"\\t",
+			"'",
+			"\"",
+			"azure",
+			"Azure",
+			"azure",
+			"\"",
+			"mscrm",
+			"\"",
+			",",
+			"\"",
+			"",
+			"false",
+			"true",
+			"  ",
+			"false",
+			"true",
+			"  ",
+			"true",
+			"  ",
+			"",
+			"\\t",
+			"  ",
+			"",
+			"false",
+			"true",
+			"  ",
+			"false",
+			"true",
+			"this.config",
+			"\""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 5,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "secure/models/Table.php",
+					"settings":
+					{
+						"buffer_size": 1222,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								710,
+								710
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"esnext": true,
+								"globals":
+								{
+									"log": true
+								},
+								"globalstrict": true,
+								"node": true,
+								"quotmark": false,
+								"smarttabs": true,
+								"trailing": true,
+								"undef": true,
+								"unused": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_gutter_marks_theme": "simple",
+							"sublimelinter_mark_style": "none",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "boilerplate.php",
+					"settings":
+					{
+						"buffer_size": 1120,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5,
+								5
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"auto_name": "<?php",
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"esnext": true,
+								"globals":
+								{
+									"log": true
+								},
+								"globalstrict": true,
+								"node": true,
+								"quotmark": false,
+								"smarttabs": true,
+								"trailing": true,
+								"undef": true,
+								"unused": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_gutter_marks_theme": "simple",
+							"sublimelinter_mark_style": "none",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "add_classes.php",
+					"settings":
+					{
+						"buffer_size": 13912,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								459,
+								459
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"esnext": true,
+								"globals":
+								{
+									"log": true
+								},
+								"globalstrict": true,
+								"node": true,
+								"quotmark": false,
+								"smarttabs": true,
+								"trailing": true,
+								"undef": true,
+								"unused": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_gutter_marks_theme": "simple",
+							"sublimelinter_mark_style": "none",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "secure/school.php",
+					"settings":
+					{
+						"buffer_size": 1046,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1036,
+								1036
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"esnext": true,
+								"globals":
+								{
+									"log": true
+								},
+								"globalstrict": true,
+								"node": true,
+								"quotmark": false,
+								"smarttabs": true,
+								"trailing": true,
+								"undef": true,
+								"unused": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_gutter_marks_theme": "simple",
+							"sublimelinter_mark_style": "none",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 105.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "assets/js/add_classes_page.js",
+					"settings":
+					{
+						"buffer_size": 4942,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4414,
+								4442
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"esnext": true,
+								"globals":
+								{
+									"log": true
+								},
+								"globalstrict": true,
+								"node": true,
+								"quotmark": false,
+								"smarttabs": true,
+								"trailing": true,
+								"undef": true,
+								"unused": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_gutter_marks_theme": "simple",
+							"sublimelinter_mark_style": "none",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 722.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "secure/api.php",
+					"settings":
+					{
+						"buffer_size": 18726,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7335,
+								7335
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"esnext": true,
+								"globals":
+								{
+									"log": true
+								},
+								"globalstrict": true,
+								"node": true,
+								"quotmark": false,
+								"smarttabs": true,
+								"trailing": true,
+								"undef": true,
+								"unused": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_gutter_marks_theme": "simple",
+							"sublimelinter_mark_style": "none",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2717.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"output.git":
+	{
+		"height": 50.0
+	},
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"table",
+				"CleanViewBack/secure/models/Table.php"
+			],
+			[
+				"api",
+				"CleanViewBack/api.php"
+			],
+			[
+				"twil",
+				"api/modules-catalog/twilio/twilio.js"
+			],
+			[
+				"twilio",
+				"old/adapters/twilio.js"
+			],
+			[
+				"invoke",
+				"api/invokeFlo.js"
+			],
+			[
+				"instance",
+				"api/engine/execution/instance-context.js"
+			],
+			[
+				"lo",
+				"api/engine/execution/loadable-module.js"
+			],
+			[
+				"meta",
+				"api/engine/builtin/metadata.js"
+			],
+			[
+				"blobs",
+				"api/models/azure/blobs.js"
+			],
+			[
+				"invok",
+				"api/invokeFlo.js"
+			],
+			[
+				"engine.js",
+				"api/controllers/engine.js"
+			],
+			[
+				"lodab",
+				"api/engine/execution/loadable-module.js"
+			],
+			[
+				"module",
+				"api/engine/execution/loadable-module.js"
+			],
+			[
+				"tables",
+				"api/models/azure/tables.js"
+			],
+			[
+				"service",
+				"api/config/service.yaml"
+			],
+			[
+				"app",
+				"api/app.js"
+			],
+			[
+				"service.yam",
+				"api/config/service.yaml"
+			],
+			[
+				"middle",
+				"api/scripts/middleware.js"
+			],
+			[
+				"tableservice",
+				"api/node_modules/azure/lib/services/table/tableservice.js"
+			],
+			[
+				"tables.js",
+				"api/models/azure/tables.js"
+			],
+			[
+				"metadata",
+				"api/engine/builtin/metadata.js"
+			],
+			[
+				"engine",
+				"api/controllers/engine.js"
+			],
+			[
+				"servie.yam",
+				"api/config/service.yaml"
+			],
+			[
+				"lodable",
+				"api/engine/execution/loadable-module.js"
+			],
+			[
+				"modules",
+				"api/engine/execution/modules-catalog.js"
+			],
+			[
+				"e",
+				"api/controllers/engine.js"
+			],
+			[
+				"out",
+				"api/scripts/output.js"
+			],
+			[
+				"engine.",
+				"api/controllers/engine.js"
+			],
+			[
+				"gitig",
+				".gitignore"
+			],
+			[
+				"middleware",
+				"api/scripts/middleware.js"
+			],
+			[
+				"smartsheet",
+				"api/modules-catalog/smartsheet/adapter/smartsheet.js"
+			],
+			[
+				"unpack",
+				"api/engine/utils/unpack.js"
+			],
+			[
+				"met",
+				"api/engine/builtin/metadata.js"
+			],
+			[
+				"remove",
+				"api/engine/utils/remove.js"
+			],
+			[
+				"modu",
+				"api/engine/execution/modules-catalog.js"
+			],
+			[
+				"remov",
+				"api/engine/utils/remove.js"
+			],
+			[
+				"",
+				"api/lastupdate.json"
+			],
+			[
+				"modul",
+				"api/engine/execution/modules-catalog.js"
+			],
+			[
+				"ui",
+				"api/node_modules/underscore/index.js"
+			],
+			[
+				"salesforce",
+				"api/modules-catalog/salesforce/adapter/salesforce.js"
+			],
+			[
+				"metada",
+				"api/engine/builtin/metadata.js"
+			],
+			[
+				"invokeflo",
+				"api/invokeFlo.js"
+			],
+			[
+				"shapes.js",
+				"api/modules-catalog/googlespreadsheets/node_modules/google-spreadsheet/node_modules/request/node_modules/http-signature/node_modules/asn1/lib/ber/types.js"
+			],
+			[
+				"metad",
+				"api/engine/builtin/metadata.js"
+			],
+			[
+				"log",
+				"api/common/log.js"
+			],
+			[
+				"mid",
+				"api/scripts/middleware.js"
+			],
+			[
+				"mi",
+				"api/scripts/middleware.js"
+			],
+			[
+				"data",
+				"api/engine/utils/data-utils.js"
+			],
+			[
+				"invo",
+				"api/invokeFlo.js"
+			],
+			[
+				"sales",
+				"api/modules-catalog/salesforce/adapter/salesforce.js"
+			],
+			[
+				"inv",
+				"api/invokeFlo.js"
+			],
+			[
+				"log.j",
+				"api/common/log.js"
+			],
+			[
+				"app.js",
+				"api/app.js"
+			],
+			[
+				"engin",
+				"api/controllers/engine.js"
+			],
+			[
+				"metadat",
+				"api/engine/builtin/metadata.js"
+			],
+			[
+				"middl",
+				"api/scripts/middleware.js"
+			],
+			[
+				"sequence",
+				"api/engine/builtin/sequence.js"
+			],
+			[
+				"blobservice",
+				"api/node_modules/azure/lib/services/blob/blobservice.js"
+			],
+			[
+				"inter",
+				"api/engine/builtin/interpret.js"
+			],
+			[
+				"authenti",
+				"/C/Users/Osmond/work/flo-ui/designer/controllers/authenticate.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"ui",
+				"/C/Users/Osmond/work/ui.sublime-project"
+			],
+			[
+				"sch",
+				"/C/Users/Osmond/work/scheduler.sublime-project"
+			],
+			[
+				"modul",
+				"/C/Users/Osmond/work/modules.sublime-project"
+			],
+			[
+				"engine",
+				"/C/Users/Osmond/work/engine.sublime-project"
+			],
+			[
+				"en",
+				"/C/Users/Osmond/work/engine.sublime-project"
+			],
+			[
+				"sche",
+				"/C/Users/Osmond/work/scheduler.sublime-project"
+			],
+			[
+				"schedul",
+				"/C/Users/Osmond/work/scheduler.sublime-project"
+			],
+			[
+				"sched",
+				"/C/Users/Osmond/work/scheduler.sublime-project"
+			],
+			[
+				"mod",
+				"/C/Users/Osmond/work/modules.sublime-project"
+			],
+			[
+				"modu",
+				"/C/Users/Osmond/work/modules.sublime-project"
+			],
+			[
+				"mo",
+				"/C/Users/Osmond/work/modules.sublime-project"
+			],
+			[
+				"sc",
+				"/C/Users/Osmond/school/SynchronizedStudentCalendar/SynchronizedStudentCalendar.sublime-project"
+			],
+			[
+				"engie",
+				"/C/Users/Osmond/work/engine.sublime-project"
+			],
+			[
+				"module",
+				"/C/Users/Osmond/work/modules.sublime-project"
+			],
+			[
+				"schedu",
+				"/C/Users/Osmond/work/scheduler.sublime-project"
+			],
+			[
+				"comm",
+				"/C/Users/Osmond/work/modules.sublime-project"
+			],
+			[
+				"modules",
+				"/C/Users/Osmond/work/modules.sublime-project"
+			],
+			[
+				"sechedul",
+				"/C/Users/Osmond/work/scheduler.sublime-project"
+			],
+			[
+				"scheduler",
+				"/C/Users/Osmond/work/scheduler.sublime-project"
+			],
+			[
+				"schde",
+				"/C/Users/Osmond/work/scheduler.sublime-project"
+			],
+			[
+				"shec",
+				"/C/Users/Osmond/work/scheduler.sublime-project"
+			],
+			[
+				"u",
+				"/C/Users/Osmond/work/ui.sublime-project"
+			],
+			[
+				"com",
+				"/C/Users/Osmond/work/modules.sublime-project"
+			],
+			[
+				"commo",
+				"/C/Users/Osmond/work/modules.sublime-project"
+			],
+			[
+				"scheu",
+				"/C/Users/Osmond/work/scheduler.sublime-project"
+			],
+			[
+				"",
+				"/C/Users/Osmond/work/flo/api/api.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 245.0,
+	"status_bar_visible": true
+}
