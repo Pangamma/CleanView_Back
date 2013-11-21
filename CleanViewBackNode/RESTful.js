@@ -21,9 +21,8 @@ module.exports = function (app, tables, shapes, middleware, finished) {
 		var user = tables.escape(req.params.user);
 		var since = (req.query.since) ? table.escape(req.query.since) : '';
 		var start = (req.query.start) ? table.escape(req.query.start) : '';
-		console.log("dd");
-		//four joins to query events by users seems a bit much
-		tables.query("SELECT * FROM events JOIN courses ON events.Courseid = courses.id JOIN enrollments ON courses.id = enrollments.courseid JOIN users on enrollments.studentid = users.id WHERE user.user_id = " + user, function(err, events){
+
+		tables.query("SELECT * FROM events JOIN enrollments ON events.course_id = enrollments.course_id JOIN users ON enrollments.user_id = users.user_id WHERE users.user_id = " + user, function(err, events){
 			if(err) return res.send(500, err);
 			return res.send(200, events);
 		});

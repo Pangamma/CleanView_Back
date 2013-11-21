@@ -7,7 +7,7 @@ var async = require('async');
 var cred = require('./configs.json');
 var shapes = {};
 var middleware = require('./middleware.js')();
-
+var fs = require('fs');
 /**
  *	restful
  */
@@ -40,16 +40,13 @@ var tables = mysql.createConnection(cred);
 function connectDB(done) {
 	tables.connect(function (err) {
 		if (err) return done(err);
-
+		
 		function collectColumns(table, collected) {
 			tables.query('SHOW COLUMNS FROM ' + table.Tables_in_uwb_devdogs, function (err, columns) { //this data comes from tables, unlikely to be injected
 				shapes[table.Tables_in_uwb_devdogs] = columns;
 				collected();
 			});
 		}
-		tables.query('SELECT * FROM users', function(err, events){
-			console.log(events);
-		});
 
 		tables.query('SHOW TABLES', function (err, allTables) {
 
@@ -63,7 +60,6 @@ function connectDB(done) {
 
 function startServices(err) {
 	if (err) console.log(err);
-	console.log(shapes.courses);
 	require('./streams.js')(io, tables, shapes, middleware);
 	require('./RESTful.js')(app, tables, shapes, middleware);
 
