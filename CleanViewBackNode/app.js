@@ -1,4 +1,4 @@
-"use strict";
+"use strict"	;
 /**
  *	app.js
  * Clean view back sockets
@@ -8,6 +8,12 @@ var cred = require('./configs.json');
 var shapes = {};
 var middleware = require('./middleware.js')();
 var fs = require('fs');
+
+/**
+*	TODO:
+*		- logger
+*/
+
 /**
  *	restful
  */
@@ -38,26 +44,29 @@ var tables = mysql.createConnection(cred);
  *	@params	{function}	done
  */
 function connectDB(done) {
-	tables.connect(function (err) {
-		if (err) return done(err);
-		
-		function collectColumns(table, collected) {
-			tables.query('SHOW COLUMNS FROM ' + table.Tables_in_uwb_devdogs, function (err, columns) { //this data comes from tables, unlikely to be injected
-				shapes[table.Tables_in_uwb_devdogs] = columns;
-				collected();
-			});
-		}
 
-		tables.query('SHOW TABLES', function (err, allTables) {
-
-			async.each(allTables, collectColumns, function (_err) {
-				done();
-			});
-
+	function collectColumns(table, collected) {
+		tables.query('SHOW COLUMNS FROM ' + table.Tables_in_uwb_devdogs, function (err, columns) { //this data comes from tables, unlikely to be injected
+			shapes[table.Tables_in_uwb_devdogs] = columns;
+			collected();
 		});
-	});
-}
+	}
 
+	try {
+		shapes = require('./shapes.json');
+		done();
+	} catch (e) {
+		tables.query('SHOW TABLES', function (err, allTables) {
+			async.each(allTables, collectColumns, function () {
+				fs.writeFile('./shapes.json', JSON.stringify(shapes), function (writeError) {
+					console.log(writeError);
+					done();
+				});
+			});
+		});
+	}
+}
+	
 function startServices(err) {
 	if (err) console.log(err);
 	require('./streams.js')(io, tables, shapes, middleware);
