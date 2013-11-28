@@ -1,26 +1,17 @@
 <?php
   require_once('secure/api.php');
   $api = new Api();
-  if ($api->isLoggedIn()){
-    // die after printing a redirect because nothing more is needed
-    // by the page.
-    echo '<meta http-equiv="refresh" content="0; url=calendar_home.php">'; die();
-  }//else, we assume login failed, but... let's try something first.
-  //is rememberMe box checked or not?
-  $rememberMe = (isset($_POST["b-login-form_rmbr"]) && $_POST["b-login-form_rmbr"] == "on");
-  $email = (isset($_POST["b-login-form_email"]) ? $_POST["b-login-form_email"] : null);
-  $password = (isset($_POST["b-login-form_password"]) ? $_POST["b-login-form_password"] : null);
-  if (isset($email) && isset($password)){
-    $api->login($email, $password,$rememberMe,false);
-    if ($api->isLoggedIn()){
-      echo '<meta http-equiv="refresh" content="0; url=calendar_home.php">'; die();
-    }
-  }//else, we tried. Go ahead and load the index page.
-
-  // Should add if success go to the calendar_home.php if failed go to 
-  // the failed_login.php like on facebook
-  // And ajax validation on failed_login.php page
-
+  
+  $email = (isset($_POST["b-login-form__email"]) ? $_POST["b-login-form__email"] : null);
+  $password = (isset($_POST["b-login-form__password"]) ? $_POST["b-login-form__password"] : null);
+  $rememberMe = (isset($_POST["b-login-form__rmbr"]) && $_POST["b-login-form__rmbr"] == "on");
+  
+  if ($api->isLoggedIn() || $api->login($email, $password, $rememberMe)){
+  	// die after printing a redirect because nothing more is needed
+  	// by the page.
+  	echo '<meta http-equiv="refresh" content="0; url=calendar_home.php">'; die();
+  }
+  
   include('head.php'); 
 ?>
 

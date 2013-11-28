@@ -88,12 +88,11 @@ class Api {
 		} else {
 			//if logged in, assume this data is stored in a session already.
 			if (isset($_SESSION['userJson'])) {
-				$this->user = User::createFromJson($_SESSION['userJson']);
+				$this->user = $_SESSION['userJson'];
 				if ($this->user != null) {
 					return true;
 				}
 			} else {
-				echo $_SESSION['userJson'];
 				//make them reauthenticate... 
 				$_SESSION['loggedin'] = false;
 				if (isset($_COOKIE['email']) && isset($_COOKIE['pass'])) {
@@ -119,14 +118,12 @@ class Api {
 		if (!isset($email) || !isset($pass)) {
 			return false;
 		}
-		$query = "SELECT * FROM " . Api::$TBL_USERS . " WHERE `email`=':email'";
+		$query = "SELECT * FROM " . Api::$TBL_USERS . " WHERE `email`=:email";
 		$queryParams = array(":email" => $email);
 		$results = $this->dbConn->execute($query, $queryParams);
 		if (!$results)
 			return false;
 		$row = $results->fetch();
-		echo "connected-->".$this->isConnected;
-		var_dump($row);
 		if ($row) {
 			$salt = $row['salt'];
 			$hash = ($preHashed) ? $pass : hash("sha256", $pass . $salt, false);
@@ -135,7 +132,7 @@ class Api {
 				$this->user = User::createFromTableRow($row);
 				$_SESSION['loggedin'] = true;
 				$_SESSION['email'] = $row['email'];
-				$_SESSION['userJson'] = json_encode($this->user);
+				$_SESSION['userJson'] = $this->user;
 				//so they do not have to keep logging into our site.
 				if ($rememberMe) {
 					setcookie("email", $email);

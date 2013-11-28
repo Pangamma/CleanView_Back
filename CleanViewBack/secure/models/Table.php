@@ -37,7 +37,7 @@
 			*/
 			public function execute($query, $params = array()){
 				try{
-					$statment = $db->prepare($query);
+					$statment = $this->db->prepare($query);
 					$statment->execute($params);
 
 					return $statment;

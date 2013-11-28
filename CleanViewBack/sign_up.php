@@ -8,7 +8,7 @@
           
           <h2 class="b-signup-form__title">Create an Account</h2>
           
-          <form id="b-signup-form__form" class="b-signup-form__form" action="add_school.php">
+          <form id="b-signup-form__form" class="b-signup-form__form" action="add_school.php" method="post">
             <div class="b-signup-form__input-group">
               <input type="text" name="b-signup-form__firstname" class="b-signup-form__firstname g-required-input" placeholder="First Name">
             </div>
@@ -17,6 +17,9 @@
             </div>   
             <div class="b-signup-form__input-group">
               <input type="text" name="b-signup-form__email" class="b-signup-form__email g-required-input" placeholder="Email">
+            </div>  
+            <div class="b-signup-form__input-group">
+              <input type="text" name="b-signup-form__username" class="b-signup-form__username g-required-input" placeholder="Username">
             </div>
             <div class="b-signup-form__input-group">
               <input type="password" name="b-signup-form__password" class="b-signup-form__password g-required-input" placeholder="Password">
@@ -24,7 +27,7 @@
               <div class="b-signup-form__input-group">
               <input type="password" name="b-signup-form__password-confirm" class="b-signup-form__password-confirm g-required-input" placeholder="Confirm Password">
             </div>  
-            <button type="submit" class="b-signup-form__button">Create an Account</button>
+            <input type="submit" class="b-signup-form__button">Create an Account</input>
           </form>
 
         </div>  
@@ -115,12 +118,15 @@
               console.log(this.formName);
               isFormValid = true;
               if(!this.passwordValidation(password1, password2)){
+                  console.log('pass');
                 isFormValid = false;
               }
-              if(!this.emptyFields()){
-                isFormValid = false;
+              if(this.emptyFields()){
+                  console.log('empty');
+                 isFormValid = false;
               }
               if(!this.emailCheck(emailName)){
+                  console.log('emali');
                 isFormValid = false;
               }
               return isFormValid;
@@ -131,7 +137,7 @@
           var signUpForm = new FormValidation('.b-signup-form__form');
               
           $('.b-signup-form__button').click(function (event) {
-            event.preventDefault();
+            // event.preventDefault();
             return signUpForm.validateWithEmailandPassword("b-signup-form__email", "b-signup-form__password", "b-signup-form__password-confirm");
           }); 
         });  

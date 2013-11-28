@@ -1,4 +1,19 @@
-<?php include('head.php'); ?>
+<?php
+	include('head.php'); 
+	
+	require_once ('secure/api.php');
+	$api = new Api ();
+
+	$email = (isset($_POST["b-login-form__email"]) ? $_POST["b-login-form__email"] : null);
+	$password = (isset($_POST["b-login-form__password"]) ? $_POST["b-login-form__password"] : null);
+	
+	if (!$api->isLoggedIn () && !$api->login($email, $password)) {
+		// die after printing a redirect because nothing more is needed
+		// by the page.
+		echo '<meta http-equiv="refresh" content="0; url=index.php">';
+		die ();
+	}
+?>
     
     <body class="b-body b-body--grey">
         
@@ -10,7 +25,7 @@
                 <ul class="b-cal-navlist">
                     <li class="b-cal-navlist__item b-cal-navlist__item--help">Help</li>
                     <li class="b-cal-navlist__item b-cal-navlist__item--settings">Settings</li>
-                    <li class="b-cal-navlist__item b-cal-navlist__item--logout"><a href="index.php">Log out</a></li>
+                    <li class="b-cal-navlist__item b-cal-navlist__item--logout"><a href="logout.php">Log out</a></li>
                 </ul>
                 <ul class="b-button-list b-button-list--cal">
                     <li class="b-button-list__button b-button-list__button--active b-button-list__button--calday">Day</li><!--

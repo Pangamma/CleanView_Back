@@ -4,8 +4,8 @@
 	$_SESSION['email'] = null;
 	$_SESSION['userJson'] = null;
 	//so they do not have to keep logging into our site.
-	setcookie("email",null);
-	setcookie("pass",null);
+	setcookie("email", null);
+	setcookie("pass", null);
 ?>
 <html>
 	<head>
