@@ -1,7 +1,6 @@
 @import "grid";
 @import "bootstrap/bootstrap";
 @import "bootstrap/responsive";
-@import "fontawesome/font-awesome.scss";
 
 /* Custom font */
 //Arsenal
@@ -167,6 +166,9 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 .g-empty-error, .g-wrong-email-error, .g-same-password-error{
   color:red;
 }
+.g-hide{
+  display: none !important;
+}
 /* END Other stuff */
 .b-body{
   height: 100%; width: 100%; margin: 0;
@@ -323,6 +325,11 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   padding-left: 10px;
   padding-right: 10px;
 }
+.b-features-col__org-img, .b-features-col__ahead-img, .b-features-col__connected-img{
+  height: 200px;
+  width: 200px;
+  fill: $plump;
+}
 /* END Features index */
 
 /* Calendar block */
@@ -387,6 +394,8 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 }
 .b-signup-form__facebook-img, .b-signup-form__google-plus-img{
   height: 40px;
+  width: 40px;
+  fill: $plump;
 }
 /*---------- END Sign up page -----------*/
 
@@ -547,10 +556,198 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 .b-header--calendar{
   @include column(12);
   background-color: white;
-  padding-top: 20px;
+  padding-top: 10px;
   padding-left: 0;
   padding-right: 0;
   margin-bottom: 5px; 
+}
+.b-cal-navlist__item--logout{
+  margin-right: 20px;
+  border: 2px solid $plump;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  width: 70px;
+  background-color: $plump;
+  text-align: center;
+}
+.b-button-list--cal{
+  margin-top: 8px; 
+  margin-right: 10px; 
+  margin-left: 10px; 
+  float: left !important;
+}
+.b-main-dash__add-event-button{
+  float: right; 
+  margin-right: 10px; 
+  margin-top: 8px; 
+  height: 30px;
+  color: $plump;
+  background-color: $gold;
+  border: 2px solid $gold;
+}
+.b-main-dash__controller{
+  height: 46px; 
+  background-color: white; 
+  margin-bottom: 10px;
+}
+.b-add-event-block{
+  background-color: white; 
+  margin-bottom: 10px; 
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 5px;
+}
+.b-add-event-block__tag-group{
+  width: 30%;
+  height: 90px;
+}
+.b-add-event-block__textarea{
+  border: 2px solid $grayCustom;
+  box-sizing: border-box;
+  width: 100%;
+  height: 90px;
+}
+.b-add-event-block__textarea:focus{
+  border-color: $plump;
+}
+.b-add-event-block__button-group{
+  width:100%; 
+  display:inline-block;
+  overflow: auto;
+  white-space: nowrap;
+  margin:0 auto;
+}
+.b-add-event-block__button{
+  width: 70px;
+}
+.b-add-event-block__button--cancel{
+  background-color: white;
+  border: 2px solid red;
+  color: red;
+  float: left;
+  margin-left: 10px;
+  @include transition(all .3s ease);
+}
+.b-add-event-block__button--cancel:hover, .b-add-event-block__button--cancel:active, .b-day-event-list-item__flag:hover, .b-day-event-list-item__flag:active{
+  background-color: red;
+  color: white;
+}
+.b-add-event-block__button--done{
+  background-color: $gold;
+  border: 2px solid $gold;
+  color: $plump;
+  float: right;
+  margin-left: 10px;
+}
+.b-add-event-block__button--tag{
+  background-color: white;
+  border: 2px solid $plump;
+  color: $plump;
+  float: left;
+  @include transition(all .3s ease);
+}
+.b-add-event-block__button--tag:hover, .b-add-event-block__button--tag:active, .b-day-event-list-item__delete:hover, .b-day-event-list-item__delete:active{
+  background-color: $plump;
+  color: white;
+}
+
+.b-day-event-list-item{
+  background-color: white; 
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+.b-day-event-list-item--done{
+  opacity: 0.3;
+}
+.b-day-event-list-item__header{
+  color: white; 
+  padding: 10px;
+}
+.b-day-event-list-item__header--class{
+  background-color: $plump; 
+} 
+.b-day-event-list-item__header--personal{
+  background-color: #4a7c01;
+}
+.b-day-event-list-item__header--group{
+  background-color: #355ea2;
+} 
+.b-day-event-list-item__time--personal{
+  background-color:rgb(137,143,75);
+}
+.b-day-event-list-item__time--group{
+  background-color: #248fc4;
+}
+.b-day-event-list-item__header-p{
+  margin-bottom: 0; 
+  margin-top: 5px; 
+  display: inline-block;
+}
+.b-day-event-list-item__class-tag-id{
+  font-size: 30px;
+}
+.b-day-event-list-item__tag-name{
+  font-size: 20px; 
+  margin-left: 5px;
+}
+.b-day-event-list-item__time{
+  font-size: 30px; 
+  padding: 5px; 
+  display: inline-block; 
+  color: white; 
+  float: right;
+}
+.b-day-event-list-item__time--class{
+  background-color: #363c74;
+}
+.b-day-event-list-item__container{
+  width:100%; 
+  display:inline-block;
+  white-space: nowrap;
+  margin:0 auto;
+}
+.b-day-event-list__check-mark-wrapper{
+  float: right;
+  width: 70px;
+  height: 70px;
+}
+.b-day-event-list__check-mark{
+  width: 70px;
+  height: 70px;
+  fill: $grayCustom;
+  cursor: pointer;
+  @include transition(all .3s ease);
+}
+.b-day-event-list__check-mark:hover{
+  fill: $gold;
+}
+.b-day-event-list-item__flag, .b-day-event-list-item__delete{
+  margin-left: 10px;
+}
+.b-day-event-list-item__flag{
+  background-color: white;
+  color: red;
+  border: 2px solid red;
+  width: 70px;
+  @include transition(all .3s ease);
+}
+.b-day-event-list-item__delete{
+  background-color: white;
+  color: $plump;
+  border: 2px solid $plump;
+  width: 70px;
+  @include transition(all .3s ease);
+}
+.b-day-event-list-item__text{
+  font-size: 16px; 
+  margin: 10px;  
+  float: left;
+}
+.b-cal-navlist__logout-link, .b-cal-navlist__logout-link:hover, .b-cal-navlist__logout-link:active{
+  color: white;
+  display: block;
+  text-decoration: none;
 }
 .b-button-list, .b-cal-navlist{
   list-style-type: none;
@@ -569,14 +766,24 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   border-left: 2px solid $plump;
   padding-top: 3px;
   padding-bottom: 3px;
-  width: 50px;
+  width: 70px;
   color: $plump;
   text-align: center;
 }
 .b-button-list__button--active{
   background-color: $plump;
-  color: white;
+  .b-button-list__link{
+     color: white;
+  }
 }
+.b-button-list__link{
+  color: $plump;
+  display: block;
+}
+.b-button-list__link, .b-button-list__link:hover, .b-button-list__link:active{
+  text-decoration: none;
+}
+
 .b-cal-navlist{
   margin-right: 20px;
 }
@@ -592,10 +799,29 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 .b-conf-dash{
   @include column(3);
 }
+.b-calendar-dash{
+  @include column(9);
+}
+.b-calendar-dash__container{
+  background-color: white;
+  margin-top: 5px;
+  margin-bottom: 5px; 
+}
 .b-day-dash__container{
   background-color: white; 
   margin-top: 5px;
-  margin-right: 5px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+.b-conf-dash__container{
+  background-color: white; 
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+.b-main-dash__container{
+  //background-color: white; 
+  margin-top: 5px;
   margin-bottom: 5px;
 }
 .b-day-dash__day--active{
@@ -605,6 +831,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 .b-day-dash__up, .b-day-dash__down{
   color: rgba(91,59,112,0.1);
   @include transition(all .3s ease);
+  cursor: pointer;
 }
 .b-day-dash__up:hover, .b-day-dash__down:hover{
   background-color: $plump;
@@ -629,20 +856,80 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   line-height: 20px;
   margin-top: 5px;
 }
-.b-sync-block__container, .b-reminders-block__container{
-  background-color: white; 
-  margin: 5px;
-}
-.b-reminders-block__container{
-  margin-top: 10px;
-}
-.b-conf-dash__container{
-  background-color: white; 
-  margin-top: 5px;
-  margin-left: 5px;
-  margin-bottom: 5px;
+
+.b-day-dash__up-icon{
+  
 }
 /*------- END Calendar day page ---------*/
+
+/*------- Calendar Conf Dash ------------*/
+.b-conf-dash__title{
+  font-size: 16px; 
+  text-align: center; 
+  line-height: 16px; 
+  margin: 0; 
+  padding-top: 20px; 
+  padding-bottom: 10px;
+}
+.b-dash-class-list, .b-dash-group-list{
+  list-style-type: none; 
+  border-top: 2px solid #e6e6e6; 
+  margin-left: 10px; 
+  margin-right: 10px;
+  padding-top: 10px;
+}
+.b-dash-class-list__item, .b-dash-group-list__item{
+  padding-bottom: 10px;
+}
+.b-dash-class-list__link, .b-dash-group-list__link{
+  display: block; 
+  border-bottom: 2px solid #e6e6e6; 
+  padding-bottom: 10px;
+  color: black;
+  @include transition(all .3s ease);
+}
+.b-dash-class-list__link:hover, .b-dash-group-list__link:hover, .b-dash-class-list__link:active, .b-dash-group-list__link:active{
+  text-decoration: none;
+  cursor: pointer;
+}
+.b-dash-class-list__link:hover, .b-dash-class-list__link:active{
+  border-color: $plump;
+  color: $plump;
+}
+.b-dash-group-list__item{
+  text-align: center;
+}
+.b-dash-class-list__class{
+  margin-left: 10px; 
+  background-color: $plump; 
+  padding: 5px; 
+  color: white;
+}
+.b-dash-class-list__name{
+  margin-left: 10px;
+}
+.b-conf-dash__button{
+  margin-top: 10px; 
+  margin-bottom: 20px; 
+  margin-left: 10px; 
+  margin-right: 10px; 
+  border: 2px solid $plump; 
+  color: $plump; 
+  text-align: center; 
+  background-color: white; 
+  margin-left: auto; 
+  margin-right: auto; 
+  display: block; 
+  float: none; 
+  padding-left: 10px; 
+  padding-right: 10px;
+  @include transition(all .3s ease);
+}
+.b-conf-dash__button:hover, .b-conf-dash__button:active{
+  background-color: $plump;
+  color: white !important;
+}
+/*------- END Calendar Conf Dash --------*/
 .g-container{
   @extend .container;
 }
