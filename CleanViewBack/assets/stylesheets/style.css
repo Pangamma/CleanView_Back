@@ -7247,7 +7247,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 }
 
 /* line 157, ../sass/style.scss */
-.g-input, .b-login-form__email, .b-login-form__password, .b-signup-form__firstname, .b-signup-form__lastname, .b-signup-form__email, .b-signup-form__password, .b-signup-form__password-confirm, .b-addclasses-form__school, .b-addclasses-form__major, .b-addclasses-form__classes {
+.g-input, .b-login-form__email, .b-login-form__password, .b-signup-form__firstname, .b-signup-form__lastname, .b-signup-form__email, .b-signup-form__password, .b-signup-form__password-confirm, .b-addclasses-form__school, .b-addclasses-form__major, .b-addclasses-form__classes, .b-modal__add-group-textfield {
   border-width: 2px !important;
   webkit-box-shadow: none;
   box-shadow: none;
@@ -7262,45 +7262,46 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 /* line 166, ../sass/style.scss */
 .g-empty-error, .g-wrong-email-error, .g-same-password-error {
   color: red;
+  margin-bottom: 0 !important;
 }
 
-/* line 169, ../sass/style.scss */
+/* line 170, ../sass/style.scss */
 .g-hide {
   display: none !important;
 }
 
 /* END Other stuff */
-/* line 173, ../sass/style.scss */
+/* line 174, ../sass/style.scss */
 .b-body {
   height: 100%;
   width: 100%;
   margin: 0;
 }
 
-/* line 176, ../sass/style.scss */
+/* line 177, ../sass/style.scss */
 .b-body--index {
   background-color: #ecf0f1;
 }
 
-/* line 179, ../sass/style.scss */
+/* line 180, ../sass/style.scss */
 .b-body--grey {
   background-color: #e6e6e6;
 }
 
 /* Header */
-/* line 184, ../sass/style.scss */
+/* line 185, ../sass/style.scss */
 .b-header {
   padding-top: 40px;
   padding-left: 20px;
   padding-right: 20px;
 }
 
-/* line 189, ../sass/style.scss */
+/* line 190, ../sass/style.scss */
 .b-header--clouds {
   background-color: #ecf0f1;
 }
 
-/* line 192, ../sass/style.scss */
+/* line 193, ../sass/style.scss */
 .b-header__logo {
   font-size: 25px;
   font-weight: normal;
@@ -7310,7 +7311,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   color: #39275b;
 }
 
-/* line 201, ../sass/style.scss */
+/* line 202, ../sass/style.scss */
 .b-login-form {
   margin-right: 20px;
   display: inline-block;
@@ -7319,17 +7320,17 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   height: 57px;
 }
 
-/* line 209, ../sass/style.scss */
+/* line 210, ../sass/style.scss */
 .b-login-form__email, .b-login-form__password {
   margin-bottom: 0 !important;
 }
 
-/* line 214, ../sass/style.scss */
+/* line 215, ../sass/style.scss */
 .b-login-form__email:focus, .b-login-form__password:focus {
   border-color: #39275b !important;
 }
 
-/* line 217, ../sass/style.scss */
+/* line 218, ../sass/style.scss */
 .b-login-form__button {
   color: white;
   background-color: #39275b;
@@ -7339,33 +7340,33 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin-left: 10px;
 }
 
-/* line 226, ../sass/style.scss */
+/* line 227, ../sass/style.scss */
 .b-login-form__button:hover, .b-login-form__button:active, .b-login-form__button:focus {
   color: white;
   background-color: #39275b;
   border-color: #39275b;
 }
 
-/* line 231, ../sass/style.scss */
+/* line 232, ../sass/style.scss */
 .b-login-form__rmbr-label {
   display: block;
   padding-left: 15px;
   text-indent: -15px;
 }
 
-/* line 234, ../sass/style.scss */
+/* line 235, ../sass/style.scss */
 .b-login-form__password, .b-login-form__email {
   display: block !important;
   float: none;
 }
 
-/* line 238, ../sass/style.scss */
+/* line 239, ../sass/style.scss */
 .b-login-form__forgot-password, .b-login-form__rmbr-input {
   margin-left: 2px;
   margin-top: 0 !important;
 }
 
-/* line 242, ../sass/style.scss */
+/* line 243, ../sass/style.scss */
 .b-login-form__rmbr-input {
   width: 13px;
   height: 13px;
@@ -7378,7 +7379,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   right: 1px;
 }
 
-/* line 245, ../sass/style.scss */
+/* line 246, ../sass/style.scss */
 .b-login-form__input-group {
   display: inline-block;
   float: right;
@@ -7387,7 +7388,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 
 /* END Header */
 /* Signup main */
-/* line 253, ../sass/style.scss */
+/* line 254, ../sass/style.scss */
 .b-signup {
   background: url("../images/patterns/shattered.png") repeat;
   color: white;
@@ -7396,27 +7397,27 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   border-bottom: 2px solid #bdc3c7;
 }
 
-/* line 260, ../sass/style.scss */
+/* line 261, ../sass/style.scss */
 .b-signup__overlay {
   background-color: rgba(91, 59, 112, 0.7);
   padding-top: 20px;
   padding-bottom: 20px;
 }
 
-/* line 265, ../sass/style.scss */
+/* line 266, ../sass/style.scss */
 .b-signup__main {
   margin: 80px 20px;
   text-align: center;
 }
 
-/* line 270, ../sass/style.scss */
+/* line 271, ../sass/style.scss */
 .b-signup__logo {
   font-size: 100px;
   line-height: 1;
   color: white;
 }
 
-/* line 275, ../sass/style.scss */
+/* line 276, ../sass/style.scss */
 .b-signup__lead {
   font-size: 24px;
   line-height: 1.25;
@@ -7424,7 +7425,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   padding-right: 50px;
 }
 
-/* line 282, ../sass/style.scss */
+/* line 283, ../sass/style.scss */
 .b-signup__button {
   font-size: 21px;
   padding: 14px 24px;
@@ -7434,14 +7435,14 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   text-shadow: none;
 }
 
-/* line 292, ../sass/style.scss */
+/* line 293, ../sass/style.scss */
 .b-signup__button:hover, .b-signup__button:active, .b-signup__button:focus {
   background-color: #d7a900;
   border-color: #d7a900;
 }
 
 /* END Signup main */
-/* line 298, ../sass/style.scss */
+/* line 299, ../sass/style.scss */
 .b-main {
   background-color: #ecf0f1;
   padding-top: 20px;
@@ -7452,7 +7453,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 }
 
 /* Features index */
-/* line 308, ../sass/style.scss */
+/* line 309, ../sass/style.scss */
 .b-features {
   max-width: 1000px;
   margin: auto;
@@ -7461,25 +7462,25 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   text-align: center;
 }
 
-/* line 315, ../sass/style.scss */
+/* line 316, ../sass/style.scss */
 .b-features-col {
   margin-top: 40px;
   margin-bottom: 40px;
   font-size: 16px;
 }
 
-/* line 321, ../sass/style.scss */
+/* line 322, ../sass/style.scss */
 .b-features-col__title, .b-features-col__text {
   text-align: center;
 }
 
-/* line 324, ../sass/style.scss */
+/* line 325, ../sass/style.scss */
 .b-features-col__text {
   padding-left: 10px;
   padding-right: 10px;
 }
 
-/* line 328, ../sass/style.scss */
+/* line 329, ../sass/style.scss */
 .b-features-col__org-img, .b-features-col__ahead-img, .b-features-col__connected-img {
   height: 200px;
   width: 200px;
@@ -7488,7 +7489,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 
 /* END Features index */
 /* Calendar block */
-/* line 337, ../sass/style.scss */
+/* line 338, ../sass/style.scss */
 .b-calendar__week-row {
   display: block;
   width: 100%;
@@ -7510,7 +7511,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 /* Dashboard block */
 /* END Dashboard block */
 /*------------ Sign up page ------------- */
-/* line 346, ../sass/style.scss */
+/* line 347, ../sass/style.scss */
 .b-signup-page-logo {
   text-align: center;
   margin-top: 20px;
@@ -7518,7 +7519,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   color: #39275b;
 }
 
-/* line 352, ../sass/style.scss */
+/* line 353, ../sass/style.scss */
 .b-signup-form {
   display: inline;
   float: left;
@@ -7531,7 +7532,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   background-color: white;
 }
 
-/* line 360, ../sass/style.scss */
+/* line 361, ../sass/style.scss */
 .b-footer__container--signup-form {
   display: inline;
   float: left;
@@ -7542,7 +7543,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin-top: 20px;
 }
 
-/* line 366, ../sass/style.scss */
+/* line 367, ../sass/style.scss */
 .b-signup-form__create-account, .b-signup-form__social {
   display: inline;
   float: left;
@@ -7550,19 +7551,19 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin: 0 0%;
 }
 
-/* line 369, ../sass/style.scss */
+/* line 370, ../sass/style.scss */
 .b-signup-form__title, .b-signup-form__input-group, .b-signup-form__button {
   margin-top: 10px;
   margin-left: 20px;
 }
 
-/* line 373, ../sass/style.scss */
+/* line 374, ../sass/style.scss */
 .b-signup-form__title {
   font-size: 20px;
   font-weight: normal;
 }
 
-/* line 380, ../sass/style.scss */
+/* line 381, ../sass/style.scss */
 .b-signup-form__button {
   font-size: 14px;
   background-color: #d7a900;
@@ -7571,18 +7572,18 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   text-shadow: none;
 }
 
-/* line 388, ../sass/style.scss */
+/* line 389, ../sass/style.scss */
 .b-signup-form__button:hover, .b-signup-form__button:active, .b-signup-form__button:focus {
   background-color: #d7a900;
   border-color: #d7a900;
 }
 
-/* line 392, ../sass/style.scss */
+/* line 393, ../sass/style.scss */
 .b-signup-form__firstname:focus, .b-signup-form__lastname:focus, .b-signup-form__email:focus, .b-signup-form__password:focus, .b-signup-form__password-confirm:focus {
   border-color: #39275b !important;
 }
 
-/* line 395, ../sass/style.scss */
+/* line 396, ../sass/style.scss */
 .b-signup-form__facebook-img, .b-signup-form__google-plus-img {
   height: 40px;
   width: 40px;
@@ -7591,7 +7592,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 
 /*---------- END Sign up page -----------*/
 /*---------- Add classes page -----------*/
-/* line 403, ../sass/style.scss */
+/* line 404, ../sass/style.scss */
 .b-addclasses-form__progress {
   margin-top: 30px;
   padding-bottom: 20px;
@@ -7606,7 +7607,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin-right: 16.66667%;
 }
 
-/* line 413, ../sass/style.scss */
+/* line 414, ../sass/style.scss */
 .b-addclasses-form__progress-item {
   list-style-type: none;
   font-size: 16px;
@@ -7618,7 +7619,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   padding-bottom: 20px;
 }
 
-/* line 423, ../sass/style.scss */
+/* line 424, ../sass/style.scss */
 .b-addclasses-form__progress-item--active {
   background-color: #39275b;
   color: white;
@@ -7628,7 +7629,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   transition: all 0.3s ease;
 }
 
-/* line 428, ../sass/style.scss */
+/* line 429, ../sass/style.scss */
 .b-addclasses-form__fieldset {
   display: inline;
   float: left;
@@ -7641,7 +7642,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   background-color: white;
 }
 
-/* line 436, ../sass/style.scss */
+/* line 437, ../sass/style.scss */
 .b-footer__container--addclasses-form {
   display: inline;
   float: left;
@@ -7652,7 +7653,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin-top: 20px;
 }
 
-/* line 442, ../sass/style.scss */
+/* line 443, ../sass/style.scss */
 .b-addclasses-form__school-dash, .b-addclasses-form__major-dash, .b-addclasses-form__classes-dash {
   display: inline;
   float: left;
@@ -7660,7 +7661,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin: 0 0%;
 }
 
-/* line 445, ../sass/style.scss */
+/* line 446, ../sass/style.scss */
 .b-addclasses-form__school-list, .b-addclasses-form__major-list, .b-addclasses-form__classes-list {
   display: inline;
   float: left;
@@ -7668,7 +7669,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin: 0 0%;
 }
 
-/* line 448, ../sass/style.scss */
+/* line 449, ../sass/style.scss */
 .b-addclasses-form__input-group--search {
   display: inline;
   float: left;
@@ -7677,7 +7678,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin-left: 40px !important;
 }
 
-/* line 452, ../sass/style.scss */
+/* line 453, ../sass/style.scss */
 .b-addclasses-form__input-group--ur-school, .b-addclasses-form__input-group--ur-major, .b-addclasses-form__input-group--ur-classes {
   display: inline;
   float: left;
@@ -7685,7 +7686,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin: 0 0%;
 }
 
-/* line 455, ../sass/style.scss */
+/* line 456, ../sass/style.scss */
 .b-addclasses-form__title {
   font-size: 20px;
   text-align: center;
@@ -7693,7 +7694,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin-right: 20px;
 }
 
-/* line 461, ../sass/style.scss */
+/* line 462, ../sass/style.scss */
 .b-addclasses-form__ur-school-title, .b-addclasses-form__major-title, .b-addclasses-form__classes-title {
   font-size: 16px;
   font-weight: normal;
@@ -7702,24 +7703,24 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin-bottom: 10px;
 }
 
-/* line 468, ../sass/style.scss */
+/* line 469, ../sass/style.scss */
 .b-addclasses-form__title, .b-addclasses-form__input-group, .b-addclasses-form__button {
   margin-top: 10px;
   margin-left: 20px;
 }
 
-/* line 472, ../sass/style.scss */
+/* line 473, ../sass/style.scss */
 .b-addclasses-form__label {
   margin-bottom: 10px;
   font-size: 16px;
 }
 
-/* line 479, ../sass/style.scss */
+/* line 480, ../sass/style.scss */
 .b-addclasses-form__school:focus, .b-addclasses-form__major:focus, .b-addclasses-form__classes:focus {
   border-color: #39275b !important;
 }
 
-/* line 482, ../sass/style.scss */
+/* line 483, ../sass/style.scss */
 .b-school-list, .b-major-list, .b-classes-list {
   list-style-type: none;
   margin-left: 20px;
@@ -7728,31 +7729,31 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   overflow: auto;
 }
 
-/* line 489, ../sass/style.scss */
+/* line 490, ../sass/style.scss */
 .b-school-list__item-img, .b-school-list__item-title, .b-school-list__item-btn, .b-major-list__item-title, .b-major-list__item-btn, .b-classes-list__item-title, .b-classes-list__item-btn {
   display: inline;
 }
 
-/* line 492, ../sass/style.scss */
+/* line 493, ../sass/style.scss */
 .b-school-list__item, .b-major-list__item, .b-classes-list__item {
   margin-bottom: 5px;
   padding: 0;
   margin-top: 0;
 }
 
-/* line 497, ../sass/style.scss */
+/* line 498, ../sass/style.scss */
 .b-school-list__item-img {
   margin-bottom: 5px;
 }
 
-/* line 500, ../sass/style.scss */
+/* line 501, ../sass/style.scss */
 .b-school-list__item-title, .b-major-list__item-title, .b-classes-list__item-title {
   font-size: 14px;
   font-weight: normal;
   margin-left: 5px;
 }
 
-/* line 505, ../sass/style.scss */
+/* line 506, ../sass/style.scss */
 .b-school-list__item-btn, .b-major-list__item-btn, .b-classes-list__item-btn {
   background-color: white;
   border-color: #cccccc;
@@ -7769,14 +7770,14 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   transition: all 0.3s ease;
 }
 
-/* line 518, ../sass/style.scss */
+/* line 519, ../sass/style.scss */
 .b-school-list__item-btn:hover, .b-school-list__item-btn:focus, .b-major-list__item-btn:hover, .b-major-list__item-btn:focus, .b-classes-list__item-btn:hover, .b-classes-list__item-btn:focus {
   background-color: #39275b;
   border-color: #39275b;
   color: white;
 }
 
-/* line 523, ../sass/style.scss */
+/* line 524, ../sass/style.scss */
 .b-addclasses-form__btn, .b-addclasses-form__btn:hover, .b-addclasses-form__btn:active {
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
@@ -7790,26 +7791,26 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   color: #39275b;
 }
 
-/* line 535, ../sass/style.scss */
+/* line 536, ../sass/style.scss */
 .b-addclasses-form__btn--active {
   background-color: #39275b !important;
   border-color: #39275b !important;
   color: white !important;
 }
 
-/* line 540, ../sass/style.scss */
+/* line 541, ../sass/style.scss */
 .b-urschool-item__name, .b-urmajor-item__name {
   display: inline-block;
   font-size: 14px;
   margin-right: 5px;
 }
 
-/* line 545, ../sass/style.scss */
+/* line 546, ../sass/style.scss */
 .b-urschool-item__rmv-img, .b-urmajor-item__rmv-img {
   height: 25px;
 }
 
-/* line 548, ../sass/style.scss */
+/* line 549, ../sass/style.scss */
 .b-addclasses-form__btn-group {
   display: block;
   float: none;
@@ -7818,7 +7819,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 
 /*-------- END Add classes page ---------*/
 /*---------- Calendar day page ----------*/
-/* line 556, ../sass/style.scss */
+/* line 557, ../sass/style.scss */
 .b-header--calendar {
   display: inline;
   float: left;
@@ -7831,7 +7832,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin-bottom: 5px;
 }
 
-/* line 564, ../sass/style.scss */
+/* line 565, ../sass/style.scss */
 .b-cal-navlist__item--logout {
   margin-right: 20px;
   border: 2px solid #39275b;
@@ -7842,7 +7843,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   text-align: center;
 }
 
-/* line 573, ../sass/style.scss */
+/* line 574, ../sass/style.scss */
 .b-button-list--cal {
   margin-top: 8px;
   margin-right: 10px;
@@ -7850,7 +7851,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   float: left !important;
 }
 
-/* line 579, ../sass/style.scss */
+/* line 580, ../sass/style.scss */
 .b-main-dash__add-event-button {
   float: right;
   margin-right: 10px;
@@ -7861,14 +7862,14 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   border: 2px solid #d7a900;
 }
 
-/* line 588, ../sass/style.scss */
+/* line 589, ../sass/style.scss */
 .b-main-dash__controller {
   height: 46px;
   background-color: white;
   margin-bottom: 10px;
 }
 
-/* line 593, ../sass/style.scss */
+/* line 594, ../sass/style.scss */
 .b-add-event-block {
   background-color: white;
   margin-bottom: 10px;
@@ -7878,26 +7879,31 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   padding-bottom: 5px;
 }
 
-/* line 601, ../sass/style.scss */
+/* line 602, ../sass/style.scss */
 .b-add-event-block__tag-group {
   width: 30%;
   height: 90px;
 }
 
-/* line 605, ../sass/style.scss */
+/* line 606, ../sass/style.scss */
 .b-add-event-block__textarea {
   border: 2px solid #cccccc;
-  box-sizing: border-box;
   width: 100%;
   height: 90px;
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
 }
 
-/* line 611, ../sass/style.scss */
+/* line 614, ../sass/style.scss */
 .b-add-event-block__textarea:focus {
   border-color: #39275b;
 }
 
-/* line 614, ../sass/style.scss */
+/* line 617, ../sass/style.scss */
 .b-add-event-block__button-group {
   width: 100%;
   display: inline-block;
@@ -7906,12 +7912,12 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin: 0 auto;
 }
 
-/* line 621, ../sass/style.scss */
+/* line 624, ../sass/style.scss */
 .b-add-event-block__button {
   width: 80px;
 }
 
-/* line 624, ../sass/style.scss */
+/* line 627, ../sass/style.scss */
 .b-add-event-block__button--cancel {
   background-color: white;
   border: 2px solid red;
@@ -7924,13 +7930,13 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   transition: all 0.3s ease;
 }
 
-/* line 632, ../sass/style.scss */
+/* line 635, ../sass/style.scss */
 .b-add-event-block__button--cancel:hover, .b-add-event-block__button--cancel:active, .b-day-event-list-item__flag:hover, .b-day-event-list-item__flag:active {
   background-color: red;
   color: white;
 }
 
-/* line 636, ../sass/style.scss */
+/* line 639, ../sass/style.scss */
 .b-add-event-block__button--done {
   background-color: #d7a900;
   border: 2px solid #d7a900;
@@ -7939,7 +7945,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin-left: 10px;
 }
 
-/* line 643, ../sass/style.scss */
+/* line 646, ../sass/style.scss */
 .b-add-event-block__button--tag {
   background-color: white;
   border: 2px solid #39275b;
@@ -7951,7 +7957,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   transition: all 0.3s ease;
 }
 
-/* line 650, ../sass/style.scss */
+/* line 653, ../sass/style.scss */
 .b-add-event-block__button--time {
   background-color: white;
   border: 2px solid #4a7c01;
@@ -7964,36 +7970,36 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   transition: all 0.3s ease;
 }
 
-/* line 658, ../sass/style.scss */
+/* line 661, ../sass/style.scss */
 .b-add-event-block__button--time:hover, .b-add-event-block__button--time:active {
   background-color: #4a7c01;
   color: white;
 }
 
-/* line 662, ../sass/style.scss */
+/* line 665, ../sass/style.scss */
 .b-modal {
   border-radius: 0;
   -moz-border-radius: 0;
 }
 
-/* line 666, ../sass/style.scss */
+/* line 669, ../sass/style.scss */
 .b-modal__header {
   border-bottom: none;
 }
 
-/* line 669, ../sass/style.scss */
+/* line 672, ../sass/style.scss */
 .b-modal__footer {
   border-top: none;
 }
 
-/* line 672, ../sass/style.scss */
+/* line 675, ../sass/style.scss */
 .b-modal__add, .b-modal__add:hover, .b-modal__add:active {
   border: 2px solid #d7a900;
   background-color: #d7a900;
   color: #39275b;
 }
 
-/* line 677, ../sass/style.scss */
+/* line 680, ../sass/style.scss */
 .b-modal__close-btn {
   background-color: white;
   border: 2px solid #39275b;
@@ -8004,19 +8010,19 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   transition: all 0.3s ease;
 }
 
-/* line 683, ../sass/style.scss */
+/* line 686, ../sass/style.scss */
 .b-modal__close-btn:hover, .b-modal__close-btn:active {
   background-color: #39275b;
   color: white;
 }
 
-/* line 687, ../sass/style.scss */
+/* line 690, ../sass/style.scss */
 .b-tag-list {
   margin-left: 0;
   list-style-type: none;
 }
 
-/* line 691, ../sass/style.scss */
+/* line 694, ../sass/style.scss */
 .b-tag-list__item {
   display: inline-block;
   margin-right: 5px;
@@ -8024,101 +8030,106 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   cursor: pointer;
 }
 
-/* line 697, ../sass/style.scss */
+/* line 700, ../sass/style.scss */
 .b-tag-list__item--active {
   border: 2px solid #d7a900;
 }
 
-/* line 700, ../sass/style.scss */
+/* line 703, ../sass/style.scss */
 .b-tag-list__item--class {
   background-color: #39275b;
   color: white;
 }
 
-/* line 704, ../sass/style.scss */
+/* line 707, ../sass/style.scss */
 .b-tag-list__item--group {
   background-color: #355ea2;
   color: white;
 }
 
-/* line 708, ../sass/style.scss */
+/* line 711, ../sass/style.scss */
 .b-tag-list__item--personal {
   background-color: #4a7c01;
   color: white;
 }
 
-/* line 712, ../sass/style.scss */
+/* line 715, ../sass/style.scss */
 .b-add-event-block__button--tag:hover, .b-add-event-block__button--tag:active, .b-day-event-list-item__delete:hover, .b-day-event-list-item__delete:active {
   background-color: #39275b;
   color: white;
 }
 
-/* line 717, ../sass/style.scss */
+/* line 722, ../sass/style.scss */
+.b-modal__add-group-textfield:focus {
+  border-color: #39275b !important;
+}
+
+/* line 726, ../sass/style.scss */
 .b-day-event-list-item {
   background-color: white;
   margin-bottom: 10px;
   padding-bottom: 10px;
 }
 
-/* line 722, ../sass/style.scss */
+/* line 731, ../sass/style.scss */
 .b-day-event-list-item--done {
   opacity: 0.3;
 }
-/* line 724, ../sass/style.scss */
+/* line 733, ../sass/style.scss */
 .b-day-event-list-item--done .b-day-event-list__check-mark {
   fill: #d7a900;
 }
 
-/* line 728, ../sass/style.scss */
+/* line 737, ../sass/style.scss */
 .b-day-event-list-item__header {
   color: white;
   padding: 10px;
 }
 
-/* line 732, ../sass/style.scss */
+/* line 741, ../sass/style.scss */
 .b-day-event-list-item__header--class {
   background-color: #39275b;
 }
 
-/* line 735, ../sass/style.scss */
+/* line 744, ../sass/style.scss */
 .b-day-event-list-item__header--personal {
   background-color: #4a7c01;
 }
 
-/* line 738, ../sass/style.scss */
+/* line 747, ../sass/style.scss */
 .b-day-event-list-item__header--group {
   background-color: #355ea2;
 }
 
-/* line 741, ../sass/style.scss */
+/* line 750, ../sass/style.scss */
 .b-day-event-list-item__time--personal {
   background-color: #898f4b;
 }
 
-/* line 744, ../sass/style.scss */
+/* line 753, ../sass/style.scss */
 .b-day-event-list-item__time--group {
   background-color: #248fc4;
 }
 
-/* line 747, ../sass/style.scss */
+/* line 756, ../sass/style.scss */
 .b-day-event-list-item__header-p {
   margin-bottom: 0;
   margin-top: 5px;
   display: inline-block;
 }
 
-/* line 752, ../sass/style.scss */
+/* line 761, ../sass/style.scss */
 .b-day-event-list-item__class-tag-id {
   font-size: 30px;
 }
 
-/* line 755, ../sass/style.scss */
+/* line 764, ../sass/style.scss */
 .b-day-event-list-item__tag-name {
   font-size: 20px;
   margin-left: 5px;
 }
 
-/* line 759, ../sass/style.scss */
+/* line 768, ../sass/style.scss */
 .b-day-event-list-item__time {
   font-size: 30px;
   padding: 5px;
@@ -8127,12 +8138,12 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   float: right;
 }
 
-/* line 766, ../sass/style.scss */
+/* line 775, ../sass/style.scss */
 .b-day-event-list-item__time--class {
   background-color: #363c74;
 }
 
-/* line 769, ../sass/style.scss */
+/* line 778, ../sass/style.scss */
 .b-day-event-list-item__container {
   width: 100%;
   display: inline-block;
@@ -8140,14 +8151,14 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin: 0 auto;
 }
 
-/* line 775, ../sass/style.scss */
+/* line 784, ../sass/style.scss */
 .b-day-event-list__check-mark-wrapper {
   float: right;
   width: 70px;
   height: 70px;
 }
 
-/* line 780, ../sass/style.scss */
+/* line 789, ../sass/style.scss */
 .b-day-event-list__check-mark {
   width: 70px;
   height: 70px;
@@ -8159,17 +8170,17 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   transition: all 0.3s ease;
 }
 
-/* line 787, ../sass/style.scss */
+/* line 796, ../sass/style.scss */
 .b-day-event-list__check-mark:hover {
   fill: #d7a900;
 }
 
-/* line 790, ../sass/style.scss */
+/* line 799, ../sass/style.scss */
 .b-day-event-list-item__flag, .b-day-event-list-item__delete {
   margin-left: 10px;
 }
 
-/* line 793, ../sass/style.scss */
+/* line 802, ../sass/style.scss */
 .b-day-event-list-item__flag {
   background-color: white;
   color: red;
@@ -8181,7 +8192,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   transition: all 0.3s ease;
 }
 
-/* line 800, ../sass/style.scss */
+/* line 809, ../sass/style.scss */
 .b-day-event-list-item__delete {
   background-color: white;
   color: #39275b;
@@ -8193,38 +8204,38 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   transition: all 0.3s ease;
 }
 
-/* line 807, ../sass/style.scss */
+/* line 816, ../sass/style.scss */
 .b-day-event-list-item__text {
   font-size: 16px;
   margin: 10px;
   float: left;
 }
 
-/* line 812, ../sass/style.scss */
+/* line 821, ../sass/style.scss */
 .b-cal-navlist__logout-link, .b-cal-navlist__logout-link:hover, .b-cal-navlist__logout-link:active {
   color: white;
   display: block;
   text-decoration: none;
 }
 
-/* line 817, ../sass/style.scss */
+/* line 826, ../sass/style.scss */
 .b-button-list, .b-cal-navlist {
   list-style-type: none;
   display: inline-block;
   float: right;
 }
 
-/* line 822, ../sass/style.scss */
+/* line 831, ../sass/style.scss */
 .b-button-list__button, .b-cal-navlist__item {
   display: inline-block;
 }
 
-/* line 825, ../sass/style.scss */
+/* line 834, ../sass/style.scss */
 .b-button-list {
   border-right: 2px solid #39275b;
 }
 
-/* line 828, ../sass/style.scss */
+/* line 837, ../sass/style.scss */
 .b-button-list__button {
   border-top: 2px solid #39275b;
   border-bottom: 2px solid #39275b;
@@ -8236,37 +8247,39 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   text-align: center;
 }
 
-/* line 838, ../sass/style.scss */
+/* line 847, ../sass/style.scss */
 .b-button-list__button--active {
   background-color: #39275b;
 }
-/* line 840, ../sass/style.scss */
+/* line 849, ../sass/style.scss */
 .b-button-list__button--active .b-button-list__link {
   color: white;
+  text-decoration: none !important;
 }
 
-/* line 844, ../sass/style.scss */
+/* line 854, ../sass/style.scss */
 .b-button-list__link {
   color: #39275b;
   display: block;
+  ext-decoration: none;
 }
 
-/* line 848, ../sass/style.scss */
+/* line 859, ../sass/style.scss */
 .b-button-list__link, .b-button-list__link:hover, .b-button-list__link:active {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
-/* line 852, ../sass/style.scss */
+/* line 863, ../sass/style.scss */
 .b-cal-navlist {
   margin-right: 20px;
 }
 
-/* line 855, ../sass/style.scss */
+/* line 866, ../sass/style.scss */
 .b-day-dash, .b-main-dash, .b-conf-dash {
   background-color: #e6e6e6;
 }
 
-/* line 858, ../sass/style.scss */
+/* line 869, ../sass/style.scss */
 .b-day-dash {
   display: inline;
   float: left;
@@ -8274,7 +8287,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin: 0 0%;
 }
 
-/* line 861, ../sass/style.scss */
+/* line 872, ../sass/style.scss */
 .b-main-dash {
   display: inline;
   float: left;
@@ -8282,7 +8295,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin: 0 0%;
 }
 
-/* line 864, ../sass/style.scss */
+/* line 875, ../sass/style.scss */
 .b-conf-dash {
   display: inline;
   float: left;
@@ -8290,7 +8303,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin: 0 0%;
 }
 
-/* line 867, ../sass/style.scss */
+/* line 878, ../sass/style.scss */
 .b-calendar-dash {
   display: inline;
   float: left;
@@ -8298,14 +8311,14 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin: 0 0%;
 }
 
-/* line 870, ../sass/style.scss */
+/* line 881, ../sass/style.scss */
 .b-calendar-dash__container {
   background-color: white;
   margin-top: 5px;
   margin-bottom: 5px;
 }
 
-/* line 875, ../sass/style.scss */
+/* line 886, ../sass/style.scss */
 .b-day-dash__container {
   background-color: white;
   margin-top: 5px;
@@ -8313,7 +8326,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin-bottom: 5px;
 }
 
-/* line 881, ../sass/style.scss */
+/* line 892, ../sass/style.scss */
 .b-conf-dash__container {
   background-color: white;
   margin-top: 5px;
@@ -8321,19 +8334,19 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin-bottom: 5px;
 }
 
-/* line 887, ../sass/style.scss */
+/* line 898, ../sass/style.scss */
 .b-main-dash__container {
   margin-top: 5px;
   margin-bottom: 5px;
 }
 
-/* line 892, ../sass/style.scss */
+/* line 903, ../sass/style.scss */
 .b-day-dash__day--active {
   background-color: #39275b;
   color: white;
 }
 
-/* line 896, ../sass/style.scss */
+/* line 907, ../sass/style.scss */
 .b-day-dash__up, .b-day-dash__down {
   color: rgba(91, 59, 112, 0.1);
   -webkit-transition: all 0.3s ease;
@@ -8343,7 +8356,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   cursor: pointer;
 }
 
-/* line 901, ../sass/style.scss */
+/* line 912, ../sass/style.scss */
 .b-day-dash__up:hover, .b-day-dash__down:hover {
   background-color: #39275b;
   -webkit-transition: all 0.3s ease;
@@ -8352,29 +8365,29 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   transition: all 0.3s ease;
 }
 
-/* line 905, ../sass/style.scss */
+/* line 916, ../sass/style.scss */
 .b-day-dash__day-name, .b-day-dash__month-year, .b-day-dash__day-num, .b-day-dash__year, .b-day-dash__time {
   text-align: center;
 }
 
-/* line 908, ../sass/style.scss */
+/* line 919, ../sass/style.scss */
 .b-day-dash__day-name {
   font-size: 25px;
   line-height: 25px;
 }
 
-/* line 912, ../sass/style.scss */
+/* line 923, ../sass/style.scss */
 .b-day-dash__month-year {
   font-size: 18px;
 }
 
-/* line 915, ../sass/style.scss */
+/* line 926, ../sass/style.scss */
 .b-day-dash__day-num {
   font-size: 65px;
   line-height: 65px;
 }
 
-/* line 919, ../sass/style.scss */
+/* line 930, ../sass/style.scss */
 .b-day-dash__time {
   font-size: 20px;
   line-height: 20px;
@@ -8383,7 +8396,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 
 /*------- END Calendar day page ---------*/
 /*------- Calendar Conf Dash ------------*/
-/* line 931, ../sass/style.scss */
+/* line 942, ../sass/style.scss */
 .b-conf-dash__title {
   font-size: 16px;
   text-align: center;
@@ -8393,7 +8406,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   padding-bottom: 10px;
 }
 
-/* line 939, ../sass/style.scss */
+/* line 950, ../sass/style.scss */
 .b-dash-class-list, .b-dash-group-list {
   list-style-type: none;
   border-top: 2px solid #e6e6e6;
@@ -8402,12 +8415,12 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   padding-top: 10px;
 }
 
-/* line 946, ../sass/style.scss */
+/* line 957, ../sass/style.scss */
 .b-dash-class-list__item, .b-dash-group-list__item {
   padding-bottom: 10px;
 }
 
-/* line 949, ../sass/style.scss */
+/* line 960, ../sass/style.scss */
 .b-dash-class-list__link, .b-dash-group-list__link {
   display: block;
   border-bottom: 2px solid #e6e6e6;
@@ -8419,24 +8432,30 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   transition: all 0.3s ease;
 }
 
-/* line 956, ../sass/style.scss */
+/* line 967, ../sass/style.scss */
 .b-dash-class-list__link:hover, .b-dash-group-list__link:hover, .b-dash-class-list__link:active, .b-dash-group-list__link:active {
   text-decoration: none;
   cursor: pointer;
 }
 
-/* line 960, ../sass/style.scss */
+/* line 971, ../sass/style.scss */
 .b-dash-class-list__link:hover, .b-dash-class-list__link:active {
   border-color: #39275b;
   color: #39275b;
 }
 
-/* line 964, ../sass/style.scss */
+/* line 975, ../sass/style.scss */
+.b-dash-group-list__link:hover, .b-dash-group-list__link:active {
+  border-color: #355ea2;
+  color: #355ea2;
+}
+
+/* line 979, ../sass/style.scss */
 .b-dash-group-list__item {
   text-align: center;
 }
 
-/* line 967, ../sass/style.scss */
+/* line 982, ../sass/style.scss */
 .b-dash-class-list__class {
   margin-left: 10px;
   background-color: #39275b;
@@ -8444,12 +8463,12 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   color: white;
 }
 
-/* line 973, ../sass/style.scss */
+/* line 988, ../sass/style.scss */
 .b-dash-class-list__name {
   margin-left: 10px;
 }
 
-/* line 976, ../sass/style.scss */
+/* line 991, ../sass/style.scss */
 .b-conf-dash__button {
   margin-top: 10px;
   margin-bottom: 20px;
@@ -8471,7 +8490,32 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   transition: all 0.3s ease;
 }
 
-/* line 993, ../sass/style.scss */
+/* line 1008, ../sass/style.scss */
+.b-conf-dash__button--add-group {
+  border: 2px solid #355ea2;
+  color: #355ea2;
+}
+
+/* line 1012, ../sass/style.scss */
+.b-conf-dash__button--add-group:hover, .b-conf-dash__button--add-group:active {
+  background-color: #355ea2 !important;
+  color: white !important;
+}
+
+/* line 1016, ../sass/style.scss */
+.b-conf-dash__button-link--add-class {
+  display: block;
+  color: #39275b;
+  text-decoration: none;
+}
+
+/* line 1021, ../sass/style.scss */
+.b-conf-dash__button-link--add-class:hover, .b-conf-dash__button-link--add-class:active {
+  color: white;
+  text-decoration: none;
+}
+
+/* line 1025, ../sass/style.scss */
 .b-conf-dash__button:hover, .b-conf-dash__button:active {
   background-color: #39275b;
   color: white !important;
@@ -8482,7 +8526,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 /* END Footer */
 /* Responsiveness */
 @media (min-width: 768px) and (max-width: 1033px) {
-  /* line 1008, ../sass/style.scss */
+  /* line 1040, ../sass/style.scss */
   .b-signup-form, .b-footer__container--signup-form {
     display: inline;
     float: left;
@@ -8492,13 +8536,13 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
     margin-right: 16.66667%;
   }
 
-  /* line 1013, ../sass/style.scss */
+  /* line 1045, ../sass/style.scss */
   .b-footer__container--signup-form {
     margin-top: 20px;
   }
 }
 @media (min-width: 585px) and (max-width: 767px) {
-  /* line 1018, ../sass/style.scss */
+  /* line 1050, ../sass/style.scss */
   .b-signup-form, .b-footer__container--signup-form {
     display: inline;
     float: left;
@@ -8508,19 +8552,19 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
     margin-right: 8.33333%;
   }
 
-  /* line 1023, ../sass/style.scss */
+  /* line 1055, ../sass/style.scss */
   .b-footer__container--signup-form {
     margin-top: 20px;
   }
 }
 @media (max-width: 584px) {
-  /* line 1028, ../sass/style.scss */
+  /* line 1060, ../sass/style.scss */
   .b-body--signup {
     padding-left: 20px;
     padding-right: 20px;
   }
 
-  /* line 1032, ../sass/style.scss */
+  /* line 1064, ../sass/style.scss */
   .b-signup-form, .b-signup-form__create-account, .b-signup-form__social, .b-footer__container--signup-form {
     display: inline;
     float: left;
@@ -8528,46 +8572,46 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
     margin: 0 0%;
   }
 
-  /* line 1035, ../sass/style.scss */
+  /* line 1067, ../sass/style.scss */
   .b-signup-form__create-account, .b-signup-form__social, .b-footer__container--signup-form {
     text-align: center;
   }
 
-  /* line 1038, ../sass/style.scss */
+  /* line 1070, ../sass/style.scss */
   .b-signup-form__input-group, .b-signup-form__title {
     margin-left: 0;
   }
 
-  /* line 1041, ../sass/style.scss */
+  /* line 1073, ../sass/style.scss */
   .b-signup-form__button {
     margin: auto;
     margin-top: 20px;
   }
 
-  /* line 1045, ../sass/style.scss */
+  /* line 1077, ../sass/style.scss */
   .b-footer__container--signup-form {
     margin-top: 20px;
   }
 }
 /* footer */
-/* line 1051, ../sass/style.scss */
+/* line 1083, ../sass/style.scss */
 .b-footer {
   margin-left: 20px;
   margin-right: 20px;
 }
 
-/* line 1055, ../sass/style.scss */
+/* line 1087, ../sass/style.scss */
 .b-footer__container {
   max-width: 1000px;
 }
 
-/* line 1058, ../sass/style.scss */
+/* line 1090, ../sass/style.scss */
 .b-footer__container--auto {
   margin: auto;
 }
 
 /* SVG icons */
-/* line 1063, ../sass/style.scss */
+/* line 1095, ../sass/style.scss */
 .b-calendar-icon {
   color: #39275b;
 }

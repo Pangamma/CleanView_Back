@@ -130,6 +130,25 @@
                     </div><!-- /.modal-content -->
                   </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
+                    
+                <!-- Add Group Modal -->
+                <div class="modal fade b-modal b-modal--group" id="addGroupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog b-modal__dialog">
+                    <div class="modal-content b-modal__content">
+                      <div class="modal-header b-modal__header">
+                        <button type="button" class="close b-modal__close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Add time to event</h4>
+                      </div>
+                      <div class="modal-body b-modal__body">
+                        <input class="b-modal__add-group-textfield" type="text" placeholder="Name of a group"></input>
+                      </div>
+                      <div class="modal-footer b-modal__footer">
+                        <button type="button" class="btn btn-default b-modal__close-btn" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary b-modal__add" data-dismiss="modal">Add Group</button>
+                      </div>
+                    </div><!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
 
                 <ul class="b-day-event-list" style="margin-left: 0; list-style-type: none;">
                     <li class="b-day-event-list-item b-day-event-list-item--class">
@@ -192,15 +211,14 @@
                     <li class="b-dash-class-list__item"><a class="b-dash-class-list__link"><span class="b-dash-class-list__class">CSS301</span><span class="b-dash-class-list__name">Technical Writing</span></a></li>
                     <li class="b-dash-class-list__item"><a class="b-dash-class-list__link"><span class="b-dash-class-list__class">CSS342</span><span class="b-dash-class-list__name">Introduction Into Algorithms</span></a></li>
                 </ul>
-                <button class="b-conf-dash__button">Add class</button>    
+                <a class="b-conf-dash__button-link b-conf-dash__button-link--add-class" href="add_classes.php"><button class="b-conf-dash__button b-conf-dash__button--add-class">Add class</button></a>    
                 
                 <h2 class="b-conf-dash__title">Your Groups</h2>
                 <ul class="b-dash-group-list">
-                    <li class="b-dash-group-list__item"><a class="b-dash-group-list__link"><span class="b-dash-group-list__name">Group 1</span></a></li>
-                    <li class="b-dash-group-list__item"><a class="b-dash-group-list__link"><span class="b-dash-group-list__name">Group 2</span></a></li>
-                    <li class="b-dash-group-list__item"><a class="b-dash-group-list__link"><span class="b-dash-group-list__name">Group 3</span></a></li>
+                    <li class="b-dash-group-list__item"><a class="b-dash-group-list__link"><span class="b-dash-group-list__name">Blah Club</span></a></li>
+                    <li class="b-dash-group-list__item"><a class="b-dash-group-list__link"><span class="b-dash-group-list__name">Derp Club</span></a></li>
                 </ul>
-                <button class="b-conf-dash__button">Add group</button>
+                <button class="b-conf-dash__button b-conf-dash__button--add-group" data-toggle="modal" data-target="#addGroupModal">Add group</button>
             </div>    
         </div>    
     
@@ -299,7 +317,8 @@
         
             
             var add_even_block = $('.b-add-event-block'),
-                check_mark_wrapper = $('.b-day-event-list__check-mark-wrapper');
+                check_mark_wrapper = $('.b-day-event-list__check-mark-wrapper'),
+                tag_list_item = $('.b-tag-list__item');
 
             $('.b-main-dash__add-event-button').on("click", function(){
                 add_even_block.removeClass('g-hide');
@@ -331,7 +350,8 @@
         });
         $('#addTagModal').modal({show: false});
         $('#addTimeModal').modal({show: false});
-        
+        $('#addGroupModal').modal({show: false});
+
         $('.b-tag-list__item').on("click", function(){
             $('.b-tag-list__item').removeClass('b-tag-list__item--active');
             $(this).addClass('b-tag-list__item--active');
