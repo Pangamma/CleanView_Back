@@ -56,10 +56,81 @@
                     <textarea placeholder="What's on your mind?" class="b-add-event-block__textarea"></textarea>    
                     <div class="b-add-event-block__button-group">
                         <button class="b-add-event-block__button b-add-event-block__button--done">Done</button>
-                        <button class="b-add-event-block__button b-add-event-block__button--tag">Add Tag</button>
+                        <button class="b-add-event-block__button b-add-event-block__button--tag" type="button" data-toggle="modal" data-target="#addTagModal">Add Tag</button>
+                        <button class="b-add-event-block__button b-add-event-block__button--time" type="button" data-toggle="modal" data-target="#addTimeModal">Add Time</button>
                         <button class="b-add-event-block__button b-add-event-block__button--cancel">Cancel</button>
                     </div>    
                 </div>
+
+
+                <!-- Tag Modal -->
+                <div class="modal fade b-modal b-modal--tag" id="addTagModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog b-modal__dialog">
+                    <div class="modal-content b-modal__content">
+                      <div class="modal-header b-modal__header">
+                        <button type="button" class="close b-modal__close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Add tag to event</h4>
+                      </div>
+                      <div class="modal-body b-modal__body">
+                        <ul class="b-tag-list">
+                            <li class="b-tag-list__item b-tag-list__item--class">
+                                CSS360
+                            </li> 
+                            <li class="b-tag-list__item b-tag-list__item--group">
+                                Blah Club
+                            </li>
+                            <li class="b-tag-list__item b-tag-list__item--group">
+                                Derp Club
+                            </li>
+                            <li class="b-tag-list__item b-tag-list__item--personal b-tag-list__item--active">
+                                Personal
+                            </li>   
+                        </ul>    
+                      </div>
+                      <div class="modal-footer b-modal__footer">
+                        <button type="button" class="btn btn-default b-modal__close-btn" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary b-modal__add" data-dismiss="modal">Add Tag</button>
+                      </div>
+                    </div><!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+                
+                <!-- Time Modal -->
+                <div class="modal fade b-modal b-modal--time" id="addTimeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog b-modal__dialog">
+                    <div class="modal-content b-modal__content">
+                      <div class="modal-header b-modal__header">
+                        <button type="button" class="close b-modal__close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Add time to event</h4>
+                      </div>
+                      <div class="modal-body b-modal__body">
+                        <select class="b-add-time-select-digit">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                        </select>
+                        <select class="b-add-time-select-am-pm">
+                            <option>AM</option>
+                            <option>PM</option>
+                        </select>
+                      </div>
+                      <div class="modal-footer b-modal__footer">
+                        <button type="button" class="btn btn-default b-modal__close-btn" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary b-modal__add" data-dismiss="modal">Add Time</button>
+                      </div>
+                    </div><!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+
                 <ul class="b-day-event-list" style="margin-left: 0; list-style-type: none;">
                     <li class="b-day-event-list-item b-day-event-list-item--class">
                         <div class="b-day-event-list-item__header b-day-event-list-item__header--class"><p class="b-day-event-list-item__header-p"><span class="b-day-event-list-item__class-tag-id">CSS360</span> <span class="b-day-event-list-item__tag-name b-day-event-list-item__tag-name--class">Software Engineering</span></p> <span class="b-day-event-list-item__time b-day-event-list-item__time--class">8:00 AM</span></div>
@@ -136,6 +207,7 @@
     <!--javascript-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+    <script src="assets/js/modal.js"></script>
     <script>
         $(document).ready(function(){
             var windowHeight = $(window).height();
@@ -226,32 +298,45 @@
             }); 
         
             
+            var add_even_block = $('.b-add-event-block'),
+                check_mark_wrapper = $('.b-day-event-list__check-mark-wrapper');
 
             $('.b-main-dash__add-event-button').on("click", function(){
-                $('.b-add-event-block').removeClass('g-hide');
+                add_even_block.removeClass('g-hide');
                 $('.b-add-event-block__textarea').focus();
             });
             $('.b-add-event-block__button--cancel').on("click", function(){
-                $('.b-add-event-block').addClass('g-hide');
+                add_even_block.addClass('g-hide');
             });
             $('.b-add-event-block__button--done').on("click", function(){
-                $('.b-add-event-block').addClass('g-hide');
+                add_even_block.addClass('g-hide');
             });    
             
             if($('.b-day-event-list-item__container').height() > 70){
-                $('.b-day-event-list__check-mark-wrapper').css('margin-top', ($('.b-day-event-list-item__container').height() - 70)/2 );
+                check_mark_wrapper.css('margin-top', ($('.b-day-event-list-item__container').height() - 70)/2 );
             }
-            $('.b-day-event-list__check-mark-wrapper').on("click", function(){
+            check_mark_wrapper.on("click", function(){
                 $(this).parent().parent().addClass('b-day-event-list-item--done');
                 console.log("blah");
             });
             $('.b-day-event-list-item__delete').on("click", function(){
                 $(this).parent().parent().remove();
-                console.log("blah");
             });
         });
         
+        $('.b-button-list__button').on("click", function(){
+            $('.b-button-list__button').removeClass('b-button-list__button--active');
+            $(this).addClass('b-button-list__button--active');
+            return false;
+        });
+        $('#addTagModal').modal({show: false});
+        $('#addTimeModal').modal({show: false});
         
+        $('.b-tag-list__item').on("click", function(){
+            $('.b-tag-list__item').removeClass('b-tag-list__item--active');
+            $(this).addClass('b-tag-list__item--active');
+        });
+
 
          /*
      * Replace all SVG images with inline SVG

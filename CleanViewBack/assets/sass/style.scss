@@ -619,7 +619,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin:0 auto;
 }
 .b-add-event-block__button{
-  width: 70px;
+  width: 80px;
 }
 .b-add-event-block__button--cancel{
   background-color: white;
@@ -647,6 +647,68 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   float: left;
   @include transition(all .3s ease);
 }
+.b-add-event-block__button--time{
+  background-color: white;
+  border: 2px solid $uw-green;
+  color: $uw-green;
+  float: left;
+  margin-left: 10px;
+  @include transition(all .3s ease);
+}
+.b-add-event-block__button--time:hover, .b-add-event-block__button--time:active{
+  background-color: $uw-green;
+  color: white;
+}
+.b-modal{
+  border-radius: 0;
+  -moz-border-radius: 0;
+}
+.b-modal__header{
+  border-bottom: none;
+}
+.b-modal__footer{
+  border-top: none;
+}
+.b-modal__add, .b-modal__add:hover, .b-modal__add:active{
+  border: 2px solid $gold;
+  background-color: $gold;
+  color: $plump;
+}
+.b-modal__close-btn{
+  background-color: white;
+  border: 2px solid $plump;
+  color: $plump;
+  @include transition(all .3s ease);
+}
+.b-modal__close-btn:hover, .b-modal__close-btn:active{
+  background-color: $plump;
+  color: white;
+}
+.b-tag-list{
+  margin-left: 0;
+  list-style-type: none;
+}
+.b-tag-list__item{
+  display: inline-block;
+  margin-right: 5px;
+  padding: 3px;
+  cursor: pointer;
+}
+.b-tag-list__item--active{
+  border: 2px solid $gold;
+}
+.b-tag-list__item--class{
+  background-color: $plump;
+  color: white;
+}
+.b-tag-list__item--group{
+  background-color: $uw-blue;
+  color: white;
+}
+.b-tag-list__item--personal{
+  background-color: $uw-green;
+  color: white;
+}
 .b-add-event-block__button--tag:hover, .b-add-event-block__button--tag:active, .b-day-event-list-item__delete:hover, .b-day-event-list-item__delete:active{
   background-color: $plump;
   color: white;
@@ -659,6 +721,9 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 }
 .b-day-event-list-item--done{
   opacity: 0.3;
+  .b-day-event-list__check-mark{
+    fill: $gold;
+  }
 }
 .b-day-event-list-item__header{
   color: white; 
@@ -668,7 +733,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   background-color: $plump; 
 } 
 .b-day-event-list-item__header--personal{
-  background-color: #4a7c01;
+  background-color: $uw-green;
 }
 .b-day-event-list-item__header--group{
   background-color: #355ea2;

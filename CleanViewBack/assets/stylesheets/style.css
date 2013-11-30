@@ -7908,7 +7908,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 
 /* line 621, ../sass/style.scss */
 .b-add-event-block__button {
-  width: 70px;
+  width: 80px;
 }
 
 /* line 624, ../sass/style.scss */
@@ -7952,73 +7952,173 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 }
 
 /* line 650, ../sass/style.scss */
+.b-add-event-block__button--time {
+  background-color: white;
+  border: 2px solid #4a7c01;
+  color: #4a7c01;
+  float: left;
+  margin-left: 10px;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+/* line 658, ../sass/style.scss */
+.b-add-event-block__button--time:hover, .b-add-event-block__button--time:active {
+  background-color: #4a7c01;
+  color: white;
+}
+
+/* line 662, ../sass/style.scss */
+.b-modal {
+  border-radius: 0;
+  -moz-border-radius: 0;
+}
+
+/* line 666, ../sass/style.scss */
+.b-modal__header {
+  border-bottom: none;
+}
+
+/* line 669, ../sass/style.scss */
+.b-modal__footer {
+  border-top: none;
+}
+
+/* line 672, ../sass/style.scss */
+.b-modal__add, .b-modal__add:hover, .b-modal__add:active {
+  border: 2px solid #d7a900;
+  background-color: #d7a900;
+  color: #39275b;
+}
+
+/* line 677, ../sass/style.scss */
+.b-modal__close-btn {
+  background-color: white;
+  border: 2px solid #39275b;
+  color: #39275b;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+/* line 683, ../sass/style.scss */
+.b-modal__close-btn:hover, .b-modal__close-btn:active {
+  background-color: #39275b;
+  color: white;
+}
+
+/* line 687, ../sass/style.scss */
+.b-tag-list {
+  margin-left: 0;
+  list-style-type: none;
+}
+
+/* line 691, ../sass/style.scss */
+.b-tag-list__item {
+  display: inline-block;
+  margin-right: 5px;
+  padding: 3px;
+  cursor: pointer;
+}
+
+/* line 697, ../sass/style.scss */
+.b-tag-list__item--active {
+  border: 2px solid #d7a900;
+}
+
+/* line 700, ../sass/style.scss */
+.b-tag-list__item--class {
+  background-color: #39275b;
+  color: white;
+}
+
+/* line 704, ../sass/style.scss */
+.b-tag-list__item--group {
+  background-color: #355ea2;
+  color: white;
+}
+
+/* line 708, ../sass/style.scss */
+.b-tag-list__item--personal {
+  background-color: #4a7c01;
+  color: white;
+}
+
+/* line 712, ../sass/style.scss */
 .b-add-event-block__button--tag:hover, .b-add-event-block__button--tag:active, .b-day-event-list-item__delete:hover, .b-day-event-list-item__delete:active {
   background-color: #39275b;
   color: white;
 }
 
-/* line 655, ../sass/style.scss */
+/* line 717, ../sass/style.scss */
 .b-day-event-list-item {
   background-color: white;
   margin-bottom: 10px;
   padding-bottom: 10px;
 }
 
-/* line 660, ../sass/style.scss */
+/* line 722, ../sass/style.scss */
 .b-day-event-list-item--done {
   opacity: 0.3;
 }
+/* line 724, ../sass/style.scss */
+.b-day-event-list-item--done .b-day-event-list__check-mark {
+  fill: #d7a900;
+}
 
-/* line 663, ../sass/style.scss */
+/* line 728, ../sass/style.scss */
 .b-day-event-list-item__header {
   color: white;
   padding: 10px;
 }
 
-/* line 667, ../sass/style.scss */
+/* line 732, ../sass/style.scss */
 .b-day-event-list-item__header--class {
   background-color: #39275b;
 }
 
-/* line 670, ../sass/style.scss */
+/* line 735, ../sass/style.scss */
 .b-day-event-list-item__header--personal {
   background-color: #4a7c01;
 }
 
-/* line 673, ../sass/style.scss */
+/* line 738, ../sass/style.scss */
 .b-day-event-list-item__header--group {
   background-color: #355ea2;
 }
 
-/* line 676, ../sass/style.scss */
+/* line 741, ../sass/style.scss */
 .b-day-event-list-item__time--personal {
   background-color: #898f4b;
 }
 
-/* line 679, ../sass/style.scss */
+/* line 744, ../sass/style.scss */
 .b-day-event-list-item__time--group {
   background-color: #248fc4;
 }
 
-/* line 682, ../sass/style.scss */
+/* line 747, ../sass/style.scss */
 .b-day-event-list-item__header-p {
   margin-bottom: 0;
   margin-top: 5px;
   display: inline-block;
 }
 
-/* line 687, ../sass/style.scss */
+/* line 752, ../sass/style.scss */
 .b-day-event-list-item__class-tag-id {
   font-size: 30px;
 }
 
-/* line 690, ../sass/style.scss */
+/* line 755, ../sass/style.scss */
 .b-day-event-list-item__tag-name {
   font-size: 20px;
   margin-left: 5px;
 }
 
-/* line 694, ../sass/style.scss */
+/* line 759, ../sass/style.scss */
 .b-day-event-list-item__time {
   font-size: 30px;
   padding: 5px;
@@ -8027,12 +8127,12 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   float: right;
 }
 
-/* line 701, ../sass/style.scss */
+/* line 766, ../sass/style.scss */
 .b-day-event-list-item__time--class {
   background-color: #363c74;
 }
 
-/* line 704, ../sass/style.scss */
+/* line 769, ../sass/style.scss */
 .b-day-event-list-item__container {
   width: 100%;
   display: inline-block;
@@ -8040,14 +8140,14 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin: 0 auto;
 }
 
-/* line 710, ../sass/style.scss */
+/* line 775, ../sass/style.scss */
 .b-day-event-list__check-mark-wrapper {
   float: right;
   width: 70px;
   height: 70px;
 }
 
-/* line 715, ../sass/style.scss */
+/* line 780, ../sass/style.scss */
 .b-day-event-list__check-mark {
   width: 70px;
   height: 70px;
@@ -8059,17 +8159,17 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   transition: all 0.3s ease;
 }
 
-/* line 722, ../sass/style.scss */
+/* line 787, ../sass/style.scss */
 .b-day-event-list__check-mark:hover {
   fill: #d7a900;
 }
 
-/* line 725, ../sass/style.scss */
+/* line 790, ../sass/style.scss */
 .b-day-event-list-item__flag, .b-day-event-list-item__delete {
   margin-left: 10px;
 }
 
-/* line 728, ../sass/style.scss */
+/* line 793, ../sass/style.scss */
 .b-day-event-list-item__flag {
   background-color: white;
   color: red;
@@ -8081,7 +8181,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   transition: all 0.3s ease;
 }
 
-/* line 735, ../sass/style.scss */
+/* line 800, ../sass/style.scss */
 .b-day-event-list-item__delete {
   background-color: white;
   color: #39275b;
@@ -8093,38 +8193,38 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   transition: all 0.3s ease;
 }
 
-/* line 742, ../sass/style.scss */
+/* line 807, ../sass/style.scss */
 .b-day-event-list-item__text {
   font-size: 16px;
   margin: 10px;
   float: left;
 }
 
-/* line 747, ../sass/style.scss */
+/* line 812, ../sass/style.scss */
 .b-cal-navlist__logout-link, .b-cal-navlist__logout-link:hover, .b-cal-navlist__logout-link:active {
   color: white;
   display: block;
   text-decoration: none;
 }
 
-/* line 752, ../sass/style.scss */
+/* line 817, ../sass/style.scss */
 .b-button-list, .b-cal-navlist {
   list-style-type: none;
   display: inline-block;
   float: right;
 }
 
-/* line 757, ../sass/style.scss */
+/* line 822, ../sass/style.scss */
 .b-button-list__button, .b-cal-navlist__item {
   display: inline-block;
 }
 
-/* line 760, ../sass/style.scss */
+/* line 825, ../sass/style.scss */
 .b-button-list {
   border-right: 2px solid #39275b;
 }
 
-/* line 763, ../sass/style.scss */
+/* line 828, ../sass/style.scss */
 .b-button-list__button {
   border-top: 2px solid #39275b;
   border-bottom: 2px solid #39275b;
@@ -8136,37 +8236,37 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   text-align: center;
 }
 
-/* line 773, ../sass/style.scss */
+/* line 838, ../sass/style.scss */
 .b-button-list__button--active {
   background-color: #39275b;
 }
-/* line 775, ../sass/style.scss */
+/* line 840, ../sass/style.scss */
 .b-button-list__button--active .b-button-list__link {
   color: white;
 }
 
-/* line 779, ../sass/style.scss */
+/* line 844, ../sass/style.scss */
 .b-button-list__link {
   color: #39275b;
   display: block;
 }
 
-/* line 783, ../sass/style.scss */
+/* line 848, ../sass/style.scss */
 .b-button-list__link, .b-button-list__link:hover, .b-button-list__link:active {
   text-decoration: none;
 }
 
-/* line 787, ../sass/style.scss */
+/* line 852, ../sass/style.scss */
 .b-cal-navlist {
   margin-right: 20px;
 }
 
-/* line 790, ../sass/style.scss */
+/* line 855, ../sass/style.scss */
 .b-day-dash, .b-main-dash, .b-conf-dash {
   background-color: #e6e6e6;
 }
 
-/* line 793, ../sass/style.scss */
+/* line 858, ../sass/style.scss */
 .b-day-dash {
   display: inline;
   float: left;
@@ -8174,7 +8274,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin: 0 0%;
 }
 
-/* line 796, ../sass/style.scss */
+/* line 861, ../sass/style.scss */
 .b-main-dash {
   display: inline;
   float: left;
@@ -8182,7 +8282,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin: 0 0%;
 }
 
-/* line 799, ../sass/style.scss */
+/* line 864, ../sass/style.scss */
 .b-conf-dash {
   display: inline;
   float: left;
@@ -8190,7 +8290,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin: 0 0%;
 }
 
-/* line 802, ../sass/style.scss */
+/* line 867, ../sass/style.scss */
 .b-calendar-dash {
   display: inline;
   float: left;
@@ -8198,14 +8298,14 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin: 0 0%;
 }
 
-/* line 805, ../sass/style.scss */
+/* line 870, ../sass/style.scss */
 .b-calendar-dash__container {
   background-color: white;
   margin-top: 5px;
   margin-bottom: 5px;
 }
 
-/* line 810, ../sass/style.scss */
+/* line 875, ../sass/style.scss */
 .b-day-dash__container {
   background-color: white;
   margin-top: 5px;
@@ -8213,7 +8313,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin-bottom: 5px;
 }
 
-/* line 816, ../sass/style.scss */
+/* line 881, ../sass/style.scss */
 .b-conf-dash__container {
   background-color: white;
   margin-top: 5px;
@@ -8221,19 +8321,19 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   margin-bottom: 5px;
 }
 
-/* line 822, ../sass/style.scss */
+/* line 887, ../sass/style.scss */
 .b-main-dash__container {
   margin-top: 5px;
   margin-bottom: 5px;
 }
 
-/* line 827, ../sass/style.scss */
+/* line 892, ../sass/style.scss */
 .b-day-dash__day--active {
   background-color: #39275b;
   color: white;
 }
 
-/* line 831, ../sass/style.scss */
+/* line 896, ../sass/style.scss */
 .b-day-dash__up, .b-day-dash__down {
   color: rgba(91, 59, 112, 0.1);
   -webkit-transition: all 0.3s ease;
@@ -8243,7 +8343,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   cursor: pointer;
 }
 
-/* line 836, ../sass/style.scss */
+/* line 901, ../sass/style.scss */
 .b-day-dash__up:hover, .b-day-dash__down:hover {
   background-color: #39275b;
   -webkit-transition: all 0.3s ease;
@@ -8252,29 +8352,29 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   transition: all 0.3s ease;
 }
 
-/* line 840, ../sass/style.scss */
+/* line 905, ../sass/style.scss */
 .b-day-dash__day-name, .b-day-dash__month-year, .b-day-dash__day-num, .b-day-dash__year, .b-day-dash__time {
   text-align: center;
 }
 
-/* line 843, ../sass/style.scss */
+/* line 908, ../sass/style.scss */
 .b-day-dash__day-name {
   font-size: 25px;
   line-height: 25px;
 }
 
-/* line 847, ../sass/style.scss */
+/* line 912, ../sass/style.scss */
 .b-day-dash__month-year {
   font-size: 18px;
 }
 
-/* line 850, ../sass/style.scss */
+/* line 915, ../sass/style.scss */
 .b-day-dash__day-num {
   font-size: 65px;
   line-height: 65px;
 }
 
-/* line 854, ../sass/style.scss */
+/* line 919, ../sass/style.scss */
 .b-day-dash__time {
   font-size: 20px;
   line-height: 20px;
@@ -8283,7 +8383,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 
 /*------- END Calendar day page ---------*/
 /*------- Calendar Conf Dash ------------*/
-/* line 866, ../sass/style.scss */
+/* line 931, ../sass/style.scss */
 .b-conf-dash__title {
   font-size: 16px;
   text-align: center;
@@ -8293,7 +8393,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   padding-bottom: 10px;
 }
 
-/* line 874, ../sass/style.scss */
+/* line 939, ../sass/style.scss */
 .b-dash-class-list, .b-dash-group-list {
   list-style-type: none;
   border-top: 2px solid #e6e6e6;
@@ -8302,12 +8402,12 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   padding-top: 10px;
 }
 
-/* line 881, ../sass/style.scss */
+/* line 946, ../sass/style.scss */
 .b-dash-class-list__item, .b-dash-group-list__item {
   padding-bottom: 10px;
 }
 
-/* line 884, ../sass/style.scss */
+/* line 949, ../sass/style.scss */
 .b-dash-class-list__link, .b-dash-group-list__link {
   display: block;
   border-bottom: 2px solid #e6e6e6;
@@ -8319,24 +8419,24 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   transition: all 0.3s ease;
 }
 
-/* line 891, ../sass/style.scss */
+/* line 956, ../sass/style.scss */
 .b-dash-class-list__link:hover, .b-dash-group-list__link:hover, .b-dash-class-list__link:active, .b-dash-group-list__link:active {
   text-decoration: none;
   cursor: pointer;
 }
 
-/* line 895, ../sass/style.scss */
+/* line 960, ../sass/style.scss */
 .b-dash-class-list__link:hover, .b-dash-class-list__link:active {
   border-color: #39275b;
   color: #39275b;
 }
 
-/* line 899, ../sass/style.scss */
+/* line 964, ../sass/style.scss */
 .b-dash-group-list__item {
   text-align: center;
 }
 
-/* line 902, ../sass/style.scss */
+/* line 967, ../sass/style.scss */
 .b-dash-class-list__class {
   margin-left: 10px;
   background-color: #39275b;
@@ -8344,12 +8444,12 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   color: white;
 }
 
-/* line 908, ../sass/style.scss */
+/* line 973, ../sass/style.scss */
 .b-dash-class-list__name {
   margin-left: 10px;
 }
 
-/* line 911, ../sass/style.scss */
+/* line 976, ../sass/style.scss */
 .b-conf-dash__button {
   margin-top: 10px;
   margin-bottom: 20px;
@@ -8371,7 +8471,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   transition: all 0.3s ease;
 }
 
-/* line 928, ../sass/style.scss */
+/* line 993, ../sass/style.scss */
 .b-conf-dash__button:hover, .b-conf-dash__button:active {
   background-color: #39275b;
   color: white !important;
@@ -8382,7 +8482,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 /* END Footer */
 /* Responsiveness */
 @media (min-width: 768px) and (max-width: 1033px) {
-  /* line 943, ../sass/style.scss */
+  /* line 1008, ../sass/style.scss */
   .b-signup-form, .b-footer__container--signup-form {
     display: inline;
     float: left;
@@ -8392,13 +8492,13 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
     margin-right: 16.66667%;
   }
 
-  /* line 948, ../sass/style.scss */
+  /* line 1013, ../sass/style.scss */
   .b-footer__container--signup-form {
     margin-top: 20px;
   }
 }
 @media (min-width: 585px) and (max-width: 767px) {
-  /* line 953, ../sass/style.scss */
+  /* line 1018, ../sass/style.scss */
   .b-signup-form, .b-footer__container--signup-form {
     display: inline;
     float: left;
@@ -8408,19 +8508,19 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
     margin-right: 8.33333%;
   }
 
-  /* line 958, ../sass/style.scss */
+  /* line 1023, ../sass/style.scss */
   .b-footer__container--signup-form {
     margin-top: 20px;
   }
 }
 @media (max-width: 584px) {
-  /* line 963, ../sass/style.scss */
+  /* line 1028, ../sass/style.scss */
   .b-body--signup {
     padding-left: 20px;
     padding-right: 20px;
   }
 
-  /* line 967, ../sass/style.scss */
+  /* line 1032, ../sass/style.scss */
   .b-signup-form, .b-signup-form__create-account, .b-signup-form__social, .b-footer__container--signup-form {
     display: inline;
     float: left;
@@ -8428,46 +8528,46 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
     margin: 0 0%;
   }
 
-  /* line 970, ../sass/style.scss */
+  /* line 1035, ../sass/style.scss */
   .b-signup-form__create-account, .b-signup-form__social, .b-footer__container--signup-form {
     text-align: center;
   }
 
-  /* line 973, ../sass/style.scss */
+  /* line 1038, ../sass/style.scss */
   .b-signup-form__input-group, .b-signup-form__title {
     margin-left: 0;
   }
 
-  /* line 976, ../sass/style.scss */
+  /* line 1041, ../sass/style.scss */
   .b-signup-form__button {
     margin: auto;
     margin-top: 20px;
   }
 
-  /* line 980, ../sass/style.scss */
+  /* line 1045, ../sass/style.scss */
   .b-footer__container--signup-form {
     margin-top: 20px;
   }
 }
 /* footer */
-/* line 986, ../sass/style.scss */
+/* line 1051, ../sass/style.scss */
 .b-footer {
   margin-left: 20px;
   margin-right: 20px;
 }
 
-/* line 990, ../sass/style.scss */
+/* line 1055, ../sass/style.scss */
 .b-footer__container {
   max-width: 1000px;
 }
 
-/* line 993, ../sass/style.scss */
+/* line 1058, ../sass/style.scss */
 .b-footer__container--auto {
   margin: auto;
 }
 
 /* SVG icons */
-/* line 998, ../sass/style.scss */
+/* line 1063, ../sass/style.scss */
 .b-calendar-icon {
   color: #39275b;
 }
