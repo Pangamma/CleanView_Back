@@ -1,4 +1,9 @@
-<?php include('head.php'); ?>
+<?php 
+    include('head.php'); 
+    
+    $userId = isset($_SESSION["userData"]["user_id"]) ? $_SESSION["userData"]["user_id"] : -1;
+    setcookie("uid", $userId, time()+3600);
+?>
     
     <body class="b-body b-body--grey">
         
@@ -224,24 +229,61 @@
     
     <!--javascript-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
     <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
     <script src="assets/js/modal.js"></script>
+    <!-- TODO: move to external file -->
     <script>
         $(document).ready(function(){
             var windowHeight = $(window).height();
-            noDashHeight = windowHeight - $('.b-header--calendar').outerHeight(),
-            dayHeight = (noDashHeight - 15)/3,
-            dayContentHeight = $('.b-day-dash__day-content').height(),
-            dayContentMargin = (dayHeight - dayContentHeight)/2,
+            var noDashHeight = windowHeight - $('.b-header--calendar').outerHeight();
+            var dayHeight = (noDashHeight - 15)/3;
+            var dayContentHeight = $('.b-day-dash__day-content').height();
+            var dayContentMargin = (dayHeight - dayContentHeight)/2;
+            var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+            var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+            var newDate = new Date();
+            var todaysDate = newDate.getDate();
+            var yesterdayDate = new Date();
+            var tomorrowDate = new Date();
             
-            monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ],
-            dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
-            newDate = new Date(),
-            newDate.setDate(newDate.getDate()),
-            yesterdayDate = new Date(),
-            yesterdayDate.setDate(yesterdayDate.getDate() - 1),
-            tomorrowDate = new Date(),
-            tomorrowDate.setDate(tomorrowDate.getDate() + 1);
+            newDate.setDate();
+            yesterdayDate.setDate(todaysDate - 1);
+            tomorrowDate.setDate(todaysDate + 1);
+
+            var connection = (function establishConnection(){
+                var uid = getCookie("uid");
+               $.ajax({
+                    type: "GET",
+                    url : "http://localhost:38368/" + uid + "/establish",
+                    dataType: "jsonp",
+                    success : function(data){
+                        console.log(data);
+                    },
+                    error: function(err) { console.log(err); },
+                });
+                // var socket = io.connect("localhost:38368", {userId: 55});
+            })();
+
+            function getCookie(c_name) {
+                var c_value = document.cookie;
+                var c_start = c_value.indexOf(" " + c_name + "=");
+                if (c_start == -1) {
+                  c_start = c_value.indexOf(c_name + "=");
+                }
+                if (c_start == -1) {
+                  c_value = null;
+                }
+                else {
+                    c_start = c_value.indexOf("=", c_start) + 1;
+                    var c_end = c_value.indexOf(";", c_start);
+                    if (c_end == -1) {
+                        c_end = c_value.length;
+                    }
+                    c_value = unescape(c_value.substring(c_start,c_end));
+                }
+                return c_value;
+            }
 
             // This function displays the current time
             function updateClock(){

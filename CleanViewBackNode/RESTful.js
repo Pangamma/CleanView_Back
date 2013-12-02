@@ -1,17 +1,13 @@
 "use strict";
 
 var async = require('async');
+var uuid = require('node-uuid');
 
-
-module.exports = function (app, tables, shapes, middleware) {
+module.exports = function (app, tables, shapes, middleware, io) {
 	//Blocking but will only run once
 	var eventFields = shapes.events.map(function (elm) {
 		return "events." + elm.Field;
 	}).join(", ");
-
-	var channelFields = shapes.enrollments.map(function (elm) {
-		return "enrollments." + elm.Field;
-	});
 
 	var eventsQuery = "";
 	eventsQuery += "SELECT " + eventFields + " FROM events ";
@@ -49,23 +45,36 @@ module.exports = function (app, tables, shapes, middleware) {
 	 *	gathers user events and channels to subsribe to
 	 */
 	app.get("/:user/establish", middleware.readStack, function (req, res) {
-		var user = tables.escape(req.params.user);
+		var user = 58 //tables.escape(req.params.user);
 		var queryEvents = eventsQuery + user;
 		var queryChannels = channelsQuery + user;
 		var pings = 0;
-		var holdingCells = [];
+		var holdingCells = {};
 
-		function collectionDone(err, results) {
-			holdingCells.push(results);
+		var token = uuid.v4();
+
+		// global.tokens[sessionID] = token;
+
+		// setTimeout(function(){
+		// 	delete global.tokens[sessionID];
+		// }, 3600000);
+
+		function collectionDone(err, name, results) {
+			holdingCells[name] = results;
 			if (++pings > 1) {
-				console.log(holdingCells);
-				res.send(holdingCells);
+				res.setHeader("Content-Type", "application/json")
+				res.jsonp({
+					data: holdingCells,
+					code: token
+				});
 			}
 		}
 
-		tables.query(queryEvents, collectionDone);
+		tables.query(queryEvents, function (err, events) {
+			collectionDone(err, "events", events);
+		});
 		tables.query(queryChannels, function (err, channels) {
-			collectionDone(err, channels.map(function (elm) {
+			collectionDone(err, "channels", channels.map(function (elm) {
 				return elm.course_id;
 			}));
 		});
@@ -99,7 +108,8 @@ module.exports = function (app, tables, shapes, middleware) {
 
 		if (!(table in shapes)) return res.send(404, "entitiy does not exist"); //table does not exist
 		if (!req.body) return res.send(400, "no query");
-
+		var channel = req.body.channel;
+		delete req.body.channel;
 		validate(table, req.body, function (badShape, entity) {
 			if (badShape) return res.send(400, badShape);
 
@@ -109,6 +119,12 @@ module.exports = function (app, tables, shapes, middleware) {
 						return res.send(500);
 					});
 				}
+
+				//async channel broadcast if new event
+				if (channel && table === "events") {
+					io.sockets.in(channel).emit('new event', entity);
+				}
+
 				res.send(200);
 			});
 		});

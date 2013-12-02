@@ -133,6 +133,7 @@ class Api {
 				$_SESSION['loggedin'] = true;
 				$_SESSION['email'] = $row['email'];
 				$_SESSION['userJson'] = $this->user;
+				$_SESSION['userData'] = $this->user->jsonSerialize();
 				//so they do not have to keep logging into our site.
 				if ($rememberMe) {
 					setcookie("email", $email);

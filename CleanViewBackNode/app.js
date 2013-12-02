@@ -20,6 +20,7 @@ var fs = require('fs');
 var express = require('express');
 var app = express();
 app.use(express.bodyParser());
+app.set("jsonp callback", true);
 
 app.listen(38368);
 
@@ -70,7 +71,7 @@ function connectDB(done) {
 function startServices(err) {
 	if (err) console.log(err);
 	require('./streams.js')(io, tables, shapes, middleware);
-	require('./RESTful.js')(app, tables, shapes, middleware);
+	require('./RESTful.js')(app, tables, shapes, middleware, io);
 
 	//ports will have to be changed for https
 	console.log("************************************************");
