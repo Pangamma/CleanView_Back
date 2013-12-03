@@ -65,7 +65,7 @@
                     </div>
                     <div class="g-span12">
                         <div class="b-addclasses-form__btn-group">
-                            <button type="submit" class="b-addclasses-form__btn b-addclasses-form__btn--prev">Previous</button>    
+                            <button type="submit" class="b-addclasses-form__btn b-addclasses-form__btn--prev">Previous</button>   
                             <button type="submit" class="b-addclasses-form__btn b-addclasses-form__btn--next">Next</button>
                         </div>    
                     </div>    
