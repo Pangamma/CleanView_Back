@@ -1,8 +1,18 @@
 <?php 
     include('head.php'); 
+
+    require_once ('secure/api.php');
+    $api = new Api ();
     
-    $userId = isset($_SESSION["userData"]["user_id"]) ? $_SESSION["userData"]["user_id"] : -1;
-    setcookie("uid", $userId, time()+3600);
+    $email = (isset($_POST["b-login-form__email"]) ? $_POST["b-login-form__email"] : null);
+    $password = (isset($_POST["b-login-form__password"]) ? $_POST["b-login-form__password"] : null);
+    
+    if (!$api->isLoggedIn () && !$api->login($email, $password)) {
+    	// die after printing a redirect because nothing more is needed
+    	// by the page.
+    	echo '<meta http-equiv="refresh" content="0; url=index.php">';
+    	die ();
+    }
 ?>
     
     <body class="b-body b-body--grey">
@@ -12,7 +22,7 @@
                 
                 <h1 class="b-header__logo">PeerCalendar</h1>
                 <ul class="b-cal-navlist">
-                    <li class="b-cal-navlist__item b-cal-navlist__item--logout"><a class="b-cal-navlist__logout-link" href="index.php">Log out</a></li>
+                    <li class="b-cal-navlist__item b-cal-navlist__item--logout"><a class="b-cal-navlist__logout-link" href="logout.php">Log out</a></li>
                 </ul>
             </div>
         </div>
