@@ -1,4 +1,19 @@
-<?php include('head.php'); ?>
+<?php include('head.php');
+
+ 
+        require_once ('../config.php');
+        require_once ('secure/api.php');
+
+
+    $api = new Api ();
+    
+    $api->addUser ( $_POST['b-signup-form__firstname'], 
+                    $_POST['b-signup-form__lastname'], 
+                    $_POST['b-signup-form__email'], 
+                    $_POST['b-signup-form__username'], 
+                    $_POST['b-signup-form__password'] ) ;
+    
+?>
     
     <body class="b-body b-body--grey">
         <h1 class="b-signup-page-logo">PeerCalendar</h1>
