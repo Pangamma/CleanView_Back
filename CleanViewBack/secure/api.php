@@ -1,5 +1,6 @@
 <?php
-
+ini_set('display_errors', 'On');
+ var_dump(__FILE__, __LINE__, $_REQUEST);
 #####################################################################
 # 	       D O C U M E N T _ S U M M A R Y							#
 #####################################################################
@@ -588,7 +589,7 @@ class Api {
 				":email" =>  $email,
 				":username" => $username,
 				":password_hash" => $password_hash,
-				":salt" => $salt,
+				":salt" => $salt
 		);
 		
 		return $this->dbConn->execute($query, $params);
