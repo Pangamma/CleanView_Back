@@ -58,6 +58,7 @@ function connectDB(done) {
 		done();
 	} catch (e) {
 		tables.query('SHOW TABLES', function (err, allTables) {
+			console.log(err);
 			async.each(allTables, collectColumns, function () {
 				fs.writeFile('./shapes.json', JSON.stringify(shapes), function (writeError) {
 					console.log(writeError);

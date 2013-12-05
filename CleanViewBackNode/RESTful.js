@@ -16,8 +16,9 @@ module.exports = function (app, tables, shapes, middleware, io) {
 	eventsQuery += "WHERE users.user_id = ";
 
 	var channelsQuery = "";
-	channelsQuery += "SELECT * FROM enrollments ";
-	channelsQuery += "WHERE user_id = ";
+	channelsQuery += "SELECT * FROM courses ";
+	channelsQuery += "JOIN enrollments ON enrollments.course_id = courses.course_id ";
+	channelsQuery += "WHERE enrollments.user_id = ";
 
 	function validate(table, shape, callback) {
 		if (!shapes[table]) return false; //invalid table name
@@ -45,7 +46,7 @@ module.exports = function (app, tables, shapes, middleware, io) {
 	 *	gathers user events and channels to subsribe to
 	 */
 	app.get("/:user/establish", middleware.readStack, function (req, res) {
-		var user = 58 //tables.escape(req.params.user);
+		var user = tables.escape(req.params.user);
 		var queryEvents = eventsQuery + user;
 		var queryChannels = channelsQuery + user;
 		var pings = 0;
@@ -73,9 +74,15 @@ module.exports = function (app, tables, shapes, middleware, io) {
 		tables.query(queryEvents, function (err, events) {
 			collectionDone(err, "events", events);
 		});
+		console.log(queryChannels);
 		tables.query(queryChannels, function (err, channels) {
+			if(err) channels = [];
 			collectionDone(err, "channels", channels.map(function (elm) {
-				return elm.course_id;
+					return {
+						title : elm.title,
+						course_id : elm.course_id,
+						name : elm.name
+					};
 			}));
 		});
 
@@ -138,16 +145,22 @@ module.exports = function (app, tables, shapes, middleware, io) {
 		var table = req.params.table;
 		if (!(table in shapes)) return res.send(404, "entitiy does not exist"); //table does not exist
 		if (!req.query) return res.send(400, "no query");
-
-		validate(table, req.query, function (badShape, shaped) {
-			if (badShape) return res.send(400, badShape);
-
-			tables.query("SELECT * FROM " + table + " WHERE ? ", shaped, function (err, data) {
+		
+			tables.query("SELECT * FROM " + table, function (err, data) {
 				if (err) return res.send(err);
 				//TODO: validated data going out
 				return res.send(data);
 			});
-		});
+
+		// validate(table, req.query, function (badShape, shaped) {
+		// 	if (badShape) return res.send(400, badShape);
+
+		// 	tables.query("SELECT * FROM " + table + " WHERE ? ", shaped, function (err, data) {
+		// 		if (err) return res.send(err);
+		// 		//TODO: validated data going out
+		// 		return res.send(data);
+		// 	});
+		// });
 	});
 
 };

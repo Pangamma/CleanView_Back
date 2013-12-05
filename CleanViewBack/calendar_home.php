@@ -6,12 +6,15 @@
     
     $email = (isset($_POST["b-login-form__email"]) ? $_POST["b-login-form__email"] : null);
     $password = (isset($_POST["b-login-form__password"]) ? $_POST["b-login-form__password"] : null);
-    
-    if (!$api->isLoggedIn () && !$api->login($email, $password)) {
-    	// die after printing a redirect because nothing more is needed
-    	// by the page.
-    	echo '<meta http-equiv="refresh" content="0; url=index.php">';
-    	die ();
+    if (!$api->isLoggedIn() && $password != "" && $email != "" && !$api->login($email, $password)) {
+        // die after printing a redirect because nothing more is needed
+        // by the page.
+        echo '<meta http-equiv="refresh" content="0; url=index.php">';
+        die ();
+    } else {
+        if(isset($_SESSION["userJson"])){
+            setcookie("uid", $_SESSION["userJson"]->getUserId());
+        }
     }
 ?>
     
@@ -68,11 +71,34 @@
                     <button class="b-main-dash__add-event-button">Add new event</button>
                 </div>
                 <div class="b-add-event-block g-hide">
+                    <?php
+                        $courses = $api->getCoursesByUserId();
+                        print_r($courses);
+                        foreach($courses as $course){
+                            print_r($course);
+                    ?>
+                        <div class="b-day-event-list-item__header b-day-event-list-item__header--class">
+                            <p class="b-day-event-list-item__header-p">
+                                <span class="b-day-event-list-item__class-tag-id">{{ classId }}</span> 
+                                <span class="b-day-event-list-item__tag-name b-day-event-list-item__tag-name--class">{{ className }}</span>
+                            </p>
+                        </div>
+                    <?php
+                        }
+                    ?>
+                    <script id="newEventHead" type="text/html">
+                        <div class="b-day-event-list-item__header b-day-event-list-item__header--class">
+                            <p class="b-day-event-list-item__header-p">
+                                <span class="b-day-event-list-item__class-tag-id">{{ classId }}</span> 
+                                <span class="b-day-event-list-item__tag-name b-day-event-list-item__tag-name--class">{{ className }}</span>
+                            </p>
+                        </div>
+                    </script>
                     <textarea placeholder="What's on your mind?" class="b-add-event-block__textarea"></textarea>    
                     <div class="b-add-event-block__button-group">
                         <button class="b-add-event-block__button b-add-event-block__button--done">Done</button>
                         <button class="b-add-event-block__button b-add-event-block__button--tag" type="button" data-toggle="modal" data-target="#addTagModal">Add Tag</button>
-                        <button class="b-add-event-block__button b-add-event-block__button--time" type="button" data-toggle="modal" data-target="#addTimeModal">Add Time</button>
+                        <!-- <button class="b-add-event-block__button b-add-event-block__button--time" type="button" data-toggle="modal" data-target="#addTimeModal">Add Time</button> -->
                         <button class="b-add-event-block__button b-add-event-block__button--cancel">Cancel</button>
                     </div>    
                 </div>
@@ -88,18 +114,11 @@
                       </div>
                       <div class="modal-body b-modal__body">
                         <ul class="b-tag-list">
-                            <li class="b-tag-list__item b-tag-list__item--class">
-                                CSS360
-                            </li> 
-                            <li class="b-tag-list__item b-tag-list__item--group">
-                                Blah Club
-                            </li>
-                            <li class="b-tag-list__item b-tag-list__item--group">
-                                Derp Club
-                            </li>
-                            <li class="b-tag-list__item b-tag-list__item--personal b-tag-list__item--active">
-                                Personal
-                            </li>   
+                            <script id="groupTags" type="text/html">
+                                <li class="b-tag-list__item b-tag-list__item--class">
+                                    {{ classTag }}
+                                </li> 
+                            </script>
                         </ul>    
                       </div>
                       <div class="modal-footer b-modal__footer">
@@ -165,55 +184,8 @@
                   </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
 
-                <ul class="b-day-event-list" style="margin-left: 0; list-style-type: none;">
-                    <li class="b-day-event-list-item b-day-event-list-item--class">
-                        <div class="b-day-event-list-item__header b-day-event-list-item__header--class"><p class="b-day-event-list-item__header-p"><span class="b-day-event-list-item__class-tag-id">CSS360</span> <span class="b-day-event-list-item__tag-name b-day-event-list-item__tag-name--class">Software Engineering</span></p> <span class="b-day-event-list-item__time b-day-event-list-item__time--class">8:00 AM</span></div>
-                        
-                        <div class="b-day-event-list-item__container">
-                            <p class="b-day-event-list-item__text">Eat breakfast</p>
-                            <div class="b-day-event-list__check-mark-wrapper"><img class="b-day-event-list__check-mark g-svg" src="assets/images/ico/check-mark-icon.svg" alt="check icon"></div>
-                        </div>    
-                        <div class="b-day-event-list-item__button-group">
-                            <button class="b-day-event-list-item__flag">Flag</button><!--
-                            --><button class="b-day-event-list-item__delete">Delete</button>
-                        </div>    
-                    </li>
-                    <li class="b-day-event-list-item b-day-event-list-item--personal">
-                        <div class="b-day-event-list-item__header b-day-event-list-item__header--personal"><p class="b-day-event-list-item__header-p"><span class="b-day-event-list-item__tag-name b-day-event-list-item__tag-name--personal">Personal</span></p> <span class="b-day-event-list-item__time b-day-event-list-item__time--personal">8:00 AM</span></div>
-                        
-                        <div class="b-day-event-list-item__container">
-                            <p class="b-day-event-list-item__text">Eat breakfast</p>
-                            <div class="b-day-event-list__check-mark-wrapper"><img class="b-day-event-list__check-mark g-svg" src="assets/images/ico/check-mark-icon.svg" alt="check icon"></div>
-                        </div>    
-                        <div class="b-day-event-list-item__button-group">
-                            <button class="b-day-event-list-item__flag">Flag</button><!--
-                            --><button class="b-day-event-list-item__delete">Delete</button>
-                        </div>    
-                    </li>
-                    <li class="b-day-event-list-item b-day-event-list-item--group">
-                        <div class="b-day-event-list-item__header b-day-event-list-item__header--group"><p class="b-day-event-list-item__header-p"><span class="b-day-event-list-item__tag-name b-day-event-list-item__tag-name--group">Blah Club</span></p> <span class="b-day-event-list-item__time b-day-event-list-item__time--group">8:00 AM</span></div>
-                        
-                        <div class="b-day-event-list-item__container">
-                            <p class="b-day-event-list-item__text">Eat breakfast</p>
-                            <div class="b-day-event-list__check-mark-wrapper"><img class="b-day-event-list__check-mark g-svg" src="assets/images/ico/check-mark-icon.svg" alt="check icon"></div>
-                        </div>    
-                        <div class="b-day-event-list-item__button-group">
-                            <button class="b-day-event-list-item__flag">Flag</button><!--
-                            --><button class="b-day-event-list-item__delete">Delete</button>
-                        </div>    
-                    </li>
-                    <li class="b-day-event-list-item b-day-event-list-item--personal b-day-event-list-item--done">
-                        <div class="b-day-event-list-item__header b-day-event-list-item__header--personal"><p class="b-day-event-list-item__header-p"><span class="b-day-event-list-item__tag-name b-day-event-list-item__tag-name--personal">Personal</span></p> <span class="b-day-event-list-item__time b-day-event-list-item__time--personal">8:00 AM</span></div>
-                        
-                        <div class="b-day-event-list-item__container">
-                            <p class="b-day-event-list-item__text">Eat breakfast</p>
-                            <div class="b-day-event-list__check-mark-wrapper"><img class="b-day-event-list__check-mark g-svg" src="assets/images/ico/check-mark-icon.svg" alt="check icon"></div>
-                        </div>    
-                        <div class="b-day-event-list-item__button-group">
-                            <button class="b-day-event-list-item__flag">Flag</button><!--
-                            --><button class="b-day-event-list-item__delete">Delete</button>
-                        </div>    
-                    </li>
+                <ul class="b-day-event-list" id="event-list" style="margin-left: 0; list-style-type: none;">
+
                 </ul>    
             </div>    
         </div>
@@ -238,12 +210,36 @@
         </div>    
     
     <!--javascript-->
+    <script src="assets/js/ich.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
     <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
     <script src="assets/js/modal.js"></script>
+    <script id="event" type="text/html">
+        <li class="b-day-event-list-item b-day-event-list-item--class">
+            <div class="b-day-event-list-item__header b-day-event-list-item__header--class"><p class="b-day-event-list-item__header-p"><span class="b-day-event-list-item__class-tag-id">{{ courseName }} </span> <span class="b-day-event-list-item__tag-name b-day-event-list-item__tag-name--class">{{ eventTitle }}</span></p></div>
+            
+            <div class="b-day-event-list-item__container">
+                <p class="b-day-event-list-item__text">{{ eventTxt }}</p>
+                <div class="b-day-event-list__check-mark-wrapper"><img class="b-day-event-list__check-mark g-svg" src="assets/images/ico/check-mark-icon.svg" alt="check icon"></div>
+            </div>    
+            <div class="b-day-event-list-item__button-group">
+                <button class="b-day-event-list-item__flag">Flag</button><!--
+                --><button class="b-day-event-list-item__delete">Delete</button>
+            </div>    
+        </li>
+    </script>
     <!-- TODO: move to external file -->
     <script>
+        
+        function startListen(){
+            $('.b-tag-list__item').on("click", function(){
+                $('.b-tag-list__item').removeClass('b-tag-list__item--active');
+                console.log(this);
+                $(this).addClass('b-tag-list__item--active');
+            });
+        }
+
         $(document).ready(function(){
             var windowHeight = $(window).height();
             var noDashHeight = windowHeight - $('.b-header--calendar').outerHeight();
@@ -261,19 +257,32 @@
             yesterdayDate.setDate(todaysDate - 1);
             tomorrowDate.setDate(todaysDate + 1);
 
-            var connection = (function establishConnection(){
-                var uid = getCookie("uid");
-               $.ajax({
-                    type: "GET",
-                    url : "http://localhost:38368/" + uid + "/establish",
-                    dataType: "jsonp",
-                    success : function(data){
-                        console.log(data);
-                    },
-                    error: function(err) { console.log(err); },
-                });
-                // var socket = io.connect("localhost:38368", {userId: 55});
-            })();
+            var uid = getCookie("uid");
+
+           $.ajax({
+                type: "GET",
+                url : "http://localhost:38368/" + uid + "/establish",
+                dataType: "jsonp",
+                success : function(data){
+                    courses = {};
+                    data.data.channels.forEach(function(elm){
+                        $(".b-tag-list").append(ich.groupTags({
+                            classTag : elm.name
+                        }));
+                        courses[elm.course_id] = elm.name;
+                    });
+                    data.data.events.forEach(function(elm){
+                        var event = ich.event({
+                            courseName : courses[elm.course_id],
+                            eventTitle : elm.title,
+                            eventTxt : elm.description
+                        });
+                        $("#event-list").append(event);
+                    });
+                    startListen();
+                },
+                error: function(err) { console.log(err); },
+            });
 
             function getCookie(c_name) {
                 var c_value = document.cookie;
@@ -381,6 +390,28 @@
             });
             $('.b-add-event-block__button--done').on("click", function(){
                 add_even_block.addClass('g-hide');
+                
+               // $.ajax({ 
+               //      type: "POST",
+               //      url : "http://localhost:38368/events/create",
+               //      dataType: "jsonp",
+               //      data: {
+               //          "title": $("b-add-event-block__textarea").value,
+               //          "description": $("b-add-event-block__textarea").value,
+               //          "type_id": 4,
+               //          "time": 0,
+               //          "course_id": 0,
+               //          "deleted": 0
+               //      },
+               //      success : function(data){
+               //          $("#event-list").append(ich.event({
+               //              courseName : courses[elm.course_id],
+               //              eventTitle : elm.title,
+               //              eventTxt : elm.description
+               //          }));
+               //      },
+               //      error: function(err) { console.log(err); },
+               //  });
             });    
             
             if($('.b-day-event-list-item__container').height() > 70){
@@ -403,11 +434,7 @@
         $('#addTagModal').modal({show: false});
         $('#addTimeModal').modal({show: false});
         $('#addGroupModal').modal({show: false});
-
-        $('.b-tag-list__item').on("click", function(){
-            $('.b-tag-list__item').removeClass('b-tag-list__item--active');
-            $(this).addClass('b-tag-list__item--active');
-        });
+        
 
 
          /*

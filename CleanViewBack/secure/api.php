@@ -134,7 +134,6 @@ class Api {
 				$_SESSION['loggedin'] = true;
 				$_SESSION['email'] = $row['email'];
 				$_SESSION['userJson'] = $this->user;
-				$_SESSION['userData'] = $this->user->jsonSerialize();
 				//so they do not have to keep logging into our site.
 				if ($rememberMe) {
 					setcookie("email", $email);
@@ -551,7 +550,7 @@ class Api {
 	function addEnrollment($courseId, $userId = -1) {
 		if ($userId == -1)
 			$userId = $this->user->getUserId();
-		$query = "INSERT INTO `" . Api::$TBL_ENROLLMENTS . "` (`userId`, `courseId`) VALUES (:userid, :courseid)";
+		$query = "INSERT IGNORE INTO `" . Api::$TBL_ENROLLMENTS . "` (`user_id`, `course_id`) VALUES (:userid, :courseid)";
 		$params = array(
 			":userid" => $userId,
 			":courseid" => $courseId
@@ -575,7 +574,7 @@ class Api {
 	 *        adds new user to database
 	 *        param        {json}        User object
 	 */
-	function addUser ( $firstName, $lastName, $email, $username, $pass ) {
+	function addUser( $firstName, $lastName, $email, $username, $pass ) {
 	
 		$salt = uniqid().uniqid();
 	

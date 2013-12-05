@@ -41,6 +41,7 @@ class Course implements RowObject {
 		$data ['year'] = $this->year;
 		$data ['quarter'] = $this->quarter;
 		$data ['instructor'] = $this->instructor;
+		$data ['sln'] = $this->sln;//we're throwing this out, remember?
 		
 		return $data;
 	}
