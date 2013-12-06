@@ -1,22 +1,4 @@
-<?php 
-    include('head.php'); 
-
-    require_once ('secure/api.php');
-    $api = new Api ();
-    
-    $email = (isset($_POST["b-login-form__email"]) ? $_POST["b-login-form__email"] : null);
-    $password = (isset($_POST["b-login-form__password"]) ? $_POST["b-login-form__password"] : null);
-    if (!$api->isLoggedIn() && $password != "" && $email != "" && !$api->login($email, $password)) {
-        // die after printing a redirect because nothing more is needed
-        // by the page.
-        echo '<meta http-equiv="refresh" content="0; url=index.php">';
-        die ();
-    } else {
-        if(isset($_SESSION["userJson"])){
-            setcookie("uid", $_SESSION["userJson"]->getUserId());
-        }
-    }
-?>
+<?php include('head.php'); ?>
     
     <body class="b-body b-body--grey">
         
@@ -91,11 +73,9 @@
                       </div>
                       <div class="modal-body b-modal__body">
                         <ul class="b-tag-list">
-                            <script id="groupTags" type="text/html">
                             <li class="b-tag-list__item b-tag-list__item--class">
-                                    {{ classTag }}
+                                CSS360
                             </li>  
-                            </script>
                         </ul>    
                       </div>
                       <div class="modal-footer b-modal__footer">
@@ -193,23 +173,11 @@
     <script src="assets/js/ich.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
     <script src="assets/js/modal.js"></script>
-    <script id="event" type="text/html">
-        <li class="b-day-event-list-item b-day-event-list-item--class">
-            <div class="b-day-event-list-item__header b-day-event-list-item__header--class"><p class="b-day-event-list-item__header-p"><span class="b-day-event-list-item__class-tag-id">{{ courseName }} </span> <span class="b-day-event-list-item__tag-name b-day-event-list-item__tag-name--class">{{ eventTitle }}</span></p></div>
+    <script src="assets/js/bootstrap-datepicker.js"></script>
     
-            <div class="b-day-event-list-item__container">
-                <p class="b-day-event-list-item__text">{{ eventTxt }}</p>
-                <div class="b-day-event-list__check-mark-wrapper"><img class="b-day-event-list__check-mark g-svg" src="assets/images/ico/check-mark-icon.svg" alt="check icon"></div>
-            </div>    
-            <div class="b-day-event-list-item__button-group">
-                <button class="b-day-event-list-item__flag">Flag</button><!--
-                --><button class="b-day-event-list-item__delete">Delete</button>
-            </div>    
-        </li>
-    </script>
-    <!-- TODO: move to external file -->
     <script>
         
         function startListen(){
@@ -220,73 +188,21 @@
             });
         }
 
-        function createEvent(elm){
-            var event = ich.event({
-                courseName : courses[elm.course_id],
-                eventTitle : elm.title,
-                eventTxt : elm.description
-            });
-            $("#event-list").append(event);
-        }
-
         $(document).ready(function(){
             var windowHeight = $(window).height();
-            var noDashHeight = windowHeight - $('.b-header--calendar').outerHeight();
-            var dayHeight = (noDashHeight - 15)/3;
-            var dayContentHeight = $('.b-day-dash__day-content').height();
-            var dayContentMargin = (dayHeight - dayContentHeight)/2;
-            var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
-            var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-            var newDate = new Date();
-            var todaysDate = newDate.getDate();
-            var yesterdayDate = new Date();
-            var tomorrowDate = new Date();
+            noDashHeight = windowHeight - $('.b-header--calendar').outerHeight(),
+            dayHeight = (noDashHeight - 15)/3,
+            dayContentHeight = $('.b-day-dash__day-content').height(),
+            dayContentMargin = (dayHeight - dayContentHeight)/2,
             
-            newDate.setDate();
-            yesterdayDate.setDate(todaysDate - 1);
-            tomorrowDate.setDate(todaysDate + 1);
-
-            var uid = getCookie("uid");
-
-           $.ajax({
-                type: "GET",
-                url : "http://localhost:38368/" + uid + "/establish",
-                dataType: "jsonp",
-                success : function(data){
-                    courses = {};
-                    data.data.channels.forEach(function(elm){
-                        $(".b-tag-list").append(ich.groupTags({
-                            classTag : elm.name
-                        }));
-                        courses[elm.course_id] = elm.name;
-                    });
-                    data.data.events.forEach(function(elm){
-                        createEvent(elm);
-                    });
-                    startListen();
-                },
-                error: function(err) { console.log(err); },
-            });
-
-            function getCookie(c_name) {
-                var c_value = document.cookie;
-                var c_start = c_value.indexOf(" " + c_name + "=");
-                if (c_start == -1) {
-                  c_start = c_value.indexOf(c_name + "=");
-                }
-                if (c_start == -1) {
-                  c_value = null;
-                }
-                else {
-                    c_start = c_value.indexOf("=", c_start) + 1;
-                    var c_end = c_value.indexOf(";", c_start);
-                    if (c_end == -1) {
-                        c_end = c_value.length;
-                    }
-                    c_value = unescape(c_value.substring(c_start,c_end));
-                }
-                return c_value;
-            }
+            monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ],
+            dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+            newDate = new Date(),
+            newDate.setDate(newDate.getDate()),
+            yesterdayDate = new Date(),
+            yesterdayDate.setDate(yesterdayDate.getDate() - 1),
+            tomorrowDate = new Date(),
+            tomorrowDate.setDate(tomorrowDate.getDate() + 1);
 
             // This function displays the current time
             function updateClock(){
@@ -373,7 +289,13 @@
                 add_even_block.addClass('g-hide');
             });
             $('.b-add-event-block__button--done').on("click", function(){
+                var textStuff = $('.b-add-event-block__textarea').val();
+                var randid = Math.random();
                 add_even_block.addClass('g-hide');
+                $('.b-day-event-list').append('<li id= "'+randid+'"class="b-day-event-list-item b-day-event-list-item--class"><div class="b-day-event-list-item__header b-day-event-list-item__header--class"><p class="b-day-event-list-item__header-p"><span class="b-day-event-list-item__class-tag-id">CSS360</span><span class="b-day-event-list-item__tag-name b-day-event-list-item__tag-name--class">Software Engineering</span></p> <span class="b-day-event-list-item__time b-day-event-list-item__time--class">8:00 AM</span></div><div class="b-day-event-list-item__container"><p class="b-day-event-list-item__text">' + textStuff + '</p><div class="b-day-event-list__check-mark-wrapper"><img class="b-day-event-list__check-mark g-svg" src="assets/images/ico/check-mark-icon.svg" alt="check icon"></div></div><div class="b-day-event-list-item__button-group"><button class="b-day-event-list-item__flag">Flag</button><!-- --><button class="b-day-event-list-item__delete">Delete</button></div></li>');
+                $(randid).click(funcion(){
+                    $(this).remove();
+                });
             });    
             
             if($('.b-day-event-list-item__container').height() > 70){
@@ -408,7 +330,8 @@
 
         $('#b-datepicker').datepicker();
         var todayDate = new Date();
-        $('.b-datepicker__input').val((todayDate.getMonth() + 1) + "/" + (todayDate.getDay() + 1) + "/" + todayDate.getFullYear());
+        $('.b-datepicker__input').val((todayDate.getMonth() + 1) + "/" + (todayDate.getDay() + 1) + "/" + todayDate.getFullYear()); 
+
          /*
      * Replace all SVG images with inline SVG
      */
