@@ -25,7 +25,7 @@
                 
                 <h1 class="b-header__logo">PeerCalendar</h1>
                 <ul class="b-cal-navlist">
-                    <li class="b-cal-navlist__item b-cal-navlist__item--logout"><a class="b-cal-navlist__logout-link" href="logout.php">Log out</a></li>
+                    <li class="b-cal-navlist__item b-cal-navlist__item--logout"><a class="b-cal-navlist__logout-link" href="index.php">Log out</a></li>
                 </ul>
             </div>
         </div>
@@ -71,34 +71,11 @@
                     <button class="b-main-dash__add-event-button">Add new event</button>
                 </div>
                 <div class="b-add-event-block g-hide">
-                    <?php
-                        $courses = $api->getCoursesByUserId();
-                        print_r($courses);
-                        foreach($courses as $course){
-                            print_r($course);
-                    ?>
-                        <div class="b-day-event-list-item__header b-day-event-list-item__header--class">
-                            <p class="b-day-event-list-item__header-p">
-                                <span class="b-day-event-list-item__class-tag-id">{{ classId }}</span> 
-                                <span class="b-day-event-list-item__tag-name b-day-event-list-item__tag-name--class">{{ className }}</span>
-                            </p>
-                        </div>
-                    <?php
-                        }
-                    ?>
-                    <script id="newEventHead" type="text/html">
-                        <div class="b-day-event-list-item__header b-day-event-list-item__header--class">
-                            <p class="b-day-event-list-item__header-p">
-                                <span class="b-day-event-list-item__class-tag-id">{{ classId }}</span> 
-                                <span class="b-day-event-list-item__tag-name b-day-event-list-item__tag-name--class">{{ className }}</span>
-                            </p>
-                        </div>
-                    </script>
                     <textarea placeholder="What's on your mind?" class="b-add-event-block__textarea"></textarea>    
                     <div class="b-add-event-block__button-group">
                         <button class="b-add-event-block__button b-add-event-block__button--done">Done</button>
                         <button class="b-add-event-block__button b-add-event-block__button--tag" type="button" data-toggle="modal" data-target="#addTagModal">Add Tag</button>
-                        <!-- <button class="b-add-event-block__button b-add-event-block__button--time" type="button" data-toggle="modal" data-target="#addTimeModal">Add Time</button> -->
+                        <button class="b-add-event-block__button b-add-event-block__button--time" type="button" data-toggle="modal" data-target="#addTimeModal">Add Time</button>
                         <button class="b-add-event-block__button b-add-event-block__button--cancel">Cancel</button>
                     </div>    
                 </div>
@@ -115,9 +92,9 @@
                       <div class="modal-body b-modal__body">
                         <ul class="b-tag-list">
                             <script id="groupTags" type="text/html">
-                                <li class="b-tag-list__item b-tag-list__item--class">
+                            <li class="b-tag-list__item b-tag-list__item--class">
                                     {{ classTag }}
-                                </li> 
+                            </li>  
                             </script>
                         </ul>    
                       </div>
@@ -138,6 +115,11 @@
                         <h4 class="modal-title" id="myModalLabel">Add time to event</h4>
                       </div>
                       <div class="modal-body b-modal__body">
+                        
+                        <div class="input-append date b-datepicker" data-date-format="dd-mm-yyyy">
+                            <input class="span2 b-datepicker__input" size="16" type="text" id="b-datepicker">
+                        </div>
+                        
                         <select class="b-add-time-select-digit">
                             <option>1</option>
                             <option>2</option>
@@ -164,28 +146,33 @@
                     </div><!-- /.modal-content -->
                   </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
-                    
-                <!-- Add Group Modal -->
-                <div class="modal fade b-modal b-modal--group" id="addGroupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog b-modal__dialog">
-                    <div class="modal-content b-modal__content">
-                      <div class="modal-header b-modal__header">
-                        <button type="button" class="close b-modal__close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="myModalLabel">Add time to event</h4>
-                      </div>
-                      <div class="modal-body b-modal__body">
-                        <input class="b-modal__add-group-textfield" type="text" placeholder="Name of a group"></input>
-                      </div>
-                      <div class="modal-footer b-modal__footer">
-                        <button type="button" class="btn btn-default b-modal__close-btn" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary b-modal__add" data-dismiss="modal">Add Group</button>
-                      </div>
-                    </div><!-- /.modal-content -->
-                  </div><!-- /.modal-dialog -->
-                </div><!-- /.modal -->
 
-                <ul class="b-day-event-list" id="event-list" style="margin-left: 0; list-style-type: none;">
+                <ul class="b-day-event-list" style="margin-left: 0; list-style-type: none;">
+                    <li class="b-day-event-list-item b-day-event-list-item--class">
+                        <div class="b-day-event-list-item__header b-day-event-list-item__header--class"><p class="b-day-event-list-item__header-p"><span class="b-day-event-list-item__class-tag-id">CSS360</span> <span class="b-day-event-list-item__tag-name b-day-event-list-item__tag-name--class">Software Engineering</span></p> <span class="b-day-event-list-item__time b-day-event-list-item__time--class">8:00 AM</span></div>
+                        
+                        <div class="b-day-event-list-item__container">
+                            <p class="b-day-event-list-item__text">Eat breakfast</p>
+                            <div class="b-day-event-list__check-mark-wrapper"><img class="b-day-event-list__check-mark g-svg" src="assets/images/ico/check-mark-icon.svg" alt="check icon"></div>
+                        </div>    
+                        <div class="b-day-event-list-item__button-group">
+                            <button class="b-day-event-list-item__flag">Flag</button><!--
+                            --><button class="b-day-event-list-item__delete">Delete</button>
+                        </div>    
+                    </li>
 
+                    <li class="b-day-event-list-item b-day-event-list-item--class b-day-event-list-item--done">
+                        <div class="b-day-event-list-item__header b-day-event-list-item__header--class"><p class="b-day-event-list-item__header-p"><span class="b-day-event-list-item__class-tag-id">CSS360</span> <span class="b-day-event-list-item__tag-name b-day-event-list-item__tag-name--class">Software Engineering</span></p> <span class="b-day-event-list-item__time b-day-event-list-item__time--class">8:00 AM</span></div>
+                        
+                        <div class="b-day-event-list-item__container">
+                            <p class="b-day-event-list-item__text">Eat breakfast</p>
+                            <div class="b-day-event-list__check-mark-wrapper"><img class="b-day-event-list__check-mark g-svg" src="assets/images/ico/check-mark-icon.svg" alt="check icon"></div>
+                        </div>    
+                        <div class="b-day-event-list-item__button-group">
+                            <button class="b-day-event-list-item__flag">Flag</button><!--
+                            --><button class="b-day-event-list-item__delete">Delete</button>
+                        </div>    
+                    </li>
                 </ul>    
             </div>    
         </div>
@@ -199,13 +186,6 @@
                     <li class="b-dash-class-list__item"><a class="b-dash-class-list__link"><span class="b-dash-class-list__class">CSS342</span><span class="b-dash-class-list__name">Introduction Into Algorithms</span></a></li>
                 </ul>
                 <a class="b-conf-dash__button-link b-conf-dash__button-link--add-class" href="add_classes.php"><button class="b-conf-dash__button b-conf-dash__button--add-class">Add class</button></a>    
-                
-                <h2 class="b-conf-dash__title">Your Groups</h2>
-                <ul class="b-dash-group-list">
-                    <li class="b-dash-group-list__item"><a class="b-dash-group-list__link"><span class="b-dash-group-list__name">Blah Club</span></a></li>
-                    <li class="b-dash-group-list__item"><a class="b-dash-group-list__link"><span class="b-dash-group-list__name">Derp Club</span></a></li>
-                </ul>
-                <button class="b-conf-dash__button b-conf-dash__button--add-group" data-toggle="modal" data-target="#addGroupModal">Add group</button>
             </div>    
         </div>    
     
@@ -218,7 +198,7 @@
     <script id="event" type="text/html">
         <li class="b-day-event-list-item b-day-event-list-item--class">
             <div class="b-day-event-list-item__header b-day-event-list-item__header--class"><p class="b-day-event-list-item__header-p"><span class="b-day-event-list-item__class-tag-id">{{ courseName }} </span> <span class="b-day-event-list-item__tag-name b-day-event-list-item__tag-name--class">{{ eventTitle }}</span></p></div>
-            
+    
             <div class="b-day-event-list-item__container">
                 <p class="b-day-event-list-item__text">{{ eventTxt }}</p>
                 <div class="b-day-event-list__check-mark-wrapper"><img class="b-day-event-list__check-mark g-svg" src="assets/images/ico/check-mark-icon.svg" alt="check icon"></div>
@@ -394,36 +374,18 @@
             });
             $('.b-add-event-block__button--done').on("click", function(){
                 add_even_block.addClass('g-hide');
-                
-               // $.ajax({ 
-               //      type: "POST",
-               //      url : "http://localhost:38368/events/create",
-               //      dataType: "jsonp",
-               //      data: {
-               //          "title": $("b-add-event-block__textarea").value,
-               //          "description": $("b-add-event-block__textarea").value,
-               //          "type_id": 4,
-               //          "time": 0,
-               //          "course_id": 0,
-               //          "deleted": 0
-               //      },
-               //      success : function(data){
-               //          $("#event-list").append(ich.event({
-               //              courseName : courses[elm.course_id],
-               //              eventTitle : elm.title,
-               //              eventTxt : elm.description
-               //          }));
-               //      },
-               //      error: function(err) { console.log(err); },
-               //  });
             });    
             
             if($('.b-day-event-list-item__container').height() > 70){
                 check_mark_wrapper.css('margin-top', ($('.b-day-event-list-item__container').height() - 70)/2 );
             }
             check_mark_wrapper.on("click", function(){
-                $(this).parent().parent().addClass('b-day-event-list-item--done');
-                console.log("blah");
+                var event_list_item = $(this).parent().parent();
+                if( event_list_item.hasClass('b-day-event-list-item--done') ){
+                    event_list_item.removeClass('b-day-event-list-item--done');
+                } else {
+                    event_list_item.addClass('b-day-event-list-item--done');
+                }
             });
             $('.b-day-event-list-item__delete').on("click", function(){
                 $(this).parent().parent().remove();
@@ -438,9 +400,15 @@
         $('#addTagModal').modal({show: false});
         $('#addTimeModal').modal({show: false});
         $('#addGroupModal').modal({show: false});
-        
 
+        $('.b-tag-list__item').on("click", function(){
+            $('.b-tag-list__item').removeClass('b-tag-list__item--active');
+            $(this).addClass('b-tag-list__item--active');
+        });
 
+        $('#b-datepicker').datepicker();
+        var todayDate = new Date();
+        $('.b-datepicker__input').val((todayDate.getMonth() + 1) + "/" + (todayDate.getDay() + 1) + "/" + todayDate.getFullYear());
          /*
      * Replace all SVG images with inline SVG
      */
