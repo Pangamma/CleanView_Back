@@ -240,6 +240,15 @@
             });
         }
 
+        function createEvent(elm){
+            var event = ich.event({
+                courseName : courses[elm.course_id],
+                eventTitle : elm.title,
+                eventTxt : elm.description
+            });
+            $("#event-list").append(event);
+        }
+
         $(document).ready(function(){
             var windowHeight = $(window).height();
             var noDashHeight = windowHeight - $('.b-header--calendar').outerHeight();
@@ -272,12 +281,7 @@
                         courses[elm.course_id] = elm.name;
                     });
                     data.data.events.forEach(function(elm){
-                        var event = ich.event({
-                            courseName : courses[elm.course_id],
-                            eventTitle : elm.title,
-                            eventTxt : elm.description
-                        });
-                        $("#event-list").append(event);
+                        createEvent(elm);
                     });
                     startListen();
                 },
